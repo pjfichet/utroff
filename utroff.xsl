@@ -275,33 +275,16 @@ xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 </head>
 
 <body>
-
-<div class="head">
+  <nav>
     <h1><a href="/index.html">Utroff.org</a></h1>
-    <div class="menu">
-        <a href="/tmac.html">tmac</a>
-        <a href="/bin.html">bin</a>
-        <a href="/xml.html">xml</a>
-		<a href="https://github.com/pjfichet">git</a>
-		<!--
-        <a href="/doc.html">doc</a>
-        <a href="/log.html">log</a>
-        <a href="@PUBURL@/pub/">pub</a>
-		-->
-    </div>
-	<div class="donate">
-		<!--
-		<a href="https://flattr.com/submit/auto?user_id=utroff&amp;url=http://utroff.org&amp;title=Utroff&amp;description=hacks%20and%20scratchs%20to%20Use%20troff&amp;language=en_GB&amp;tags=troff&amp;category=software">F<span>Flattr utroff</span></a>
-		<a href="https://twitter.com/intent/tweet?related=utroff_&amp;text=@utroff_%20">T<span>Tweet @utroff_</span></a>
-		-->
-	</div>
-</div>
-
-  <!-- top notes -->
-    <div class="content">
-
+    <a href="/tmac.html">tmac</a>
+    <a href="/bin.html">bin</a>
+    <a href="/xml.html">xml</a>
+    <a href="https://github.com/pjfichet">git</a>
+  </nav>
+  <article>
+	<!-- content -->
     <xsl:apply-templates/>
-
     <!-- notes -->
 	  <xsl:if test="//NS">
 		  <hr/>
@@ -323,18 +306,17 @@ xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 
     <!-- notes -->
 	  <xsl:if test="//NB">
-      <div class="bottom">
+      <footer>
 	  <hr/>
       <xsl:for-each select="//NB">
         <p>
           <xsl:apply-templates/>
         </p>
       </xsl:for-each>
-      </div>
+      </footer>
     </xsl:if>
 
-
-  </div>
+  </article>
 </body>
 </html>
 </xsl:template>
