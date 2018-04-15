@@ -1,0 +1,141 @@
+.so lib.tr
+.coms
+modification, are permitted provided that the following conditions
+are met:
+1. Redistributions of source code must retain the above copyright
+ notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright
+ notice, this list of conditions and the following disclaimer in the
+ documentation and/or other materials provided with the distribution.
+3. All advertising materials mentioning features or use of this software
+ must display the following acknowedgement:
+	This product includes software developed by the University of
+	California, Berkeley and its contributors.
+4. Neither the name of the University nor the names of its contributors
+ may be used to endorse or promote products derived from this software
+ without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGE.
+.come
+.DA M. E. Lesk
+.DS Utroff inv manual
+.DT Utroff inv manual
+.DK utroff inv refer troff
+.H2 INV 1
+.
+.
+.H3 NAME
+.PP
+\*IInv\*I \(em Make an inverted index from output of mkey.
+.H3 SYNOPSIS
+.PP
+\*Iinv\*I [\*B\-danpv\*B]
+[\*B-h\*B\*In\*I]
+[\*B-i\*B [\*Bu\*B] \*Iname\*I] \*Ioutfile\*I]
+.H3 DESCRIPTION
+.PP
+The \*Iinv\*I program computes the hash codes and writes the
+inverted files. It reads the output of \*Imkey\*I and writes
+the set of files described earlier in this section. It
+expects one argument, which is used as the base name for the
+three (or four) files to be written. Assuming an argument
+of \*IIndex\*I (the default) the entry file is named
+\*IIndex.ia\*I, the posting file \*IIndex.ib\*I, the tag
+file \*IIndex.ic\*I, and the key file (if present)
+\*Iindex.id\*I.
+.PP
+The inv programm recognize the following options:
+.PI \*B-a\*B
+Append the new keys to a previous set of inverted files,
+making new files if there is no old set using the same base
+name.
+.PI \*B-d\*B
+Write the optional key file. This is needed when you can not
+check for false drops by looking for the keys in the
+original inputs, i.e. when the key derivation procedure is
+complicated and the output keys are not words from the input
+files.
+.PI \*B-h\*B\*In\*I
+The hash table size is \*In\*I (default 997); \*In\*I should
+be prime. Making \*In\*I bigger saves search time and spends
+disk space.
+.PI "\*B-i\*B [\*Bu\*B] \*Iname\*I"
+Take input from file \*Iname\*I, instead of the standard
+input; if \*Bu\*B is present name is unlinked when the sort
+is started. Using this option permits the sort scratch space
+to overlap the disk space used for input keys.
+.PI \*B-n\*B
+Make a completely new set of inverted files, ignoring previous files.
+.PI \*B-p\*B
+Pipe into the sort program, rather than writing a temporary
+input file. This saves disk space and spends processor
+time.
+.PI \*B-v\*B
+Verbose mode; print a summary of the number of keys which
+finished indexing.
+.PP
+About half the time used in inv is in the contained sort.
+Assuming the sort is roughly linear, however, a guess at the
+total timing for inv is 250 keys per second. The space used
+is usually of more importance: the entry file uses four
+bytes per possible hash (note the \*B-h\*B option), and the tag
+file around 15-20 bytes per item indexed. Roughly, the
+posting file contains one item for each key instance and one
+item for each possible hash code; the items are two bytes
+long if the tag file is less than 65336 bytes long, and the
+items are four bytes wide if the tag file is greater than
+65536 bytes long. To minimize storage, the hash tables
+should be over-full; for most of the files indexed in this
+way, there is no other real choice, since the entry file
+must fit in memory.
+.H3 FILES
+.PP
+\*I@BINDIR@/inv\*I	Executable.
+.br
+Assuming an argument of \*IIndex\*I (the default):
+.br
+\*IIndex.ia\*I Entry file.
+.br
+\*IIndex.ib\*I Posting file.
+.br
+\*IIndex.ic\*I Tag file.
+.br
+\*IIndex.id\*I Key file.
+.
+.
+.
+.H3 LICENSE
+.PP
+The text of this manual page comes from \*ISome application
+of Inverted Indexes in the UNIX System\*I by M. E. Lesk,
+which is distributed under the
+.lic bsd4 .
+The
+\*Iinv\*I software is distributed under the
+.lic cddl .
+.
+.
+.H3 SEE ALSO
+.PP
+.man refer 1 ,
+.man referformat 7 ,
+.man mkey 1 ,
+.man hunt 1 ,
+and \*ISome application of Inverted Indexes in the UNIX
+System\*I by M. E. \*CLesk\*C.
+.
+.
+.
+.H3 AUTHORS
+.PP
+M. E. \*CLesk\*C. Modified by Pierre-Jean \*CFichet\*C

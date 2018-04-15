@@ -1,0 +1,116 @@
+.so lib.tr
+.DA Pierre-Jean Fichet
+.DS Utroff bin
+.DT Utroff bin
+.DK utroff idx tchars ugrind refer troff neatroff
+.\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.H2 Bin
+.H3 Troff Companions
+.PP
+Troff has been made to be used within tubes. It works with
+pre-processors, post-processors and filters. A lot of filters
+exist since the 70's. Some of them needed some enhancement
+to be used with \*Iutmac\*I, some others needed to be created.
+.
+.
+.
+.
+.H3 Ugrind
+.PP
+\*IUgrind\*I is an awfull hack of \*Ivfontedpr\*I, the
+programm which makes the hard work of the mostly forgotten
+\*Ivgrind\*I preprocessor: it highlights code in troff
+sources. \*IVfontedpr\*I doesn't handle variables, troff
+source nor color, \*IUgrind\*I does all that, and is easier
+to use. It is written in C, and is probably the lightest
+tool one can find for this task.
+.PL
+See the following files:
+.LT ugrind ,
+.LU man/ugrind.html
+.LT "ics license" ,
+.LU man/ics.html
+.LT "bsd4 license" ,
+.LU man/bsd4.html
+.LT "cddl license" .
+.LU man/cddl.html
+.git ugrind
+.
+.
+.
+.H3 Idx
+\*IIdx\*I build, repair, format, and handle index files. It
+has been made to automatically index a troff document, but
+it also provides option to be used as an helper tool to
+manually index a book, and work with index files. \*Iidx\*I
+is a \*Ishell\*I and \*Iawk\*I script.
+.PL
+See the following files:
+.LT idx ,
+.LU http://utroff.org/man/idx.html
+.LT license ,
+.LU http://utroff.org/man/bsd2.html
+.git idx
+.
+.H3 Refer
+.PP
+\*IRefer\*I is a small hack of the venerable \*Irefer\*I, as
+found in the
+.LT "\*Iheirloom-doctools\*I"
+.LU http://heirloom.sourceforge.net/doctools.html
+archive.
+This modification of \*IRefer\*I uses strings to define small
+capitals, makes a difference between lastname and firstname in author
+and editor fields, add support for multiple editors, and offers an
+option to sort the bibliography database in the order defined by the
+\*Iiso-690\*I bibliography standart.
+.PL
+See the following files:
+.LT hunt ,
+.LU man/hunt.html
+.LT inv ,
+.LU man/inv.html
+.LT mkey ,
+.LU man/mkey.html
+.LT referformat ,
+.LU man/referformat.html
+.LT refer ,
+.LU man/refer.html
+.LT sortbib ,
+.LU man/sortbib.html
+.LT "license bsd4" ,
+.LU man/bsd4.html
+.LT "license cddl" ,
+.LU man/cddl.html
+.git refer
+.
+.
+.
+.H3 Tchars
+.PP
+\*ITchars\*I translate an ascii coded text to complex utf-8
+characters. Actually, it can only translate a simple sort of
+beta-code to polytonic greek.
+.PL
+See the following files:
+.LT tchars ,
+.LU http://utroff.org/man/tchars.html
+.LT license ,
+.LU http://utroff.org/man/bsd2.html
+.git tchars
+.
+.
+.H3 Troffxml tools 
+.PP
+The troffxml tools convert an \*Iutmac\*I file to xml. They
+are longer discussed in the
+.LT xml
+.LU xml.html
+page.
+.PL
+See the following files:
+.LT troffxml ,
+.LU http://utroff.org/man/troffxml.html
+.LT license ,
+.LU http://utroff.org/man/bsd2.html
+.git troffxml

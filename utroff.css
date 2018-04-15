@@ -1,0 +1,277 @@
+/*
+BLACK: 272727
+DARK: 484848
+GREY1: 626262
+GREY2: A1A1A1
+CLEAR: DADADA
+WHITE: EFEFEF
+*/
+
+
+/* headings */
+h1 {
+	margin-top: 1em;
+	font-size: medium;
+	font-weight: bold;
+	text-align: left;
+	letter-spacing: 1px;
+	margin-right: -1ex; /* fit in head border */
+
+}
+h2 {
+	font-size: x-large;
+	text-align: center;
+	margin-bottom: 3em;
+	font-weight: bold;
+	line-height: 1.2em;
+}
+h3 {
+	font-size: large;
+	text-align: left;
+	margin-bottom: 1em;
+	font-weight: bold;
+	line-height: 1.2em;
+	background-color: #D3D3D3;
+}
+h4 {
+	font-size: large;
+	text-align: left;
+	margin-bottom: 1em;
+	font-weight: bold;
+	line-height: 1.2em;
+}
+
+/* paragraphs */
+code {
+	display: block;
+	margin-top: 1em;
+	margin-left: 2em;
+	margin-right: 2em;
+	padding: 1em;
+	background-color: #D3D3D3;
+	border: 0.5ex solid #272727;
+	border-radius: 1ex/1ex;
+}
+blockquote {
+	margin-top: 1em;
+	margin-left: 3em;
+	margin-right: 3em;
+}
+p {
+	margin: 0; margin-top: 1em;
+}
+p.centered {
+	text-align: center;
+}
+p.leftextended {
+	text-indent: -3em;
+	margin-left: 3em;
+}
+p.leftalign {
+	text-align: left;
+}
+p.rightalign {
+	text-align: right;
+}
+pre {
+	margin-left: 3em;
+	margin-right: 3em;
+	border-left: 1ex solid #484848;
+	background-color: #DADADA;
+	padding: 1em;
+}
+
+/* lists */
+/*
+ul {
+	list-style-position: outside;
+	list-style-type: none;
+	padding: 0; margin: 0;
+}
+*/
+li {
+	margin-left: 3em;
+	margin-top: 1em;
+}
+
+/* fonts */
+span.B{font-weight: bold;}
+span.I{font-style: italic;}
+span.C{font-variant: small-caps;}
+span.A{font-variant: small-caps;}
+span.U{position: relative; bottom: 0.5em; font-size: small;}
+span.L{position: relative; bottom: -0.2em; font-size: small;}
+span.F{}
+span.M{font-family: monospace}
+
+/* code fonts */
+span.codeK{font-weight: bold;}
+span.codeV{color: #626262;}
+span.codeC{color: #A1A1A1;}
+span.codeS{font-style: italic;}
+
+/* links */
+a {
+	color: #626262;
+}
+a:hover {
+	text-decoration: none;
+	color: #272727;
+	background-color: #D3D3D3;
+	border-radius: 1ex/1ex;
+}
+
+
+/* body */
+body {
+	margin: 0 0 0 0;
+	padding: 0;
+	background-color: #F3F3F3;
+	font-family: serif;
+	color: #626262;
+	line-height: 1.5em;
+	font-family: serif;
+}
+
+/* header */
+div.head {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	background-color: #272727;
+	border-right: 1ex solid #D3D3D3;
+	width: 15%;
+}
+
+/* menu */
+div.menu {
+	margin-top: 3em;
+	font-weight: bold;
+	text-align: left;
+	letter-spacing: 1px;
+	margin-right: -1ex; /* fit in head border */
+}
+
+
+/* links of the header */
+
+h1 a, h1 a:visited,
+div.menu a, div.menu a:visited,
+div.submenu a, div.submenu a:visited
+{
+	display: block;
+	text-decoration: none;
+	padding-left: 1em;
+}
+
+h1 a:hover,
+div.menu a:hover,
+div.submenu a:hover {
+	color: #272727;
+	background-color: #D3D3D3; /* 484848 */
+	border-right:	1ex solid #272727;
+	border-radius: 0/0;
+	border-top-right-radius: 1ex;
+	border-bottom-right-radius: 1ex;
+}
+
+/* Donate */
+
+
+div.donate {
+	position: absolute;
+	bottom: 1ex;
+	width: 100%;
+	font-family: serif;
+	text-align: center;
+	}
+
+div.donate a {
+	text-decoration: none;
+	padding: .5ex;
+}
+div.donate a:hover {
+	text-decoration: none;
+	padding: .5ex;
+	color: #DADADA;
+	background-color: #272727;
+}
+
+div.donate a span {
+	display: none;
+}
+div.donate a:hover span {
+	display: block;
+	position: absolute;
+	text-align: center;
+	width: 100%; 
+	bottom: 3ex;
+	font-size: small;
+	font-weight: bold;
+	color: #626262;
+	font-family: serif;
+}
+
+
+/* content	*/
+div.content {
+	margin-top: 5em; 
+	margin-left: 20%;
+	padding: 5ex 10ex 5ex 10ex;
+	text-align: justify;
+	font-size: large;
+	max-width: 30em;
+}
+
+/* sidebox */
+div.sidebox {
+	float: right;
+	margin-right: -15em;
+	margin-top: -15em;
+	width: 13em !important;
+	border: 3px solid #D3D3D3;
+	padding: 1em;
+	border-radius: 1em/1em;
+	border-bottom-left-radius: 8em;
+	font-size: small;
+	text-align: left;
+	background-color: #272727;
+}
+
+/* notes */
+div.notes p {
+	font-size: small;
+	margin-top: 0;
+}
+
+div.bottom {
+	margin-top: 6em;
+	margin-left: 6em;
+	margin-right: 6em;
+	text-align: center;
+	font-size: small;
+}
+
+div.bottom p {
+	margin-top: 0;
+}
+
+/* footer */
+div.foot {
+	position: fixed;
+	left: 11em;
+	bottom: 80px;
+	width: 1.5em;
+	padding: 1ex;
+	text-align: center;
+	font-size: small;
+	background-color: #272727;
+	border: 5px solid #D3D3D3;
+	border-radius: 3ex/3ex;
+}
+
+div.foot a {
+	color: #626262;
+	text-decoration: none;
+}
+

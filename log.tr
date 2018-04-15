@@ -1,0 +1,85 @@
+.H4 2018-04-14 utmac
+.PP
+Utmac now uses \*INeatroff\*I as its default troff processor. Since
+\*INeatroff\*I does not provide \*Inroff\*I, \*IGroff\*I is used
+instead to produce plain text files and xml files.
+.H4 2017-12-11 troffxml-0.6
+.PP
+Utmac now uses KA, KN, KT, KO, KW macros to index some keywords. These
+changes are reflected on utohtml.xsl.
+.PP
+Bugfixes in postxml: any number of following \*B#-\*B are deleted,
+and \*B#-\*B are not ignored after repeated newlines.
+.H4 2017-12-11 utmac-0.6
+.PP
+The macro to define the substitution text for a link is now \*BLT\*B
+instead of \*BLP\*B.
+.PP
+The user interface to index keywords is now completely separated from
+the one used to print links. The keywords to index are now defined by
+the \*BK\*B[\*Ix\*I] macro. \*BK\*B[\*Ix\*I] macros don't print
+anything, and the (new) \*BLT\*B macro is now reserved to links.
+.PP
+Defined \*BK\*B[\*Ix\*I] macros are
+\*BKA\*B (acronyms),
+\*BKN\*B (names),
+\*BKO\*B (objects, things),
+\*BKT\*B (titles, books),
+\*BKW\*B (words).
+It is easy to add new ones by using the internal \*Iidx:make\*I macro.
+.PP
+Following the development of Heirloom Troff on github, ux.tmac now
+uses \*I\e(dq\*I to escape double quotes and u-ref.tmac now uses \eE
+as escape seqence instead of \e\e.
+.
+.H4 2017/12/08 utmac-0.5
+.PP
+The macros for links are now in u-links.tmac.
+\*BLL\*B, \*BLM\*B and \*BLU\*B now print the link even if LP is not used.
+A glitch in summaries and table of contents has been fixed by
+correctly escaping \*I\ea\*I and \*I\et\*I.
+.H4 2017/12/08 troffxml-0.5
+.PP
+\*IUtofodt.xsl\*I attempts to render the code formatted by Ugrind correctly.
+\*IUtohtml.xsl\*I has a better support for index macros and links.
+A bug affecting internal links to bottom notes is fixed in
+\*Iutohtml.xsl\*I.
+.H4 2017/12/06 ugrind-0.4
+.PP
+Separating ugrind from the Utroff archive.
+The troff formatter now escape '\e' in macro names.
+Fix a bug in the troff formatter which was dropping newlines in some
+circumstances (bug report by Marcin Cieslak).
+Removed unused variables, added parenthesis and braces to fix compiler
+warnings (bug report by Marcin Cieslak).
+.H4 2017/12/05 refer-0.4
+.PP
+Separating refer from the Utroff archive.
+Added parenthesis and braces to fix compiler warnings,
+and added missing fields in sortbib (bug report by Marcin Cieslak).
+.H4 2017/12/01 troffxml-0.4
+.PP
+Separating troffxml from the Utroff archive.
+Fixed a bug in utohtml.xsl which was not linking notes correctly.
+.H4 2017/11/30 tchars-0.4
+.PP
+Separating tchars from the Utroff archive.
+Tchars now translates characters indicated by the macros
+\*BCW, CL, CS, CE\*B.
+.H4 2017/11/25 utmac-0.4
+.PP
+Separatting Utmac from the Utroff archive.
+Added macro \*Iul\*I to write letters.
+.H4 2014/03/17 utroff-0.3
+.PP
+U: Remove bashisms (bug report by fravashyo)
+and fix a bug in the directory list of fonts.
+.H4 2014/03/13 utroff-0.2
+.PP
+tchars: RFC 3629 ends utf8 at U+10FFFF, so that utf8 is never
+encoded on more than 4 bits (bug report by seb).
+.PP
+utmac: Load a font if the user locale macro does not do it (bug report by Fravashyo).
+.H4 2013/11/05 utroff-0.1
+.PP
+Initial revision.

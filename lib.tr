@@ -1,0 +1,27 @@
+.de git
+.PL
+Browse the
+.	LT "git repository" .
+.	LU https://github.com/pjfichet/\\$1
+..
+.de man
+.	ie \\n[tmac-ux] \{\
+.		LT \\$1(\\$2) \\$3 \\$4
+.		LU /man/\\$1.html
+.	\}
+.	el \\$4\\$1(\\$2)\\$3
+..
+.de lic
+.	ie \\n[tmac-ux] \{\
+.		LT "\\$1 license" \\$2 \\$3
+.		LU /man/\\$1.html
+.	\}
+.	el \\$3\\$1 license\\$2
+..
+.de coms
+.	ie \\n[tmac-um] \\&.ig
+.	el .ig come
+..
+.de come
+.	if \\n[tmac-um] \\&..
+..

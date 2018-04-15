@@ -1,0 +1,297 @@
+.so lib.tr
+.coms
+Copyright (C) 2012-2018 Pierre Jean Fichet
+<pierrejean dot fichet at posteo dot net>
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.come
+.DA Pierre-Jean Fichet
+.DS Utroff u-ref manual
+.DT Utroff u-ref manual
+.DK utroff u-ref utmac refer iso-690 troff
+.
+.
+.
+.H2 U-REF 7
+.H3 NAME
+.PP
+\*BU-ref\*B: Format references for the U troff macros.
+.
+.
+.
+.H3 DESCRIPTION
+.PP
+The \*Iu-ref\*I macro manage references in \*Irefer\*I
+format for the \*IU troff macros\*I set (\*Iutmac\*I).
+\*Iu-ref\*I has high level built-in capabilities:
+.PI
+It formats the bibliography following the \*Iiso-690\*I
+bibliography standart which defines a lot of fields, and which
+fix the order on which they must appear.
+.PI
+It formats differently footnotes references and bibliography
+list to increase readability.
+.PI
+It replaces yet cited references by "\*IIdem.\*I" or "\*Iop.
+cit. hereinbefore\*I" or "\*Iop. cit. p\~xx.\*I", depending
+if the references has been cited just before, in the same
+page, or in the page \*Ixx\*I of the document. If only the
+heading (\*B%h\*B field) or or the page (\*B%p\*B field) of
+the reference differ, they are simply written after these
+replacement strings.
+.PI
+It builds an index of references that can be printed with
+the \*B\&.AR\*B macro.
+.PP
+\*Iu-ref\*I uses a new version of \*Irefer\*I instead of the
+original \*Iheirloom refer\*I to handle correctly the
+\*BIso-690\*B bibliography standart.
+.
+.
+.
+.H3 USAGE
+.
+.
+.
+.H4 Macros
+.PP
+The following macro can be used by the user:
+.PI \*BAB\*B \*Ifile.ref\*I
+Print a bibliography list of the file \*Ifile.ref\*I.
+.PI \*BAR\*B
+Print an index of references.
+.PI \*BRI\*B
+Reverse usage of \*IIdem\*I in reference. The first call of this
+macro will remove the usage of \*IIdem\*I, so the reference
+will never be replaced by "\*Iidem\*I". Default is to
+replace all informations similar to the previous reference.
+.PI \*BRO\*B
+Reverse usage of \*Iop. cit.\*I in reference. The first call of this
+macro will remove the usage of \*Iop. cit.\*I, so the reference
+will never be replaced by "\*Iop. cit.\*I".
+Default is to replace issuer, city and date by \*Iop. cit.
+p. xx\*I if the same reference appears before in the text.
+.PI \*BRN\*B
+Reverse usage of notes in reference. The first call of this
+macro will remove the usage of the note to print references,
+but use the \*BPQ\*B macro to print them in the text.
+Default is to enclose all references with \*BNS\*B and
+\*BNE\*B to print them as a notes.
+.
+.
+.
+.H4 Example
+.PI
+Use the \*B.[\*B and \*B.]\*B \*Irefer\*I macro to insert
+the reference. The first line following the \*B.[\*B macro
+must contain words to find the correct reference. Following
+lines can contain fields definition.
+.PI
+Since \*Iu-ref\*I write the reference in a note by
+default, you must add the \*B\*e**\*B string to insert,
+where appropriate, a note number in the text.
+.PI
+Since the note number is inserted manually, you should use the
+bare mode of \*Irefer\*I (the \*B-b\*B option), so that the
+\*Irefer\*I command line is on the form: \*Brefer -b -p
+file.ref\*B.
+.vS troff
+He said: «a short citation\**».
+.[
+Keywords...
+%p 3
+.]
+.vE
+.
+.
+.
+.H3 FIELDS
+.PP
+\*Iu-ref\*I use uppercase and lowercase fields. The
+conventional meaning of each field is as follows:
+.
+.PI \*BA\*B
+The name of an author. If the name contains a title such as
+\*IJr.\*I at the end, it should be separated from the last
+name by a comma. There can be multiple occurrences of the
+\*BA\*B field. The order is significant. It is a good idea
+always to supply an \*BA\*B field or a \*BQ\*B field.
+.
+.PI \*BB\*B
+For an article that is part of a book, the title of the book.
+.
+.PI \*BC\*B
+The place (city) of publication.
+.
+.PI \*BD\*B
+The date of publication. The year should be specified in
+full. If the month is specified, the name rather than the
+number of the month should be used. It is a good idea
+always to supply a \*BD\*B field; if the date is unknown, a
+value such as \*Iin press\*I or \*Iunknown\*I can be used.
+.
+.PI \*BE\*B
+For an article that is part of a book, the name of an editor
+of the book. For a serie of journals, the responsable of
+the serie. For a serie of books, the responsable of the
+serie.
+Refer man page say that where the work has editors and no
+authors, the names of the editors should be given as \*BA\*B
+fields and \*I(ed)\*I or \*I(eds)\*I should be appended to
+the last author. On the one hand this might be a good idea
+for sorting purpose and to be sure that the name of the
+editor appear before the title of the book, but on the other
+end, the standart says that \*Ied\*I should be written
+without parenthesis, thing that might be confusing for
+\*Irefer\*I. You should try both solution and choose the
+best one in each situation.
+.
+.PI \*BF\*B
+Internally used by \*Irefer\*I: the number of the reference.
+It must should be defined by user.
+.
+.PI \*BG\*B
+For a book, the ISBN (International Standard Book Number).
+For a Journal, the ISSN (International Standard Serial Number).
+.
+.PI \*BH\*B
+Information about the publication: first edition, french
+edition, etc.
+.
+.PI \*Bh\*B
+Heading of the section of the book where the citation appears.
+.
+.PI \*BI\*B
+The publisher (issuer).
+.
+.PI \*BJ\*B
+Defines a periodical publication:
+For an article in a journal, the name of the journal.
+For a journal from a serie, the name of the journal.
+For a serie of journals, the name of the serie.
+.
+.PI \*BK\*B
+Keywords used for searching. This field is required by
+\*Iu-ref\*I to replace citations by \*IIdem.\*I and co. It
+must be defined for \*Iu-ref\*I to work properly, and
+should contain only ascii characters.
+.
+.PI \*BL\*B
+Label. Not used by \*Iu-ref\*I.
+.
+.PI \*BM\*B
+The collection in which the reference is published.
+.
+.PI \*BN\*B
+Journal issue number.
+.
+.PI \*BO\*B
+Other information.
+This is usually printed at the end of the reference, before
+the field G. It's the place to mention the support of an
+electronic document (e-mail, pdf, html...)
+.
+.PI \*BP\*B
+\*BTotal\*B number of page of the book.
+.
+.PI \*Bp\*B
+Exact page of the citation, or position of the article in a
+book. A range of pages can be specified as
+\*Bm\-n\*B.
+.
+.PI \*BQ\*B
+The name of the author, if the author is not a person. This
+will only be used if there are no \*BA\*B fields. There can
+only be one \*BQ\*B field.
+.
+.PI \*BR\*B
+Technical or scientific report number.
+.
+.PI \*BS\*B
+Series name.
+.
+.PI \*BT\*B
+Title. For an article in a book or a journal, this should
+be the title of the article.
+.
+.PI \*BU\*B
+Co-author (translator, illustrator...). Should be preceded
+by its function:
+\*Itr.\*I
+for a translator, etc.
+.
+.PI \*BV\*B
+For a book in a serie, the volume number of that book.
+For a whole serie, the number of books in that serie.
+.
+.PI \*Bw\*B
+Type (\*Bw\*Bhich) of an electronic document (online,
+CD-ROM...)
+.PI \*BX\*B
+Annotation.
+.
+.PI \*Bx\*B
+URL of an online document.
+\*Iu-ref\*I
+doesn't have macro to hyphenate correctly urls. In you
+bibliography database, you should use the special character
+\*B\*e:\*B
+to tell troff where to hyphenate the url, for example like
+this:
+.vS troff
+%x http:\://\:example.\:com/
+.vE
+.
+.PI \*By\*B
+Update date of an electronic document.
+.
+.PI \*Bz\*B
+Date of last access to an electronic document.
+.
+.PP
+For all fields except \*BA\*B and \*BE\*B, if there is more
+than one occurrence of a particular field in a record, only
+the last such field will be used.
+.
+.
+.
+.H3 FILES
+.PP
+\*B@MACDIR@/u-ref\*B, the macro file.
+.
+.
+.
+.H3 SEE ALSO
+.PP
+Iso-690 bibliography standart,
+.man utmac 7 ,
+.man refer 1 ,
+.man referformat 7 .
+.PP
+Rossitza Kyheng wrote an overview of the iso-690 bibliography
+stanadart in an online french article:
+.LT "La référence bibliographique, normes et praxis" .
+.LU http//www.revue-texto.net/Reperes/Themes/Kyheng_References.html
+.
+.
+.H3 LICENSE
+.PP
+\*Iu-ref\*I macro and this manual page are distributed under
+an
+.lic isc .
+.
+.
+.
+.H3 AUTHOR
+.PP
+Pierre-Jean Fichet.

@@ -1,0 +1,202 @@
+.so lib.tr
+.coms
+Copyright (C) 2012-2018 Pierre Jean Fichet
+<pierrejean dot fichet at posteo dot net>
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.come
+.DA Pierre-Jean Fichet
+.DS Utroff idx manual
+.DT Utroff idx manual
+.DK utroff idx troff
+.
+.
+.
+.H2 IDX 1
+.H3 NAME
+.PP
+\*BIdx\*B \- make and manipulate index files.
+.
+.H3 SYNOPSIS
+.PP
+\*B@BINDIR@/idx\*B
+[\*B\-dhmprtw\*B]
+\*Ifile\*I
+.
+.H3 DESCRIPTION
+.PP
+\*IIdx\*I is an helper tool to make and to manipulate
+index files. \*IIdx\*I has been made to automatically index
+troff document, but it can also be used manually, to make an
+index of a book.
+.
+.H3 OPTIONS
+.PI \*B\-d\*B
+Take troff output in entry, and output an index
+in a troff format. Internally used by troff
+macros to build indexes. This is the default.
+.PI \*B\-h\*B
+Print a short help.
+.PI \*B\-m\*B
+Mix all lines in a single line.
+.PI \*B\-p\*B
+Take a list of words in entry, and output a list of pages.
+.PI \*B\-r\*B
+Reformat a list of words to fix errors.
+.PI \*B\-t\*B
+Take a list of pages in entry, and output an index in a
+troff format.
+.PI \*B\-w\*B
+Take a list of pages in entry, and output a list of words.
+.
+.H3 FORMAT
+.PP
+There are four format of index file that \*IIdx\*I can work
+with: a list of pages, a list of words, troff output and
+troff input.
+.H4 List of pages
+.PP
+A list of pages indicates which words appears on a page.
+Each line of a list of pages is formatted as follow:
+.PI
+page number,
+.PI
+two semi-colons followed by one space (:: ),
+.PI
+a list of words separated by a comma and a space (, ).
+.PP
+Example:
+.vS idx
+33:: troff, refer, index
+34:: troff, index, nroff
+35:: index, unix, refer
+.vE
+.H4 List of words
+.PP
+A list of words indicates in which pages appears a word.
+Each line of a list of words is formatted as follow:
+.PI
+the word,
+.PI
+two semi-colons followed by one space (:: ),
+.PI
+a list of page number or range of pages separated by a comma and
+a space (, ). A range of page is made by two page number
+separated by a tiret (-).
+.PP
+The previous example would be formatted as follow:
+.vS idx
+index:: 33-35
+nroff:: 34
+refer:: 33, 35
+troff:: 33
+unix:: 35
+.vE
+.H4 Troff output
+.PP
+When \*Iidx\*I is used to index a troff document, the output
+produced by troff and passed to idx should be as follow:
+.PI
+A single letter key which indicate what the index is
+about (W for index of words, T for index of titles...),
+.PI
+A ">" followed by a space (> ),
+.PI
+The indexed word,
+.PI
+Two semicolons followed by a space (:: ),
+.PI
+The page number where this word appears.
+.PP
+The previous example should be formatted as follow:
+.vS idx
+W> troff:: 33
+W> refer:: 33
+W> index:: 33
+W> troff:: 34
+W> index:: 33
+W> nroff:: 34
+W> index:: 35
+W> unix:: 35
+W> refer:: 35
+.vE
+.H4 Troff input
+.PP
+\*IIdx\*I can format an index so that troff can print it
+correctly. The format of troff input is as follow:
+.vS troff
+.K<			\" one letter keyword defining the index
+.ds <P x, m-n	\" list of pages
+.K> word		\" the word which appears on these pages
+.vE
+.PP
+So, a troff macro that use idx should define the following
+macros:
+.PI \*BK<\*B
+Start an index of type K. Usually, such a macro will print a
+title, such as "Index of words".
+.PI \*BK>\*B
+Print the index entry defined as argument, followed by the
+list of pages previously defined by the \*B<P\*B string. You
+should add a dot at the end of the list of pages, since idx
+will not add it.
+.
+.
+.
+.H3 EXAMPLE
+.PP
+This example taken from real life will show how to print an
+index of a paper book.
+.PI
+Read the book, and, annotate it to underline the words
+you'll have to index.
+.PI
+On a file of your computer, write an index formatted as a
+list of pages: for each page of the book, write the words it
+contains.
+.PI
+Use idx to translate this file to a sorted list of words:
+.vS sh
+idx -w a.idx > b.idx
+.vE
+.PI
+You should read this list of words, since you'll probably
+have to correct some mistakes, or rename some index entry.
+.PI
+Once done, reformat it with idx:
+.vS sh
+idx -r b.idx > c.idx
+.vE
+.PI
+Use idx to pass this formatted index to troff:
+.vS sh
+idx -t c.idx | troff | dpost > index.ps
+.vE
+.
+.
+.
+.H3 FILES
+.PP
+\*I@BINDIR@/idx\*I
+.H3 SEE ALSO
+.PP
+.man utmac 7
+.
+.
+.H3 LICENSE
+.PP
+\*IIdx\*I and this man page are distributed under the
+.lic isc
+.H3 AUTHOR
+.PP
+Written by Pierre-Jean \*CFichet\*C.

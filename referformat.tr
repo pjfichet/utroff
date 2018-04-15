@@ -1,0 +1,284 @@
+.so lib.tr
+.coms
+modification, are permitted provided that the following conditions
+are met:
+1. Redistributions of source code must retain the above copyright
+ notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright
+ notice, this list of conditions and the following disclaimer in the
+ documentation and/or other materials provided with the distribution.
+3. All advertising materials mentioning features or use of this software
+ must display the following acknowedgement:
+	This product includes software developed by the University of
+	California, Berkeley and its contributors.
+4. Neither the name of the University nor the names of its contributors
+ may be used to endorse or promote products derived from this software
+ without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGE.
+.come
+.DA M. E. Lesk
+.DS Utroff refer format manual
+.DT Utroff refer format manual
+.DK utroff refer troff
+.H2 REFER-FORMAT 7
+.
+.
+.H3 REFER FILE
+.PP
+A reference file is a set of bibliographic references usable
+with \*Irefer\*I. It can be indexed using the
+softwares \*Iinv\*I and \*Imkey\*I for fast searching.
+.PP
+The strings defined by \*Irefer\*I are taken directly from
+the files of references, which are in the following format.
+The references should be separated by blank lines. Each
+reference is a sequence of lines beginning with \*B%\*B and
+followed by a key-letter. The remainder of that line, and
+successive lines until the next line beginning with \*B%\*B,
+contain the information specified by the key-letter. In
+general, \*Irefer\*I does not interpret the information, but
+merely presents it to the macro package for final
+formatting. A user with a separate macro package, for
+example, can add new key-letters or use the existing ones
+for other purposes without bothering \*Irefer\*I.
+.PP
+The meaning of the key-letters given below, in particular,
+is that assigned by the –ms macros. Not all information,
+obviously, is used with each citation. For example, if a
+document is both an internal memorandum and a journal
+article, the macros ignore the memorandum version and cite
+only the journal article. Some kinds of information are not
+used at all in printing the reference; if a user does not
+like finding references by specifying title or author
+keywords, and prefers to add specific keywords to the
+citation, a field is available which is searched but not
+printed (K).
+.PP
+The key letters currently recognized by \*Irefer\*I and –ms,
+with the kind of information implied, are:
+.PI \*BA\*B
+Author’s name
+.PI \*BB\*B
+Title of book containing item
+.PI \*BC\*B
+City of publication
+.PI \*BD\*B
+Date
+.PI \*BE\*B
+Editor of book containing item
+.PI \*BG\*B
+Government (NTIS) ordering number
+.PI \*BI\*B
+Issuer (publisher)
+.PI \*BJ\*B
+Journal name
+.PI \*BK\*B
+Keys (for searching)
+.PI \*BL\*B
+Label
+.PI \*BM\*B
+Memorandum label
+.PI \*BN\*B
+Issue number
+.PI \*BO\*B
+Other information
+.PI \*BP\*B
+Page(s) of article
+.PI \*BR\*B
+Technical report reference
+.PI \*BT\*B
+Title
+.PI \*BV\*B
+Volume number
+.PI \*BX\*B
+or
+.PI \*BY\*B
+or
+.PI \*BZ\*B
+Information not used by refer
+.
+.
+.
+.H3 REFER OUTPUT
+.PP
+The output of \*Irefer\*I is a stream of string definitions,
+one for each of the fields of each reference, as shown
+below.
+.vS troff
+.]-
+.ds [A authors’ names ...
+.ds [T title ...
+.ds [J journal ...
+...
+.][ type-number
+.vE
+.PP
+The \*Irefer\*I program, in general, does not concern itself
+with the significance of the strings. The different fields
+are treated identically by refer , except that the \*BX\*B,
+\*BY\*B and \*BZ\*B fields are ignored (see the \*B-i\*B
+option of \*Imkey\*I) in indexing and searching. All
+\*Irefer\*I does is select the appropriate citation, based
+on the keys. The macro package must arrange the strings so
+as to produce an appropriately formatted citation. In this
+process, it uses the convention that the '\*BT\*B’ field is
+the title, the '\*BJ\*B’ field the journal, and so forth.
+The refer program does arrange the citation to simplify the
+macro package’s job, however. The special macro \*B\&.]-\*B
+precedes the string definitions and the special macro
+\*B\&.][\*B follows. These are changed from the input
+\*B\&.[\*B and \*B\&.]\*B so that running the same file
+through refer again is harmless.
+.PP
+The \*B\&.]–\*B macro can be used by the macro package to
+initialize. The \*B\&.][\*B macro, which should be used to
+print the reference, is given an argument type-number to
+indicate the kind of reference, as follows:
+
+.PI \*B1\*B
+Journal article
+.PI \*B2\*B
+Book
+.PI \*B3\*B
+Article within book
+.PI \*B4\*B
+Technical report
+.PI \*B5\*B
+Bell Labs technical memorandum
+.PI \*B0\*B
+Other
+.PP
+The type is determined by the presence or absence of
+particular fields in the citation (a journal article must
+have a '\*BJ\*B’ field, a book must have an '\*BI\*B’ field, and so
+forth). To a small extent, this violates the above rule that
+\*Irefer\*I does not concern itself with the contents of the
+citation; however, the classification of the citation in
+\*Itroff\*I macros would require a relatively expensive and
+obscure program. Any macro writer may, of course, preserve
+consistency by ignoring the argument to the .] [ macro. The
+reference is flagged in the text with the sequence
+.vS troff
+\*([.number\*(.]
+.vE
+.PP
+where number is the footnote number. The strings \*B[.\*B
+and \*B.]\*B should be used by the macro package to format
+the reference flag in the text. These strings can be
+replaced for a particular footnote. The footnote number (or
+other signal) is available to the reference macro
+\*B\&.][\*B as the string register \*B[F\*B. To simplify
+dealing with a text reference that occurs at the end of a
+sentence, refer treats a reference which follows a period in
+a special way. The period is removed, and the reference is
+preceded by a call for the string \*B<.\*B and followed by a
+call for the string \*B>.\*B For example, if a reference
+follows '\*Iend.\*I’ it will appear as
+.vS troff
+end\*(<.\*([.number\*(.]\*(>.
+.vE
+.PP
+where number is the footnote number. The macro package
+should turn either the string \*B>.\*B or \*B<.\*B into a
+period and delete the other one. This permits the output to
+have either the form '\*Iend[31].\*I’ or '\*Iend.31\*I’ as
+the macro package wishes. Note that in one case the period
+precedes the number and in the other it follows the number.
+.PP
+In some cases users wish to suspend the searching, and
+merely use the reference macro formatting. That is, the
+user doesn’t want to provide a search key between .[ and . ]
+brackets, but merely the reference lines for the appropriate
+document. Alternatively, the user can wish to add a few
+fields to those in the reference as in the standard file, or
+override some fields. Altering or replacing fields, or
+supplying whole references, is easily done by inserting
+lines beginning with \*B%\*B; any such line is taken as
+direct input to the reference processor rather than keys to
+be searched. Thus
+.vS troff
+.[
+key1 key2 key3 ...
+%Q New format item
+%R Override report name
+.]
+.vE
+.PP
+makes the indicates changes to the result of searching for
+the keys. All of the search keys must be given before the
+first \*B%\*B line. If no search keys are provided, an
+entire citation can be provided in-line in the text. For
+example, if the eqn paper citation were to be inserted in
+this way, rather than by searching for it in the data base,
+the input would read
+.vS troff
+.[
+%A B. W. Kernighan
+%A L. L. Cherry
+%T A System for Typesetting Mathematics
+%J Comm. ACM
+%V 18
+%N 3
+%P 151-157
+%D March 1975
+.]
+.vE
+.PP
+This would produce a citation of the same appearance as that
+resulting from the file search. As shown, fields are
+normally turned into troff strings. Sometimes users would
+rather have them defined as macros, so that other troff
+commands can be placed into the data. When this is
+necessary, simply double the control character % in the
+data. Thus the input
+.vS troff
+.[
+%V 23
+%%M
+Bell Laboratories,
+Murray Hill, N.J. 07974
+.]
+.vE
+.PP
+is processed by refer into
+.vS troff
+.ds [V 23
+.de [M
+Bell Laboratories,
+Murray Hill, N.J. 07974
+..
+.vE
+.PP
+The information after \*B%%M\*B is defined as a macro to be
+invoked by \*B\&.[M\*B while the information after \*B%V\*B
+is turned into a string to be invoked by \*B\*e*([V\*B. At
+present -ms expects all information as strings.
+.H3 LICENSE
+.PP
+The text of this manual page comes from \*ISome application
+of Inverted Indexes in the UNIX System\*I by M. E. Lesk,
+which is distributed under the
+.lic bsd4 .
+.H3 SEE ALSO
+.PP
+.man refer 1 ,
+.man sortbib 1 ,
+.man mkey 1 ,
+.man inv 1 ,
+.man hunt 1 ,
+and \*ISome application of Inverted Indexes in the UNIX
+System\*I by M. E. \*CLesk\*C.
+.H3 AUTHORS
+.PP
+M. E. \*CLesk\*C. Modified by Pierre-Jean \*CFichet\*C.

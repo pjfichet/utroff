@@ -1,0 +1,248 @@
+.so lib.tr
+.coms
+
+This code contains changes by:
+	Gunnar Ritter, Freiburg i. Br., Germany, 2005.
+	Pierre-Jean Fichet, Amiens, France, 2012.
+
+Conditions 1, 2, and 4 and the no-warranty notice below
+apply to these changes.
+
+
+Copyright (c) 1980 Regents of the University of California.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or
+without modification, are permitted provided that the
+following conditions are met:
+ 1. Redistributions of source code must retain the above
+copyright notice, this list of conditions and the following
+disclaimer.
+ 2. Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following
+disclaimer in the documentation and/or other materials
+provided with the distribution.
+ 3. All advertising materials mentioning features or use of
+this software must display the following acknowedgement:
+This product includes software developed by the University
+of California, Berkeley and its contributors.
+ 4. Neither the name of the University nor the names of its
+contributors may be used to endorse or promote products
+derived from this software without specific prior written
+permission.
+
+THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS
+BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+from 4.3BSD-Tahoe vgrind.1	6.2 (Berkeley) 5/5/86
+.come
+.DA Written by Dave Presotto and William Joy, modified by \
+Gunnar Ritter and Pierre-Jean Fichet
+.DS Utroff ugrind manual
+.DT Utroff ugrind manual
+.DK utroff ugrind vgrind vfontedpr troff
+.
+.H2 UGRIND 1
+.H3 NAME
+.PP
+\*Bugrind\*B \- troff preprocessor which highlight source
+code
+.
+.H3 SYNOPSIS
+.PP
+\*B@BINDIR@/ugrind\*B
+[\*B\-d\*B\ \*Ifile\*I]
+[\*B\-h\*B\ \*Iheader\*I]
+[\*B\-l\*B\ \*Ilanguage\*I]
+[\*B\-t\*B\ \*Isize\*I]
+\*Iname\*I\ ...
+.
+.H3 DESCRIPTION
+.PP
+\*IUgrind\*I insert string definition in files to
+highlight the source code they contain. \*IUgrind\*I runs in
+two basic modes: regular mode or whole file mode.
+.PI
+In regular mode, \*Iugrind\*I only highlight code which is
+between the \*BvS\*B and \*BvE\*B macros. The language is
+specified by the first argument of the \*Bvs\*B macro.
+.PI
+In whole file mode, ugrind highlight the whole file. The
+language is specified by the \*B\-l\*B argument.
+.PP
+The options are:
+.PI \*B\-d\*B
+Specifies an alternate language definitions file (default is
+@LIBDIR@/ugrindefs).
+.ig
+.PI \*B\-f\*B
+Forces filter mode. Only the code between \*B.vs\*B and
+\*B.ve\*B macros will be highlighted.
+..
+.PI \*B\-h\*B
+Specify a header string. The header will be printed as
+argument of the \*B.vH\*B macro.
+.PI \*B\-l\*B
+Enter whole file mode, and pecifies the language to use.
+.PI \*B\-t\*B
+Specify a nondefault tab size (default is 4).
+.
+.PP
+Currently, known languages are
+C (\*B\-lc\*B),
+C++ (\*B\-lc++\*B),
+CSH (\*B\-lcsh\*B), 
+FORTRAN (\*B\-lfortran\*B),
+ICON (\*B\-lI\*B,)
+ISP (\*B\-lisp\*B),
+LDL (\*B\-ldl\*B),
+LISP LIKE (\*B\-ml\*B),
+MODEL (\*B\-lm\*B),
+MODULA2 (\*B\-lmod2\*B),
+PASCAL (\*B\-lp\*B),
+POSTXML (\*B\-lpostxml\*B),
+RATFOR (\*B\-lr\*B),
+RUSSEL (\*Blrussell\*B),
+SHELL (\*B\-lsh\*B),
+TROFF (\*B\-ltr\*B),
+XML (\*B\-lxml\*B),
+and
+YACC (\*B\-lyacc\*B),
+.
+.
+.H3 PROGRAMMING STYLE
+.PP
+\*IUgrind\*I assumes that a certain programming style is
+followed:
+.PI C and C++
+.br
+Functions names can be preceded on a line only by spaces,
+tabs, or an asterisk. The parenthesized arguments must also
+be on the same line.
+.PI PASCAL
+.br
+Function names need to appear on the same line as the
+keywords \*Ifuctions\*I or \*Iprocedure\*I.
+.PI MODEL
+.br
+Function names need to appear on the same line as the keywords
+\*Iis beginproc\*I.
+.PI TROFF
+.br
+Between \*B.vS\*B and \*B.vE\*B macros in regular mode, and
+in the whole file in whole file mode, \*Iugrind\*I will take
+care to escape all the commands, macros, strings and number
+register that could be interpreted by troff. That means that
+to highlight troff source code, one juste has to write the
+code as is. That also means that it is not possible to
+insert formatting commands inside the code that has to be
+highlighted.
+.PP
+More generally, arbitrary formatting styles for programs
+mostly look bad. The use of spaces to align source code
+fails miserably; if you plan to \*Iugrind\*I your program you
+should use tabs. This is somewhat inevitable since the font
+used by \*Iugrind\*I is variable width.
+.
+.
+.H3 MACROS AND STRINGS
+.PP
+To highlight code, \*Iugrind\*I insert strings in the file,
+and use some macros, so, to format the output of \*Iugrind\*I
+with \*Itroff\*I, the following strings and macros must be
+defined by your macro file.
+.
+.H4 Macros
+.PI vS
+In regular mode, start a code block to highlight. The first
+argument define the language. See the \*B\-l\*B option to
+get the list of supported languages.
+.PI vE
+In regular mode, end a code block to highlight.
+.PI vF
+In whole file mode, start a new file. The first argument is the
+name of the file.
+.PI vH
+The header defined by the \*B\-h\*B option is defined as
+argument of this macro.
+.PI vO
+Indicate that a function begins on the next line. The first
+argument is the function name.
+.PI vC
+Indicate that a function gets closed on the previous line.
+.
+.H4 Strings
+.PI +C
+Begin a comment,
+.PI -C
+End a comment,
+.PI +K
+Begin a keyword,
+.PI -K
+End a keyword,
+.PI +S
+Begin a string,
+.PI -S
+End a string,
+.PI +V
+Begin a variable,
+.PI -V
+End a variable,
+.PI e
+a slash (\e),
+.PI -
+a tiret (\-),
+.PI _
+a bottom tiret (_).
+.
+.
+.H3 HISTORY
+.PP
+\*IUgrind\*I is a hack of \*Ivfontedpr\*I (that probably
+means
+\*Ivisual-font-edit-print\*I), which is the preprocesor used by
+the mostly forgotten \*Ivgrind\*I script, which aims to
+visually "grind nice listing of programms" with troff. The
+code that vfontedpr use to read the language description
+file is "stolen almost totally from \*Itermcap\*I".
+\*IVgrind\*I and \*Ivfontedpr\*I have been written by Dave
+Presotto and William Joy, for 4.3BSD-Tahoe. They have been
+modified by Gunnar Ritter as part of the \*IHeirloom
+documentation tools\*I.
+.H3 LICENSE
+.PP
+\*IUgrind\*I and its man page are distributed under the
+.lic bsd4 .
+The code which highlight troff
+language, written from scratch, is distributed under a
+.lic bsd2 .
+The language description file
+(\*I@LIBDIR@/ugrindefs\*I) is distributed under the
+.lic cddl .
+.
+.
+.H3 FILES
+.\"index	file where source for index is created
+.PP
+\*I@BINDIR@/ugrind\*I preprocessor
+.br
+\*I@LIBDIR@/ugrindefs\*I language descriptions
+.H3 SEE ALSO
+.PP
+troff(1)
+.H3 AUTHORS
+.PP
+Written by Dave \*CPresotto\*C and William \*CJoy\*C. Modified by Gunnar
+\*CRitter\*C for the \*IHeirloom Project\*I and later Pierre-Jean
+\*CFichet\*C for \*IUtroff\*I.

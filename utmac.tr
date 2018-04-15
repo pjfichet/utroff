@@ -1,0 +1,490 @@
+.so lib.tr
+.coms
+Copyright (C) 2012-2018 Pierre Jean Fichet
+<pierrejean dot fichet at posteo dot net>
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.come
+.DA Pierre-Jean Fichet
+.DS Utroff utmac manual
+.DT Utroff utmac manual
+.DK utroff utmac u-ref troff
+.
+.
+.
+.H2 UTMAC 7
+.
+.
+.
+.H3 NAME
+.PP
+\*Butmac\*B: A troff macro set
+.
+.
+.
+.H3 DESCRIPTION
+.PP
+The \*IU troff macros\*I \(em \*Iutmac\*I \(em is a set of \*Itroff\*I
+macros aiming to produce beautiful documents easily. Bibliography,
+indexes, table of content and summaries can be automatically inserted.
+\*IUtmac\*I informs about orphans, widows and empty lines at the
+bottom of page. \*IUtmac\*I can produce pdf files, ReStructuredText
+files, plain text file, and clean xml files — and so, with some xsl
+stylesheet, flat open document texts (fodt) and html files.
+.PP
+\*IUtmac\*I is made to be used with \*Bneatroff\*B to produce
+postscript and pdf files. To produce plain text files, manual pages,
+and xml files, \*Bgroff -k -Tutf8 -M@MACDIR@\*B can be used instead.
+.
+.
+.
+.H3 FILES
+.
+.
+.
+.H4 User macro files
+.PP
+The following macro files can be used by the user (called
+with the \*B-m\*B option of troff):
+.PI \*Iuh\*I
+Made with humanities in mind. It use marginal notes instead
+of footnotes.
+.PI \*Iul\*I
+A macro to write letters and short texts.
+.PI \*Ium\*I
+Translate a \*Iutmac\*I document to manpage with \*Inroff\*I.
+.PI \*Iut\*I
+Translate an \*Iutmac\*I document to a flat text file (such as
+README files) with \*Inroff\*I.
+.PI \*Ius\*I
+Made for technical documentation. It uses a common
+layout, reminiscent of the old troff \*Ims\*I.
+.PI \*Iuw\*I
+Translate an \*Iutmac\*I document to the markdown wiki format.
+.PI \*Iux\*I
+Translate an \*Iutmac\*I document to xml. This macro must be
+used with the
+.man postxml 1
+post-processor.
+.PP
+Additionnaly, some configuration can be achieved by loading the
+following macros:
+.PI \*Iu-en\*I
+English localization (default).
+.PI \*Iu-fr\*I
+French localization.
+.PI \*Iu-apolline\*I
+Use the Porchez Typofonderie Apolline font.
+.PI \*Iu-libertine\*I
+Use the linux libertine font.
+.PI \*Iu-biolinum\*I
+Use the linux biolinum font.
+.PI \*Iu-biollib\*I
+Use a mix of Linux Libertine and Biolinum.
+.
+.
+.
+.H3 MACROS
+.PP
+An \*Iutmac\*I document should be structured in four parts:
+metadatas, definition of some register, content, and appendix. The
+content can contain header macros, summary macros, paragraph
+macros, typographic macros, note macros, include macros, links
+macros, keywords macros.
+.PP
+All macros have two letters; the first one define the gender of the
+macro: meta\*BD\*Batas, \*BR\*Begister, \*BH\*Beading, \*BS\*Bummary,
+\*BP\*Baragraph, \*BT\*Bypographic, \*BN\*Botes, \*BI\*Bnclude,
+\*BL\*Binks, \*BK\*Beywords, Appendi\*BX\*B.
+.
+.
+.
+.H4 Metadata macros
+.PP
+These macro are used to populate the metadatas of the final
+file (pdf, xml, or html). They must be inserted in the
+first page of the document \(em their natural place being the
+first lines of the file.
+.PI \*BDA\*B \*Iauthor name\*I
+Define author metadata.
+.PI \*BDI\*B \*IIdentifier\*I
+Define identifier (RCS Id...).
+.PI \*BDK\*B \*Ilist of keywords\*I
+Define keywords metadata.
+.PI \*BDS\*B \*Isubject of the text\*I
+Define subject metadata.
+.PI \*BDT\*B \*Ititle of the text\*I
+Define title metadata.
+.
+.
+.
+.H4 Register macros to define format and layout
+.PP
+Some number register are used by \*Iutmac\*I to make or not
+some actions. Set to 1, the action is done, set to 0, the
+action is not done. The following macro can be used to
+define the state of this number register. The name of the
+macro is also the name of the number register. For example,
+\*B\&.RV 1\*B acts like \*B\&.nr RV 1\*B. This is usefull to
+format a document from the command line:
+.vS sh
+troff -rRV=1 -muh file
+.vE
+.PI "\*BRV\*B \*Inum\*I"
+If \*Inum\*I=1, use a recto-verso layout.
+Default is 0.
+.PI "\*BRI\*B \*Inum\*I"
+If \*Inum\*I=1, replace references by \*IIdem\*I when
+needed.
+Default is 1.
+.PI "\*BRH\*B \*Inum\*I"
+If \*Inum\*I=1, print help message.
+Help message inform about orphans, widows, blank at the
+bottom of pages, note diverted to next page, and multiple
+definition of anchor keyword.
+Default is 1.
+.PI \*BRL\*B [\*Ifr\*I|\*Ien\*I]
+Set language of file. Use this macro to localize some string
+and to respect local typographic standard if you want to
+override the default which should be defined by the macro in
+the \*BUTMAC\*B environment variable.
+.PI "\*BRO\*B \*Inum\*I"
+If \*Inum\*I=1, replace some part of a reference (issuer,
+city and date) by \*Iop. cit.\*I if the same reference has
+appeared in the text.
+Default is 1.
+.PI "\*BRP\*B \*Inum\*I"
+If \*Inum\*I=1, print page number.
+Default is 1.
+.PI "\*BRN\*B \*Inum\*I"
+If \*Inum\*I=1, print reference in a note, if \*Inum\*I=0,
+the reference is printed directly in the text, by using the
+\*BPQ\*B macro.
+Default is 1.
+.
+.
+.
+
+.H4 Heading macros
+.PP
+These macro are used to print headings and to record them
+for a summary or a table of contents.
+.PI \*BH1\*B \*ITitle of the book\*I
+Book heading.
+.PI \*BH2\*B \*ITitle of the chapter\*I
+Chapter heading.
+.PI \*BH3\*B \*ITitle of the paragraph\*I
+Paragraph heading.
+.PI \*BH4\*B \*ISubheading\*I
+Subheading.
+.PI \*BH0\*B \*ITemporary title\*I
+Temporary heading, printed in the header or in the footer of
+the current page. This heading is not recorded in the table
+of content.
+.PI \*BH*\*B \*IMargin title\*I
+Heading printed in header or footer of the following pages,
+and in the current ones if H0 is not set for this page. This
+heading is not recorded in the table of content.
+.
+.
+.
+.H4 Summaries macros
+.PP
+To print a summary, two or three pass of troff are needed:
+the first one to record the summary, the second one to print
+it, and a third one might be necessary to adjust the page
+number if the summary is longer than one page.
+.PI \*BS2\*B
+Print a summary of chapter headings. The summary is printed
+on a new page.
+.PI \*BS3\*B
+Print a summary of paragraph headings. The summary is
+printed on the actual page.
+.PI \*BS4\*B
+Print a summary of subheading. The summary is printed on the
+actual page.
+.PI \*BS*\*B
+Print the whole table of content as a summary.
+.
+.
+.
+.H4 Paragraph macros
+.PI \*BPB\*B
+Left indent (extended) pargraph. Usefull to \*Bb\*Begin some
+sort of lists.
+.PI \*BPC\*B
+Centered paragraph.
+.PI \*BPP\*B
+Justified paragraph.
+.PI \*BPQ\*B
+Quote paragraph.
+.PI \*BPI\*B [\*Ibullet\*I]
+List paragraph. Default bullet is usually an emdash
+(\*I\*e(em\*I).
+.PI \*BPL\*B
+Left align paragraph.
+.PI \*BPR\*B
+Right align paragraph.
+.PI \*BPX\*B
+Example paragraph. Text is not filled.
+.
+.
+.
+.H4 Typographic macros
+.PI \*BTD\*B
+Use micro-typography to decrease the witdh of a paragraph.
+It can be inserted at the begining (just after \*IPP\*I) of
+a well choosen paragraph to avoid orphans or widows. A well
+chooseen paragraph is a long one, with a short last line.
+.PI \*BTI\*B
+Use micro-typography to increase the width of a paragraph.
+It can be inserted at the begining (just after \*IPP\*I) of
+a well choosen paragraph to avoid a blank at the bottom of a
+page. A well choosen paragraph is a long one, with a long
+last line.
+.
+.
+.
+.H4 Note macros
+.PI \*BNS\*B \*Ino\*I
+Start a numbered note.
+The default is to print a number before the
+note, but if an argument is given, no number will be
+printed. To insert a number reference to the note in the
+text, use the \*B*\*B string, say insert: \*B\*e**\*B where
+you want the number to appear.
+.PI \*BNT\*B
+Print a note on top of the others, or in the flow of the
+text, depending of the macro used.
+.PI \*BNB\*B
+Print a note in the bottom of the page, or in the flow of
+the text, depending of the macro used.
+.PI \*BNE\*B
+End \*INS\*I, \*INT\*I or \*INB\*I.
+.
+.
+.
+.H4 Include macros
+.PP
+These macros are used to include an encapsulated postscript
+document. These documents are often images, which can be
+produced with the \*Bconvert\*B command from
+\*BImageMagick\*B:
+.vS sh
+convert image.jpg image.eps
+.vE
+.PI "\*BIL\*B \*Ieps\*I [\*Iscale\*I] [\*Iflag\*I]"
+Include and left align the \*Ieps\*I document. The document
+size is scaled by \*Iscale\*I and the optional \*Iflag\*I
+argument is used to format its appearance (see Heirloom Troff
+documentation for a description of these flags).
+.PI "\*BIC\*B \*Ieps\*I [\*Iscale\*I] [\*Iflags\*I]"
+Idem, except that the document is centered.
+.PI "\*BIR\*B \*Ieps\*I [\*Iscale\*I] [\*Iflags\*I]"
+Idem, except that the document is right aligned.
+.
+.
+.
+.H4 Link macros
+.PP
+Link macros are used to insert links in a document. If a link macro
+is preceded by the \*BLT\*B macro it will use the arguments of
+\*BLT\*B as a replacement text for the link. Otherwise, the link is
+printed.
+.vS troff
+This will print the url followed by a dot:
+.LU http://utroff.org .
+While this will print «link» followed by a dot:
+.LT link ». «
+.LU http://utroff.org
+.vE
+.PI \*BLK\*B \*Ikeyword\*I
+Insert an anchor named \*Ikeyword\*I for internal links. Does not
+print anything.
+.PI \*BLL\*B \*Ikeyword stringafter stringbefore\*I
+Insert a link to the anchor \*Ikeyword\*I. The text to link is defined
+by the \*BLT\*B macro \(em if it is not defined, the url is printed,
+surrounded by \*Istringbefore\*I and \*Istringafter\*I.
+.PI \*BLM\*B \*Iemail stringafter stringbefore\*I
+Insert a link to an email address. The text to link is defined by the
+\*BLT\*B macro \(em if it is not defined, the url is printed,
+surrounded by \*Istringbefore\*I and \*Istringafter\*I.
+.PI \*BLT\*B \*Itext stringafter stringbefore\*I
+Define \*Itext\*I as the replacement text for the following link. It
+is printed surrounded by \*Istringbefore\*I and \*Istringafter\*I.
+.PI \*BLU\*B \*Iurl stringafter stringbefore\*I
+Insert a link to an url. The text to link is defined by the \*BLT\*B
+macro \(em if it is not defined, the url is printed, surrounded by
+\*Istringbefore\*I and \*Istringafter\*I.
+.
+.
+.
+.H4 Keyword macros
+.PP
+Keyword macros add semantic information to the source and the
+final document and index them. They do not print anything.
+The following keyword macros are defined:
+.PI \*BKA\*B \*Iacronym\*I
+Index an acronym.
+.\" .PI \*BLC\*B \*Icommand\*I
+.\" Define a command (does nothing).
+.\" .PI \*BLD\*B \*Idate\*I
+.\" Define a date (does nothing).
+.\" .PI \*BLE\*B \*Ierror\*I
+.\" Define an error (does nothing).
+.\" .PI \*BLH\*B
+.\" Define a name of a human being, and index it.
+.\" .PI \*BLI\*B \*Iimage\*I
+.\" Define an image (does nothing).
+.PI \*BKN\*B \*Iname\*I
+Index a name.
+.PI \*BKO\*B \*Iobject\*I
+Index an object.
+.\".PI \*BLQ\*B
+.\"Define a short quotation, and index it.
+.PI \*BKT\*B \*Ititle\*I
+Index the title of a book (references are automatically indexed using
+it).
+.PI \*BKW\*B \*Iword\*I
+Index a word.
+.
+.
+.
+.H4 Appendix macros
+.PI \*BXB\*B [\*Ibibliography\*I]
+Print a bibliography. If \*Ibibliography\*I is omitted,
+\*IUtmac\*I
+will use the \*I$REFER\*I environment variable. The bibliography
+begins with the \*BH3\*B macro. \*IUtmac\*I try to sort the
+bibliography using \*Iurefer\*I \*B-i\*B option, but this
+doesn't give correct result on some bibliography
+list. For a perfect result, you should sort your
+bibliography with \*Isortbib\*I. See \*Bu-ref\*B(7).
+.PI \*BXI\*B
+Print the existing indexes. To index something, use an keyword macro. Each index begin with the \*BH3\*B macro.
+.PI \*BXT\*B
+Print a table of content. The table begin with the \*BH3\*B
+macro.
+.
+.
+.
+.H3 FONTS
+.PP
+In \*Iutmac\*I, fonts are defined by a single uppercase
+letter string. As in the xml style, these strings must
+enclose the text and can be embedded:
+.vS troff
+Roman \*Iitalic, \*Bbolditalic\*B\*I, roman.
+.vE
+.PP
+So, in an \*Iutmac\*I document, you must avoid the raw troff
+\*B\*ef\*B and \*B.fp\*B commands.
+.PP
+Font strings are defined as follow:
+.PI \*BB\*B
+Bold font.
+.PI \*BI\*B
+Italic font.
+.PI \*BC\*B
+Small Capital font.
+.PI \*BA\*B
+Acronym font (capital to small capital).
+.PI \*BU\*B
+Superscript font (upper).
+.PI \*BL\*B
+Dowscript font (lower).
+.PI \*BF\*B
+Final font (glyphs that might only appear at the end of a
+line).
+.PI \*BM\*B
+Monospace font.
+.
+.
+.
+.H3 EXAMPLE
+.PP
+The following example is a fully commented simple \*Iutmac\*I
+document. As a summary is inserted, two pass of \*Itroff\*I
+are needed. If the summary is longer than one page, a third
+pass of troff would be needed to handle correctly the page
+references, but this is not the case in this short example.
+So, this document can be build using these commands:
+.vS sh
+troff -muh alice.tr > /dev/null
+troff -muh alice.tr | dpost | ps2pdf - alice.pdf
+.vE
+.vS troff
+.\" Start example
+.\" Use recto verso
+.RV
+.\" Define metadatas
+.DA Lewis Carroll
+.DT Alice's adventures in wonderland and Through the looking glass
+.DK alice nabuchodonosor jabberwocky
+.\" Build first page
+.H0 Lewis Carroll
+.H1 Alice's adventures
+.\" Insert a summary of chapter headings
+.S2
+.\" First chapter heading
+.H2 Alice's adventures in wonderland
+.\" A short exergue
+.NT
+All in the golden afternoon
+Full leisurly we glide
+.NE
+.\" First paragraph
+.H3 Down the rabbitt hole
+.\" Some text with font definitions, and a note appeal
+.PP
+\*CAlice\*C was beginning to be very tired of sitting by her
+sister on the bank, and of having nothing to do: once or
+twice she had peeped into the book her sister was reading,
+but it had no pictures or conversations in it, "\*Iand what
+is the use of a book\*I" thought \*CAlice\*C, "\*Iwithout
+pictures or conversations?\*I\**"
+.\" A note
+.NS
+Yes, what is the use of such a book?
+.NE
+.\" Some other chapters and paragraphs...
+.H3 The pool of tears
+.H2 Through the looking glass
+.\" Table of content
+.XT
+.\" Stop example
+.vE
+.
+.
+.
+.H3 SEE ALSO
+.PP
+.man utmac-hack 7 ,
+.man u-ref 7 ,
+.man postxml 1 ,
+.man idx 1 ,
+.man refer 1 .
+.
+.
+.
+.H3 LICENSE
+.PP
+\*IUtmac\*I macros and this manual page are distributed under
+the
+.lic isc .
+.
+.
+.
+.H3 AUTHOR
+.PP
+Pierre-Jean \*CFichet\*C.

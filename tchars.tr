@@ -1,0 +1,161 @@
+.so lib.tr
+.coms
+Copyright (C) 2012-2018 Pierre Jean Fichet
+<pierrejean dot fichet at posteo dot net>
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.come
+.DA Pierre-Jean Fichet
+.DS Utroff tchars manual
+.DT Utroff tchars manual
+.DK utroff tchars troff nroff
+.
+.
+.
+.H2 TCHARS 1
+.H3 NAME
+.PP
+\*BTchars\*B \- Translate characters for Troff.
+.
+.H3 SYNOPSIS
+.PP
+\*B@BINDIR@/tchars\*B
+[\*B\-e\*B]
+\*Ifile\*I
+.
+.H3 DESCRIPTION
+.PP
+\*ITchars\*I is a troff pre-processor which translate some
+ascii code to complex utf-8 characters. Actually, it can
+only translate a subset of betacode to polytonic greek.
+.H3 OPTIONS
+.PI \*B\-e\*B
+Escape characters: print troff utf-8 escape sequence in the
+form of \*B\*eU'xxxx'\*B instead of printing the utf-8
+character itself.
+.
+.
+.H4 MACROS
+.PP
+In the troff document, characters that has to be translated
+must be indicated by one of the following macros:
+.PI "\*BCW\*B \*Icode after before\*I"
+Transalte \*Icode\*I, and append \*Ibefore\*I and
+\*Iafter\*I just before and after the translation.
+.PI "\*BCL\*B \*Icode\*I \*B[\*B\*Icode...\*I\*B]\*B"
+Translate the whole line following \*BCL\*B.
+.PI \*BCS\*B
+Begin a block that has to be translated. Must be followed by
+\*BCE\*B.
+.PI \*BCE\*B
+Close a block that has to be translated.
+.PP
+For \*Itchars\*I to work, you must define these macro to
+call a font which contain polytonic greek characters, as
+follow, for example:
+.vS troff
+.fp 0 G GFSPyrsos otf \" Pyrsos from Greek Font Society
+.de CW
+\\$3\fG\\$1\fR\\$2
+..
+.de CL
+\fG\\$*\fR
+..
+.de CS
+.	ft G
+..
+.de CE
+.	ft R
+..
+.vE
+.
+.
+.
+.H4 CODE
+.PP
+A rune is composed of an ascii letter, followed by a
+representation of an accent.
+\*ITchars\*I actually understand the following accents:
+.PI "+ dialytika \[u0308]"
+.PI "& macron \[u0304]"
+.PI "\' vrachy \[u0306]"
+.PI ") psili \[u0313]"
+.PI "( dasia \[u0314]"
+.PI "\*e varia \[u0300]"
+.PI "/ oxia \[u0301]"
+.PI "= perispomeni \[u0342]"
+.PI "| ypogegrammeni \[u0345]"
+.PP
+The order is significant, it
+must be: \*B+&')(\*e/=|\*B
+.\" \*B[\*B\*I+\*I\*B]\*B\
+.\" \*B[\*B\*I&\*I\*B|\*B\*I'\*I\*B]\*B\
+.\" \*B[\*B\*I)\*I\*B|\*B\*I(\*I\*B]\*B\
+.\" \*B[\*B\*I\*e\*I\*B|\*B\*I/\*I\*B]\*B\
+.\" \*B[\*B\*I=\*I\*B|\*B\*I|\*I\*B]\*B\
+.PP
+\*ITchars\*I actually understand the following letters:
+.PI "A \[u0391] ALPHA, a \[u03B1] alpha"
+.PI "B \[u0392] BETA, b \[u03B2] beta"
+.PI "C \[u039E] XI, c \[u03BE] xi"
+.PI "D \[u0394] DELTA, d \[u03B4] delta"
+.PI "E \[u1F19] EPSILON, e \[u03B5] epsilon"
+.PI "F \[u03A6] PHI, f \[u03C6] phi"
+.PI "G \[u0393] GAMMA, g \[u03B3] gamma"
+.PI "H \[u0397] ETA, h \[u03B7] eta"
+.PI "I \[u0399] IOTA, i \[u03B9] iota"
+.PI "K \[u039A] KAPPA, k \[u03BA] kappa"
+.PI "L \[u039B] LAMBDA, l \[u03BB] lambda"
+.PI "M \[u039C] MU, m \[u03BC] mu"
+.PI "N \[u039D] NU, n \[u03BD] nu"
+.PI "O \[u039F] OMICRON, o \[u03BF] omicron"
+.PI "P \[u03A0] PI, p \[u03C0] pi"
+.\" PI "Q \[u] THETA, q \[u] theta"
+.PI "R \[u03A1] RHO, r \[u03C1] rhô"
+.PI "S \[u03A3] SIGMA, s \[u03C3] sigma"
+.PI "T \[u03A4] TAU, t \[u03C4] tau"
+.PI "U \[u03A5] UPSILON, u \[u03C5] upsilon"
+.PI "W \[u03A9] OMEGA, w \[u03C9] omega"
+.PI "X \[u03A7] CHI, x \[u03C7] chi"
+.PI "Y \[u03A8] PSI, y \[u03C8] psi"
+.PI "Z \[u0396] ZETA, z \[u03B6] zeta"
+.
+.H3 EXAMPLE
+.vS troff
+The word physis in polytonic greek is written:
+.CW fu/sis .
+.vE
+.
+.
+.H3 FILES
+.PP
+\*I@BINDIR@/tchars\*I
+.H3 SEE ALSO
+.PP
+.man utmac 7 .
+.
+.
+.
+.H3 LICENSE
+.PP
+\*ITchars\*I and this man page are distributed under the
+.lic isc .
+.
+.
+.
+.H3 AUTHOR
+.PP
+Pierre-Jean \*CFichet\*C.
+.
+.
+.

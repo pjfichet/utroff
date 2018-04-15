@@ -1,0 +1,10 @@
+Utroff.org
+==========
+
+Documentation of the Utroff project:
+<http://utroff.org>.
+
+The html files and manual pages are produced with
+`groff -Tutf8`. See the makefile for more details.
+
+The license of the files depends of their history.

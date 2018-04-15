@@ -1,0 +1,44 @@
+.so lib.tr
+.DA Pierre-Jean Fichet
+.DS Utroff troffxml
+.DT Utroff troffxml
+.DK utroff troffxml prexml postxml html fodt xsl troff xml
+.\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.H2 Xml
+.H3 Troff to xml tools
+.PP
+There's a lot of ways to convert \*Itroff\*I document to
+\*Ixml\*I, but, unfortunately, no standart way to do it.
+Thanks to the \*Iux\*I macro,
+\*Iutmac\*I uses \*Inroff\*I itself for that task.
+That solution has the advantage to be easy to
+implement, and to be troff compliant, since one can use all
+the \*Itroff\*I commands he wants in his document. But to do
+that well, a pre-processor (\*Iprexml\*I) and a
+post-processor (\*Ipostxml\*I) are needed, so that the
+command line is as follow:
+.vS sh
+prexml f.tr | nroff -Tutf8 -mux | postxml > f.xml
+.vE
+.PP
+The \*Ixml\*I file produced this way follows a custom xml
+format, and some stylesheets convert this custom format to
+and from \*Ihtml\*I and \*Ifodt\*I.
+.vS sh
+xsltproc utohtml.xsl f.xml > f.html
+xsltproc utofodt.xsl f.xml > f.fodt
+.vE
+.H3 stylesheets
+.PI \*Iutohtml.xsl\*I
+From \*Iutmac\*I to \*Ihtml\*I.
+.PI \*Iutofodt.xsl\*I
+From \*Iutmac\*I to \*Iflat open document text\*I, which is readable by
+\*Ilibreoffice\*I and \*Iopenoffice\*I.
+.H3 Documentation and download
+.PL
+See the following files:
+.LT troffxml ,
+.LU man/troffxml.html
+.LT license .
+.LU man/ics.html
+.git troffxml

@@ -1,0 +1,145 @@
+.so lib.tr
+.coms
+Copyright (C) 2012-2018 Pierre Jean Fichet
+<pierrejean dot fichet at posteo dot net>
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.come
+.DS Utroff prexml and postxml manual
+.DT Utroff prexml and postxml manual
+.DK utroff prexml postxml troff xml
+.
+.
+.
+.H2 "PREXML & POSTXML" 1
+.H3 NAME
+.PP
+\*Bprexml postxml\*B \- \*Inroff\*I processors to build xml
+files.
+.
+.H3 SYNOPSIS
+.PP
+\*Bprexml\*B < \*Ifile.tr\*I |
+\*Bnroff\*B \*B-m\*B\*Iux\*I |
+\*Bpostxml\*B > \*Ifile.xml\*I
+.
+.H3 DESCRIPTION
+.PP
+\*IPostxml\*I provides a solution to build
+an xml file from a troff document that relies on \*Inroff\*I
+itself. Since \*Inroff\*I builds a plain text file from a troff
+document, it can be used, with an appropriate macro, to
+produce an intermediate file that \*Ipostxml\*I
+will translate to xml.
+.PP
+That intermediate file contains tags that \*Ipostxml\*I will
+transform to xml tags. If these tags are present in the
+source file, and need to be printed as is, \*Iprexml\*I
+simply escapes these tags so that \*Ipostxml\*I won't
+substitute them.
+.PP
+Since the final xml file might contain utf-8 characters, the
+\*B-T\*B\*Ilocale\*I option of \*Inroff\*I must be used.
+\*IUtmac\*I provides the \*Iux\*I macro that aims to be used with
+prexml and postxml. \*ITroffxml\*I comes with xsl
+stylesheets to create open document and html files.
+So, the command line could be:
+.ig
+\*Iprexml\*I and \*Ipostxml\*I are provided with the
+\*Bux\*B macro that insert tags in an \*Butmac\*B
+document.
+..
+.vS sh
+prexml < file.tr | nroff -Tlocale \
+-mux | postxml > file.xml
+xsltproc utohtml.xsl file.xml > file.html
+xsltproc utofodt.xsl file.xml > file.fodt
+.vE
+.H3 TAGS
+.H4 Postxml
+.PP
+\*IPostxml\*I will substitute the following tags.
+.PI \*B#[\*B
+Replaced by \*B<\*B.
+.PI \*B#]\*B
+Replaced by \*B>\*B.
+.PI \*B#(\*B
+Replaced by \*B&\*B.
+.PI \*B#)\*B
+Replaced by \*B;\*B.
+.PI \*B#~\*B
+Replaced by \*B#\*B.
+.PI \*B\*en#-\*en\*B
+Removed from stream.
+.PP
+So the following text:
+.vS postxml
+Some text
+#-
+#[a#]
+#-
+note text
+#[/a#]
+#(lt#).
+.vE
+.PP
+Will be transform in:
+.vS xml
+Some text<a>note text</a> &lt;.
+.vE
+.H4 Prexml
+.PP
+All these tags will be escaped by \*Iprexml\*I if they are
+present in the original file, following these rules:
+.PI \*B#[\*B
+Replaced by \*B#~[\*B.
+.PI \*B#]\*B
+Replaced by \*B#~]\*B.
+.PI \*B#(\*B
+Replaced by \*B#~(\*B.
+.PI \*B#)\*B
+Replaced by \*B#~)\*B.
+.PI \*B#~\*B
+Replaced by \*B#~~\*B.
+.PI \*B\*en#-\*en\*B
+Replaced by \*B#~-\*B.
+.
+.
+.
+.H3 FILES
+.PI \*I@BINDIR@/prexml\*I \*I@BINDIR@/postxml\*I
+Executables.
+.PI \*I@XSLDIR@/utohtml.xsl\*I
+XSL stylesheet to transform an utmac document to html.
+.PI \*I@XSLDIR@/utofodt.xsl\*I
+XSL stylesheet to transform an utmac document to flat odt.
+.PI \*I@XSLDIR@/utmac.ott\*I
+Open Document Text Template close to Utmac.
+.
+.
+.
+.H3 SEE ALSO
+.PP
+nroff(1).
+.
+.
+.H3 LICENSE
+.PP
+\*IPrexml\*I, \*Ipostxml\*I and this man page are
+distributed under a
+.lic isc .
+.
+.
+.H3 AUTHOR
+.PP
+Written by Pierre-Jean \*CFichet\*C.

@@ -1,0 +1,233 @@
+.so lib.tr
+.coms
+Copyright (C) 2012-2018 Pierre Jean Fichet
+<pierrejean dot fichet at posteo dot net>
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.come
+.DA Pierre-Jean Fichet
+.DS Utroff sophia manual
+.DT Utroff sophia manual
+.DK utroff sophia philia troff sqlite
+.H2 SOPHIA 1
+.
+.
+.
+.H3 NAME
+.PP
+\*ISophia\*I \(en Maintain a database of texts.
+.H3 SYNOPSIS
+.de t
+\\*B-\\$1\\*B \\*I\\$2\\*I
+.	shift 2
+.	while \\n(.$ \{\
+\\*B-\\$1\\*B \\*Idata\\*I
+.	shift
+.	\}
+..
+.PP
+\*Isophia\*I [
+\*Binsert\*B |
+\*Bsearch\*B |
+\*Bedit\*B   |
+\*Bupdate\*B |
+\*Brefer\*B  |
+\*Btroff\*B  |
+\*Bprint\*B ]
+[
+.t b bookid ba bb bc bd be bg bh bi bj bm bn bo bq bs bt bx by bz
+.t h headid hb hh hp
+.t t textid th ts tt tp
+]
+.H3 DESCRIPTION
+.PP
+\*ISophia\*I maintains a database of texts: It allows to
+easyly insert, modify, search and extract information to and
+from the database. Made to write a philosophy thesis,
+\*Isophia\*I has two aims: comparing texts, and producing
+precise references:
+.PI "Comparing text:"
+To write a philosophy thesis, one have to compare hundreds
+of texts. This can be done by turning pages of books, but
+this is not conveniant when writing with a computer. The
+author of \*Isophia\*I found easier to write all the texts
+he had to work with in a database, and then find and
+compare them from the computer, just near his text editor.
+.PI "Producing precise references:"
+While inserting references in a document, the usage is to
+mention the heading in which the reference appears. This is
+not easyly done with usual bibliography software such as
+\*Irefer\*I or \*Ibibtex\*I: The heading has to be
+duplicated for each reference, which is fastidious and leads
+to typo errors and glitches. With \*ISophia\*I, each heading
+is written once, and is easyly recovered and
+automatically inserted in the text document.
+.PP
+\*ISophia\*I is just an interface to the database of texts.
+To use it, the format of the database must be understood.
+The first argument of \*ISophia\*I is a \*Bcommand\*B which tell
+to sophia what to do: insert, update, search... The
+following arguments of sophia correspond to the \*Bfields\*B of
+the database, and must be followed by the \*Idatas\*I that has to
+be inserted, updated, searched...
+.
+.
+.
+.H3 COMMANDS
+.ds fd \\*B-field\\*B \\*Idata\\*I [\\*B-field\\*B \
+\\*Idata\\*I...]
+.ds id \\*B-b\\*B|\\*B-h\\*B|\\*B-t\\*B \\*Iid\\*I
+.PI \*Bedit\*B [\*(id] [\*(fd]
+Call a text editor to edit a row of the database. If [\*(id]
+option is given, the content of the fields are extracted from
+the database. See \*BTEXT FORMAT\*B to know how to insert
+information in the text editor.
+.PI \*Bhead\*B \*B-hb\*B \*Iid\*I \*B-tp\*B \*Ipage\*I
+Search the heading of the page \*Ipage\*I in the book of
+unique id \*Iid\*I. Print the unique id of the row of the
+table \*Bheads\*B where \*Bhb\*B is \*Iid\*I and where
+\*Bhp\*B is less than \*Btp\*B and is more than all the
+other \*Bhp\*B fields.
+.PI \*Binsert\*B \*(fd
+Create a new row in the database by inserting \*Idata\*I in
+field \*Bfield\*B.
+.PI \*Bprint\*B \*(fd
+Print the whole rows of the database where \*Bfield\*B contain
+\*Idata\*I.
+.PI \*Brefer\*B
+Output the \*Bbooks\*B table of the database in the
+\*Irefer\*I bibliography format.
+.PI \*Bsearch\*B \*(fd
+Search row where \*Bfield\*B contain \*Idata\*I in the
+database, and print a summary of their content.
+.PI \*Bsophia\*B \*(fd
+Output row where \*Bfield\*B contain \*Idata\*I in the
+format of the \*Isophia\*I command line. Usefull for
+scripting.
+.PI \*Btroff\*B \*(fd
+Print the content of row where \*Bfield\*B contain
+\*Idata\*I in a format that troff can format.
+.PI \*Bupdate\*B \*B-b\*B|\*B-h\*B|\*B-t\*B \*Iid\*I \
+\*B\-field\*B \*Idata\*I
+Update the database, by replacing the content of \*Bfield\*B
+by \*Idata\*I. The \*Bunique identifier\*B of the row
+which is modified \*Bmust\*B be mentioned, by the options
+\*B-b\*B for table \*Bbooks\*B, \*B-h\*B for table
+\*Bheads\*B, \*B-t\*B for table \*Btexts\*B.
+.
+.
+.
+.de field
+.	PI \\*B\\$1\\*B
+(field \\*B%\\$2\\*B of refer bibliography)
+..
+.
+.
+.
+.H3 FIELDS
+.PP
+The sophia database contain three tables: \*Ibooks\*I,
+\*Iheads\*I and \*Itexts\*I. Each text in the table
+\*Itexts\*I is linked to a heading in the table
+\*Iheads\*I, and each heading in the table \*Iheads\*I is
+linked to a book in the table \*Ibooks\*I.
+.
+.
+.H4 Table books fields
+.PI \*Bb\*B
+Unique identifier of the row, automatically generated by
+\*Isophia\*I.
+.field ba A
+Author name and lastname.
+.field bb B
+Book title, if the reference is an article in a book.
+.field bc C
+City.
+.field bd D
+Date
+.field be E
+Editor of the book.
+.field bg G
+.field bh H
+How is published the book (first edition, french
+edition...).
+.field bi I
+Issuer.
+.field bj J
+Title if this is a journal.
+.field bm M
+Collection.
+.field bn N
+Number of the journal
+.field bo O
+Other informations.
+.field bq Q
+Institution author name.
+.field bs S
+Serie name, if the book is part of a serie.
+.field bt T
+Title.
+.field bx x
+url.
+.field by y
+Last update.
+.field by z
+Last seen.
+.
+.
+.H4 Table heads fields
+.PI \*Bh\*B
+Unique identifier of the row, automatically generated by
+\*Isophia\*I.
+.PI \*Bhb\*B
+Book unique identifier (link to the fiel \*Bb\*B of the
+\*Ibooks\*I table).
+.field hh h
+Heading title. You should enter each heading of the table of
+contents, since this is needed for your reader to find the
+exact reference in different issues.
+.PI \*Bhp\*B
+Heading page. \*ISophia\*I \*Bhead\*B option need this field
+to find the heading unique id of a page of the book.
+.
+.
+.H4 Table texts fields
+.PI \*Bt\*B
+Unique identifier of the row, automatically generated by
+\*Isophia\*I.
+.PI \*Bth\*B
+Heading unique identifier (link to the file \*Bh\*B of the
+\*Iheads\*I table).
+.PI \*Bts\*B
+Subtitle. Title that you choose for the text.
+.PI \*Btt\*B
+Text content. The text must begin by troff paragraph macro (such
+as \*B.PP\*B, \*BPQ\*B, \*BPI\*B...), or, at least, by
+\&\*B.br\*B.
+.field tp p
+Page of the text. A row of pages can be noted as p-q.
+.
+.
+.
+.H3 ENVIRONMENT
+.PP
+\*BSOPHIA\*B the database.
+.
+.
+.H3 LICENSE
+.PP
+\*ISophia\*I and this manual page are distributed under a
+two clause BSD license.
+.H3 AUTHOR
+.PP
+Pierre-Jean \*CFichet\*C.

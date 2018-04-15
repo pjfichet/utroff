@@ -1,0 +1,81 @@
+.DA Pierre-Jean Fichet
+.DS Utroff presentation
+.DT Utroff \(em Use Troff !
+.DK utroff troff neatroff groff
+.H2 Use Troff\~!
+.H3 What is Troff?
+.PP
+Troff is the historical text processor for Unix. It is mainly used
+today to format manual pages, but it is also able to produce
+postscript and pdf files. There are several implementation of
+troff, and amongst them, some provide high quality typographic
+features \(en such as a paragraph at once adjustment \(en which make
+them able to contest with TeX.
+.H3 The Utroff project
+.PP
+The \*IUtroff\*I project aims to prove that Troff can still be used
+efficiently today. For that purpose, it provides a «piles included»
+set of macros
+.LT utmac ), (
+.LU tmac.html
+and a set of
+.LT tools
+.LU bin.html
+to index documents (\*Iidx\*I), write polytonic greek (\*Itchars\*I),
+manage bibliography references (\*Irefer\*I), highlight source code
+(\*Iugrind\*I), and eventually, export troff documents to xml, html,
+and flat OpenDocument
+.LT troffxml ). (
+.LU xml.html
+.PP
+You can get an overview of the layout by downloading
+.LT layout-uh.pdf ,
+.LU http://download.tuxfamily.org/utroff/doc/layout-uh.pdf
+.LT layout-ul.pdf ,
+.LU http://download.tuxfamily.org/utroff/doc/layout-ul.pdf
+and
+.LT layout-us.pdf .
+.LU http://download.tuxfamily.org/utroff/doc/layout-us.pdf
+.H3 Troff implementations
+.PP
+Utroff does not provide the troff text processor itself. But it is
+compatible with the two troff implementations providing paragraph at
+once adjustment:
+.PI
+\*CGunnar Ritter\*C created the
+.LT "Heirloom doctools"
+.LU http://heirloom.sourceforge.net/doctools.html
+by adding algorythms to provide paragraph at once adjustment,
+micro-typography adjustment, hanging characters and the capacity to
+handle OpenType fonts to the legacy \*Itroff\*I text processor.
+Heirloom troff has been maintained on
+.LT Github
+.LU http://n-t-roff.github.io/heirloom/doctools.html
+by Karsten Kunze for some time. \*IUtroff\*I first used it, but there
+is now a better choice than \*IHeirloom Troff\*I.
+.PI
+\*CAli Gholami Rudi\*C wrote
+.LT neatroff
+.LU http://litcave.rudi.ir
+from scratch, embedding paragraph at once adjustment and
+bi-directional text rendering. \*INeatroff\*I is a wonderful troff
+implementation: lightweight, clean, easy to use and install, and with
+a pretty output. \*CAli Gholami Rudi\*C is maintaining it with care
+and attention to its users. \*IUtroff\*I is now using \*Ineatroff\*I
+as its default troff processor.
+.H3 ChangeLog
+.so log.tr
+.\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.NB
+Produced by
+.LT utmac ,
+.LU tmac.html
+and
+.LT troffxml .
+.LU xml.html
+.NE
+.NB
+Hosted by
+.LT tuxfamily .
+.LU http://tuxfamily.org
+.NE

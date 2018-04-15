@@ -1,0 +1,143 @@
+.so lib.tr
+.coms
+Copyright (C) 2012-2018 Pierre Jean Fichet
+<pierrejean dot fichet at posteo dot net>
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.come
+.DA Pierre-Jean Fichet
+.DS Utroff utmac hacker manual
+.DT Utroff utmac hacker manual
+.DK utroff utmac u-ref troff
+.
+.
+.
+.H2 UTMAC-HACK 7
+.H3 FILES
+.PP
+The following files are installed on the directory
+@MACDIR@: \*B@TMAC@\*B.
+.ig
+u-apolline.tmac
+u-biolib.tmac
+u-biolinum.tmac
+u-en.tmac
+u-eps.tmac
+u-fonts.tmac
+u-fr.tmac
+u-grind.tmac
+uh.tmac
+u-idx.tmac
+u-libertine.tmac
+u-links.tmac
+u-locale.tmac
+ul.tmac
+um.tmac
+u-pdf.tmac
+u-ref.tmac
+us.tmac
+u-sum.tmac
+ut.tmac
+u-typo.tmac
+u-var.tmac
+uw.tmac
+ux.tmac
+..
+.PI \*Iuh, ul, us, ut, uw, ux\*I
+Layout macros.
+.PI \*Iu-ref\*I
+Format a refer bibliography. See
+.man u-ref 7 .
+.PI \*Iu-grind\*I
+Handle the \*Iugrind\*I pre-processor.
+.PI \*Iu-idx\*I
+Index macros.
+.PI \*Iu-links\*I
+Macros for links.
+.PI \*Iu-pdf\*I
+Handles pdf links and metadatas.
+.PI \*Iu-eps\*I
+Include eps files in a document.
+.PI \*Iu-sum\*I
+Creates summaries.
+.PI \*Iu-var\*I
+Defines various macros shared by all utmac files.
+.PI \*Iu-en\*I \*Iu-fr\*I
+Localization macros, for english and french. They should be
+loaded by the file defined by the \*BUTMAC\*B environment
+variable. If the \*BUTMAC\*B environment variable is not
+defined, english is loaded.
+.PI \*Iu-font\*I
+Font macros shared by all font files.
+.PI \*Iu-apolline\*I, \*Iu-libertine\*I, \*Iu-biolinum\*I, \*Iu-biolib\*I
+Mount the specified font. By default,
+\*Iu-libertine\*I is loaded.
+.
+.
+.
+.H3 TESTS
+.PP
+Once loaded, each macro file sets the register \*Btmac-\*B\*Iname\*I
+(where \*Iname\*I is the file name) to '1'. This register can be used
+within tests to adapt the content on the macro used to format the
+document:
+.vS troff
+.ie \\n[tmac-ux] This is printed if formatted with -mux.
+.el This is printed otherwise.
+.vE
+.
+.
+.
+.H3 NAMING CONVENTIONS
+.PP
+\*IUtmac\*I use some convention to name macro, strings, and
+number register. Internally, files are divided in modules,
+and the naming conventions are as follow:
+.PI
+The name of the macros are of the form
+\*Bmodule:name\*B.
+.PI
+The name of the strings and number registers are of the form
+\*Bmodule-name\*B.
+.PP
+Externally, all macro contain two uppercase letters,
+while all fonts are strings containing one uppercase letter.
+.PP
+So, \*Iutmac\*I reserve the following names:
+.PI
+Names containing the characters \*B:\*B and \*B-\*B.
+.PI
+Names containing one or two uppercase letters.
+.
+.
+.
+.H3 SEE ALSO
+.PP
+.man utmac 7 ,
+.man u-ref 7 ,
+.man postxml 1 ,
+.man idx 1 ,
+.man refer 1 .
+.
+.
+.H3 LICENSE
+.PP
+\*IUtmac\*I macros and this manual page are distributed under
+an
+.lic isc
+.
+.
+.
+.H3 AUTHOR
+.PP
+Pierre-Jean \*CFichet\*C.

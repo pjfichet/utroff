@@ -1,0 +1,65 @@
+.DA Pierre-Jean Fichet
+.DS Utroff utmac
+.DT Utroff utmac
+.DK utroff utmac troff tmac xml
+.so lib.tr
+.\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.H2 Tmac
+.H3 Utmac: Usefull troff macros
+.PP
+\*IUtmac\*I is a set of \*Itroff\*I macros made to be used
+with
+.LT "Neatroff"
+.LU http://litcave.rudi.ir
+.H4 A single macro language
+.PP
+All the macro files follow the same language, giving the ability to
+produce different layouts on different type of support from the same
+troff source. Get an overview of the layouts downloading
+.LT layout-uh.pdf ,
+.LU http://download.tuxfamily.org/utroff/doc/layout-uh.pdf
+.LT layout-ul.pdf ,
+.LU http://download.tuxfamily.org/utroff/doc/layout-ul.pdf
+and
+.LT layout-us.pdf .
+.LU http://download.tuxfamily.org/utroff/doc/layout-us.pdf
+.H4 Various output format
+.PP
+\*IUtmac\*I can produce \*Ipdf\*I files, plain text files,
+manual pages, \*Imarkdown\*I files, and
+\*Ixml\*I files \(em and so, with some \*Ixsl\*I stylesheet,
+\*Iflat open document texts\*I (\*Ifodt\*I) and \*Ihtml\*I
+files.
+.H4 High level typographic features
+.PP
+\*IUtmac\*I uses the typographic feature of \*Ineatroff\*I such as
+paragraph at once adjustment, OpenType fonts. While producing
+\*Ipdf\*I, it informs about orphans, widows and empty lines at the
+bottom of page.
+.H4 Bibliography and indexes 
+.PP
+\*IUtmac\*I has builtin macros to build bibliography lists,
+indexes, table of contents and summaries. Bibliography aims
+to follow the \*Iiso-690\*I standart, and replace yet cited
+references by \*(lq\*Iibid.\*I\*(rq, or \*(lq\*Iop. cit.
+p\~xx.\*I\*(rq if needed.
+.H4 Troff ergonomy
+.PP
+\*IUtmac\*I respects the original \*Itroff\*I ergonomy: it is
+more hackable than configurable. By default, the layout is
+fixed and should be typographically perfect. If one wants to
+change the layout, he'll have to learn the \*Itroff\*I
+langage to hack the sources, or to create his own macros.
+.\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.H3 Documentation and download
+.PL
+See the following files:
+.LT utmac ,
+.LU man/utmac.html
+.LT utmac-hack ,
+.LU man/utmac-hack.html
+.LT u-ref ,
+.LU man/u-ref.html
+.LT license .
+.LU man/ics.html
+.git utmac
