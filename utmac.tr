@@ -102,10 +102,11 @@ content can contain header macros, summary macros, paragraph
 macros, typographic macros, note macros, include macros, links
 macros, keywords macros.
 .PP
-All macros have two letters; the first one define the gender of the
+Most macros have two letters; the first one define the gender of the
 macro: meta\*BD\*Batas, \*BR\*Begister, \*BH\*Beading, \*BS\*Bummary,
-\*BP\*Baragraph, \*BT\*Bypographic, \*BN\*Botes, \*BI\*Bnclude,
-\*BL\*Binks, \*BK\*Beywords, Appendi\*BX\*B.
+\*BP\*Baragraph, \*BT\*Bypographic, \*BN\*Botes,
+\*BL\*Binks, \*BK\*Beywords, Appendi\*BX\*B. Include macros are an
+exception: they are named \*BEPS\*B and \*BPDF\*B.
 .
 .
 .
@@ -240,6 +241,7 @@ Example paragraph. Text is not filled.
 .
 .
 .
+.ig
 .H4 Typographic macros
 .PI \*BTD\*B
 Use micro-typography to decrease the witdh of a paragraph.
@@ -252,6 +254,7 @@ It can be inserted at the begining (just after \*IPP\*I) of
 a well choosen paragraph to avoid a blank at the bottom of a
 page. A well choosen paragraph is a long one, with a long
 last line.
+..
 .
 .
 .
@@ -276,13 +279,19 @@ End \*INS\*I, \*INT\*I or \*INB\*I.
 .
 .H4 Include macros
 .PP
-These macros are used to include an encapsulated postscript
-document. These documents are often images, which can be
-produced with the \*Bconvert\*B command from
-\*BImageMagick\*B:
+These macros are used to include an encapsulated postscript document
+or a pdf one. These documents are often images, which can be produced
+with the \*Bconvert\*B command from \*BImageMagick\*B for \*Ieps\*I
+files and \*Bps2pdf\*B for \*Ipdf\*I files:
 .vS sh
 convert image.jpg image.eps
+ps2pdf -dEPSCrop image.eps image.pdf
 .vE
+.PI "\*BEPS\*B \*Ifile.eps\*I [\*Il\*I|\*Ic\*I|\*Ir\*I|\*Iindent\*I] [\*Iwidth\*I] [\*Iheight\*I]
+Include an \*Ieps\*I file.
+.PI "\*BPDF\*B \*Ifile.pdf\*I [\*Il\*I|\*Ic\*I|\*Ir\*I|\*Iindent\*I] [\*Iwidth\*I] [\*Iheight\*I]
+Include a \*Ipdf\*I file.
+.ig
 .PI "\*BIL\*B \*Ieps\*I [\*Iscale\*I] [\*Iflag\*I]"
 Include and left align the \*Ieps\*I document. The document
 size is scaled by \*Iscale\*I and the optional \*Iflag\*I
@@ -292,6 +301,7 @@ documentation for a description of these flags).
 Idem, except that the document is centered.
 .PI "\*BIR\*B \*Ieps\*I [\*Iscale\*I] [\*Iflags\*I]"
 Idem, except that the document is right aligned.
+..
 .
 .
 .
