@@ -1,0 +1,119 @@
+.so lib.tr
+.coms
+Copyright (C) 2019 Pierre Jean Fichet
+<pierrejean dot fichet at posteo dot net>
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.come
+.DA Pierre-Jean Fichet
+.DS Utroff tsql manual
+.DT Utroff tsql manual
+.DK utroff tsql troff nroff sqlite
+.
+.
+.
+.H2 TSQL 1
+.H3 NAME
+.PP
+\*BTsql\*B \- Executes sqlite statements from a troff document.
+.
+.H3 SYNOPSIS
+.PP
+\*B@BINDIR@/tsql\*B
+[\*B\-c\*B <\*Icontrol_character\*I>]
+< \*Ifile\*I | tbl | troff | pdf > file.pdf
+.
+.H3 DESCRIPTION
+.PP
+\*ITsql\*I executes the sqlite statements found in the input file
+and format their result for troff.
+.H3 OPTIONS
+.PI "\*B\-c\*B \*Icontrol_character\*I"
+Define the control character. Default is '\*I.\*I'.
+.
+.
+.H3 MACROS
+.PP
+In the troff document, macros are used to configure \*Btsql\*B and
+wrap the sqlite statements.
+.PI "\*Bsqldb\*B <\*Idatabase\*I>"
+Opens the database \*Idatabase\*I and executes statements on it.
+If \*Idatabase\*I does not exist, it will be created.
+Several \*Bsqldb\*B can be indicated: \*Btsql\*B will then close the
+current database and open the new one instead. The keyword
+\*I:memory:\*I can be used to define an in memory database.
+.PI "\*Bsqlbeg\*B"
+Sqlite statements begin on the next line, until \*Bsqlend\*B.
+\*Bsqlbeg\*B Formats the result of the query using \*Btblrow\*B and
+\*Btblcol\*B that neatroff macro \*Itbl.tmac\*I understands.
+.PI "\*Bsqltbl\*B [<\*Itab\*I>]"
+Sqlite statements begins on the next line, until \*Bsqlend\*B.
+\*Bsqltbl\*B formats the result of the query for the pre-processor
+\*Btbl\*B.
+The optional <\*Itab\*I> arguments defines the character used
+as separator (it should conform with the tab(x) global option
+of \*Btbl\*B).
+.PI "\*Bsqlds\*B <\*Istring_name\*I>"
+An sqlite query begins on the next line, until \*Bsqlend\*B.
+\*Bsqlds\*B will format the result as a troff string definition:
+.vS troff
+.ds string_name query result
+.vE
+.PI "\*Bsqlnr\*B <\*Iregister_name\*I>"
+An sqlite query begins on the next line, until \*Bsqlend\*B.
+\*Bsqlnr\*B will format the result as a troff number register
+definition:
+.vS troff
+.nr register_name query_result
+.vE
+.H3 EXTENSIONS
+.PP
+The following functions are added to the sqlite language:
+.PI "\*Bsqrt(\*B\*Ii\*I\*B)\*B"
+Computes the square root of \*Ii\*I.
+.PI "\*Bpower(\*B\*Ii, j\*I\*B)\*B"
+Computes \*Ii\*I power \*Ij\*I.
+.H3 EXAMPLE
+.vS troff
+.sqldb :memory:
+.TS
+allbox;
+c c .
+.sqltbl
+create table T (id integer primary key, name text);
+insert into T (name) values ('Pierre'), ('Paul'), ('Jacques');
+select * from T;
+.sqlend
+.TE
+.vE
+.
+.
+.H3 FILES
+.PP
+\*I@BINDIR@/tsql\*I
+.
+.
+.
+.H3 LICENSE
+.PP
+\*ITsql\*I and this man page are distributed under the
+.lic isc .
+.
+.
+.
+.H3 AUTHOR
+.PP
+Pierre-Jean \*CFichet\*C.
+.
+.
+.

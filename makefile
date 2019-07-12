@@ -16,7 +16,7 @@ PUBURL=http://download.tuxfamily.org/utroff
 
 MANFILES=idx hunt inv mkey referformat refer sortbib \
 tchars ugrind u-ref utmac-hack utmac troffxml \
-bsd4 cddl isc
+bsd4 cddl isc tsql
 
 WEBFILES=bin index tmac xml
 
@@ -66,6 +66,7 @@ installman: man
 	cp utmac-hack.man ../utmac/
 	cp utmac.man ../utmac/
 	cp troffxml.man ../troffxml/
+	cp tsql.man ../tsql/
 
 clean:
 	@rm -f $(WEBFILES:%=%.html) $(MANFILES:%=%.html)
