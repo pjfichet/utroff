@@ -271,15 +271,15 @@ xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
       <xsl:attribute name="content"><xsl:value-of select="."/></xsl:attribute>
     </meta>
   </xsl:for-each>
-  <link rel="stylesheet" href="/utroff.css" type="text/css" media="screen"/>
+  <link rel="stylesheet" href="@WEBURL@/utroff.css" type="text/css" media="screen"/>
 </head>
 
 <body>
   <nav>
-    <h1><a href="/index.html">Utroff.org</a></h1>
-    <a href="/tmac.html">tmac</a>
-    <a href="/bin.html">bin</a>
-    <a href="/xml.html">xml</a>
+    <h1><a href="@WEBURL@/index.html">Utroff.org</a></h1>
+    <a href="@WEBURL@/tmac.html">tmac</a>
+    <a href="@WEBURL@/bin.html">bin</a>
+    <a href="@WEBURL@/xml.html">xml</a>
     <a href="https://github.com/pjfichet">git</a>
   </nav>
   <article>
