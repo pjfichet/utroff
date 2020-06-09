@@ -2,7 +2,7 @@ Utroff.org
 ==========
 
 Documentation of the Utroff project:
-<http://utroff.org>.
+<https://pjfichet.github.io/utroff>.
 
 The html files and manual pages are produced with
 `groff -Tutf8`. See the makefile for more details.
