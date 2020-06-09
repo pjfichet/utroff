@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff refer format manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="M. E. Lesk"></meta><meta name="date" content="2020-06-09T13:14:30"></meta><meta name="keywords" content="utroff refer troff"></meta><meta name="subject" content="Utroff refer format manual"></meta><link rel="stylesheet" href="/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="/index.html">Utroff.org</a></h1><a href="/tmac.html">tmac</a><a href="/bin.html">bin</a><a href="/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+
+
+
+
+
+
+<h2>REFER-FORMAT 7</h2>
+<h3>REFER FILE</h3>
+<p>A reference file is a set of bibliographic references usable
+with <span class="I">refer</span>. It can be indexed using the softwares
+<span class="I">inv</span> and <span class="I">mkey</span> for fast searching.</p>
+<p>The strings defined by <span class="I">refer</span> are taken directly
+from the files of references, which are in the following
+format.  The references should be separated by blank lines.
+Each reference is a sequence of lines beginning with
+<span class="B">%</span> and followed by a key-letter. The remainder of
+that line, and successive lines until the next line
+beginning with <span class="B">%</span>, contain the information
+specified by the key-letter. In general, <span class="I">refer</span>
+does not interpret the information, but merely presents it
+to the macro package for final formatting. A user with a
+separate macro package, for example, can add new key-letters
+or use the existing ones for other purposes without
+bothering <span class="I">refer</span>.</p>
+<p>The meaning of the key-letters given below, in particular,
+is that assigned by the –ms macros. Not all information,
+obviously, is used with each citation. For example, if a
+document is both an internal memorandum and a journal
+article, the macros ignore the memorandum version and cite
+only the journal article. Some kinds of information are not
+used at all in printing the reference; if a user does not
+like finding references by specifying title or author
+keywords, and prefers to add specific keywords to the
+citation, a field is available which is searched but not
+printed (K).</p>
+<p>The key letters currently recognized by <span class="I">refer</span> and
+–ms, with the kind of information implied, are:</p>
+<ul><li><span class="B">A</span>: Author’s name</li>
+<li><span class="B">B</span>: Title of book containing item</li>
+<li><span class="B">C</span>: City of publication</li>
+<li><span class="B">D</span>: Date</li>
+<li><span class="B">E</span>: Editor of book containing item</li>
+<li><span class="B">G</span>: Government (NTIS) ordering number</li>
+<li><span class="B">I</span>: Issuer (publisher)</li>
+<li><span class="B">J</span>: Journal name</li>
+<li><span class="B">K</span>: Keys (for searching)</li>
+<li><span class="B">L</span>: Label</li>
+<li><span class="B">M</span>: Memorandum label</li>
+<li><span class="B">N</span>: Issue number</li>
+<li><span class="B">O</span>: Other information</li>
+<li><span class="B">P</span>: Page(s) of article</li>
+<li><span class="B">R</span>: Technical report reference</li>
+<li><span class="B">T</span>: Title</li>
+<li><span class="B">V</span>: Volume number</li>
+<li><span class="B">X</span>: or</li>
+<li><span class="B">Y</span>: or</li>
+<li><span class="B">Z</span>: Information not used by refer</li></ul>
+<h3>REFER OUTPUT</h3>
+<p>The output of <span class="I">refer</span> is a stream of string
+definitions, one for each of the fields of each reference,
+as shown below.</p>
+<pre><span class="codeK">.</span><span class="codeK">]-</span>
+<span class="codeK">.</span><span class="codeK">ds</span> <span class="codeV">[A</span> <span class="codeS">authors’ names ...</span>
+<span class="codeK">.</span><span class="codeK">ds</span> <span class="codeV">[T</span> <span class="codeS">title ...</span>
+<span class="codeK">.</span><span class="codeK">ds</span> <span class="codeV">[J</span> <span class="codeS">journal ...</span>
+<span class="codeK">.</span><span class="codeK">..</span>
+<span class="codeK">.</span><span class="codeK">][</span> type-number</pre>
+<p>The <span class="I">refer</span> program, in general, does not concern
+itself with the significance of the strings. The different
+fields are treated identically by refer , except that the
+<span class="B">X</span>, <span class="B">Y</span> and <span class="B">Z</span> fields are
+ignored (see the <span class="B">-i</span> option of <span class="I">mkey</span>) in
+indexing and searching. All <span class="I">refer</span> does is select
+the appropriate citation, based on the keys. The macro
+package must arrange the strings so as to produce an
+appropriately formatted citation. In this process, it uses
+the convention that the ’<span class="B">T</span>’ field is the title,
+the ’<span class="B">J</span>’ field the journal, and so forth.  The
+refer program does arrange the citation to simplify the
+macro package’s job, however. The special macro
+<span class="B">.]-</span> precedes the string definitions and the
+special macro <span class="B">.][</span> follows. These are changed from
+the input <span class="B">.[</span> and <span class="B">.]</span> so that running
+the same file through refer again is harmless.</p>
+<p>The <span class="B">.]–</span> macro can be used by the macro package to
+initialize. The <span class="B">.][</span> macro, which should be used
+to print the reference, is given an argument type-number to
+indicate the kind of reference, as follows:</p>
+<ul><li><span class="B">1</span>: Journal article</li>
+<li><span class="B">2</span>: Book</li>
+<li><span class="B">3</span>: Article within book</li>
+<li><span class="B">4</span>: Technical report</li>
+<li><span class="B">5</span>: Bell Labs technical memorandum</li>
+<li><span class="B">0</span>: Other</li></ul>
+<p>The type is determined by the presence or absence of
+particular fields in the citation (a journal article must
+have a ’<span class="B">J</span>’ field, a book must have an
+’<span class="B">I</span>’ field, and so forth). To a small extent, this
+violates the above rule that <span class="I">refer</span> does not
+concern itself with the contents of the citation; however,
+the classification of the citation in <span class="I">troff</span>
+macros would require a relatively expensive and obscure
+program. Any macro writer may, of course, preserve
+consistency by ignoring the argument to the .] [ macro. The
+reference is flagged in the text with the sequence</p>
+<pre><span class="codeV">\*(</span><span class="codeS">[.</span>number<span class="codeV">\*(</span><span class="codeS">.]</span></pre>
+<p>where number is the footnote number. The strings
+<span class="B">[.</span> and <span class="B">.]</span> should be used by the macro
+package to format the reference flag in the text. These
+strings can be replaced for a particular footnote. The
+footnote number (or other signal) is available to the
+reference macro <span class="B">.][</span> as the string register
+<span class="B">[F</span>. To simplify dealing with a text reference
+that occurs at the end of a sentence, refer treats a
+reference which follows a period in a special way. The
+period is removed, and the reference is preceded by a call
+for the string <span class="B">&lt;.</span> and followed by a call for
+the string <span class="B">&gt;.</span> For example, if a reference
+follows ’<span class="I">end.</span>’ it will appear as</p>
+<pre>end<span class="codeV">\*(</span><span class="codeS">&lt;.</span><span class="codeV">\*(</span><span class="codeS">[.</span>number<span class="codeV">\*(</span><span class="codeS">.]</span><span class="codeV">\*(</span><span class="codeS">&gt;.</span></pre>
+<p>where number is the footnote number. The macro package
+should turn either the string <span class="B">&gt;.</span> or
+<span class="B">&lt;.</span> into a period and delete the other one.
+This permits the output to have either the form
+’<span class="I">end[31].</span>’ or ’<span class="I">end.31</span>’ as the macro
+package wishes. Note that in one case the period precedes
+the number and in the other it follows the number.</p>
+<p>In some cases users wish to suspend the searching, and
+merely use the reference macro formatting. That is, the user
+doesn’t want to provide a search key between .[ and . ]
+brackets, but merely the reference lines for the appropriate
+document. Alternatively, the user can wish to add a few
+fields to those in the reference as in the standard file, or
+override some fields. Altering or replacing fields, or
+supplying whole references, is easily done by inserting
+lines beginning with <span class="B">%</span>; any such line is taken as
+direct input to the reference processor rather than keys to
+be searched. Thus</p>
+<pre><span class="codeK">.</span><span class="codeK">[</span>
+key1 key2 key3 ...
+%Q New format item
+%R Override report name
+<span class="codeK">.</span><span class="codeK">]</span></pre>
+<p>makes the indicates changes to the result of searching for
+the keys. All of the search keys must be given before the
+first <span class="B">%</span> line. If no search keys are provided, an
+entire citation can be provided in-line in the text. For
+example, if the eqn paper citation were to be inserted in
+this way, rather than by searching for it in the data base,
+the input would read</p>
+<pre><span class="codeK">.</span><span class="codeK">[</span>
+%A B. W. Kernighan
+%A L. L. Cherry
+%T A System for Typesetting Mathematics
+%J Comm. ACM
+%V 18
+%N 3
+%P 151-157
+%D March 1975
+<span class="codeK">.</span><span class="codeK">]</span></pre>
+<p>This would produce a citation of the same appearance as that
+resulting from the file search. As shown, fields are
+normally turned into troff strings. Sometimes users would
+rather have them defined as macros, so that other troff
+commands can be placed into the data. When this is
+necessary, simply double the control character % in the
+data. Thus the input</p>
+<pre><span class="codeK">.</span><span class="codeK">[</span>
+%V 23
+%%M
+Bell Laboratories,
+Murray Hill, N.J. 07974
+<span class="codeK">.</span><span class="codeK">]</span></pre>
+<p>is processed by refer into</p>
+<pre><span class="codeK">.</span><span class="codeK">ds</span> <span class="codeV">[V</span> <span class="codeS">23</span>
+<span class="codeK">.</span><span class="codeK">de</span> <span class="codeK">[M</span>
+Bell Laboratories,
+Murray Hill, N.J. 07974
+<span class="codeK">.</span><span class="codeK">.</span></pre>
+<p>The information after <span class="B">%%M</span> is defined as a macro
+to be invoked by <span class="B">.[M</span> while the information after
+<span class="B">%V</span> is turned into a string to be invoked by
+<span class="B">\*([V</span>. At present -ms expects all information as
+strings.</p>
+<h3>LICENSE</h3>
+<p>The text of this manual page comes from <span class="I">Some
+application of Inverted Indexes in the UNIX System</span> by
+M. E. Lesk, which is distributed under the
+<a href="/man/bsd4.html">bsd4 license</a>.</p>
+<h3>SEE ALSO</h3>
+<p><a href="/man/refer.html">refer(1)</a>,
+<a href="/man/sortbib.html">sortbib(1)</a>,
+<a href="/man/mkey.html">mkey(1)</a>,
+<a href="/man/inv.html">inv(1)</a>,
+<a href="/man/hunt.html">hunt(1)</a>,
+and <span class="I">Some application of Inverted Indexes in the UNIX
+System</span> by M. E. <span class="C">Lesk</span>.</p>
+<h3>AUTHORS</h3>
+<p>M. E. <span class="C">Lesk</span>. Modified by Pierre-Jean
+<span class="C">Fichet</span>.</p>
+</article></body></html>

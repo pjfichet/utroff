@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff sortbib manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Written by Greg Shenaut &amp; Bill Tuthill, modified by Pierre-Jean Fichet"></meta><meta name="date" content="2020-06-09T13:14:30"></meta><meta name="keywords" content="utroff sortbib refer hunt inv mkey troff"></meta><meta name="subject" content="Utroff sortbib manual"></meta><link rel="stylesheet" href="/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="/index.html">Utroff.org</a></h1><a href="/tmac.html">tmac</a><a href="/bin.html">bin</a><a href="/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+
+
+
+
+
+
+<h2>SORTBIB 1</h2>
+<h3>NAME</h3>
+<p><span class="B">sortbib</span> − Sort refer bibliographic database
+following iso-690 standart</p>
+<h3>SYNOPSIS</h3>
+<p><span class="I">sortbib</span>
+[<span class="B">−i</span>|<span class="B">−s</span><span class="I">KEYS</span>]
+<span class="I">database</span> ...</p>
+<h3>DESCRIPTION</h3>
+<p><span class="I">Sortbib</span> sorts files of records containing
+<span class="I">refer</span> key-letters by user-specified keys. Records
+may be separated by blank lines, or by <span class="B">.[</span> and
+<span class="B">.]</span> delimiters, but the two styles may not be
+mixed together. This program reads through each
+<span class="I">database</span> and pulls out key fields, which are
+sorted separately. The sorted key fields contain the file
+pointer, byte offset, and length of corresponding records.
+These records are delivered using disk seeks and reads, so
+<span class="I">sortbib</span> may not be used in a pipeline to read
+standard input.</p>
+<p>By default, <span class="I">sortbib</span> alphabetize the first
+<span class="B">%A</span> and <span class="B">%D</span> fields, which contain the
+senior author and date.</p>
+<p>The <span class="B">-i</span> option is used to sort database following
+an algorythm which aims to respect the <span class="I">iso-690</span>
+bibliography standart:</p>
+<ul><li>If <span class="B">J</span> is defined, the order of fields is:
+<span class="B">QA+TE+SVBJ</span>.</li>
+<li>Else, if <span class="B">B</span> is defined, the order of fields is:
+<span class="B">QA+TE+SVB</span>.</li>
+<li>Else, the order of fields is: <span class="B">QA+E+SVT</span>.</li></ul>
+<p>The <span class="B">−s</span> option is used to specify new
+<span class="I">KEYS</span>. For instance, <span class="B">−sATD</span> will sort by
+author, title, and date, while <span class="B">−sA+D</span> will sort by
+all authors, and date. Sort keys past the fourth are not
+meaningful. No more than 16 databases may be sorted together
+at one time.  Records longer than 4096 characters will be
+truncated.</p>
+<p><span class="I">Sortbib</span> sorts on last word on the <span class="B">%A</span>
+and <span class="B">%E</span> line, which are assumed to be the author’s
+and editor’s last name. A word in the final position, such
+as "jr." or "ed.", will be ignored if the name beforehand
+ends with a comma. Authors with two-word last names or
+unusual constructions can be sorted correctly by using the
+<span class="I">nroff</span> convention "<span class="B">\0</span>" in place of a
+blank.  A <span class="B">%Q</span> field is considered to be the same
+as <span class="B">%A</span>, except sorting begins with the first, not
+the last, word.  <span class="I">Sortbib</span> sorts on the last word
+of the <span class="B">%D</span> line, usually the year.  If a sort-
+significant field is absent from a record,
+<span class="I">sortbib</span> places that record before other records
+containing that field.</p>
+<h3>LICENSE</h3>
+<p><span class="I">Sortbib</span> is distributed under the This manual page
+is distributed under a
+<a href="/man/bsd4.html">bsd4 license</a>.</p>
+<h3>FILES</h3>
+<p><span class="I">@BINDIR@/sortbib</span></p>
+<h3>SEE ALSO</h3>
+<p></p>
+<h3>AUTHORS</h3>
+<p>Written by Greg <span class="C">Shenaut</span> &amp; Bill
+<span class="C">Tuthill</span>. Modified by Pierre-Jean
+<span class="C">Fichet</span>.</p>
+</article></body></html>

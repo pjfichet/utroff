@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff tchars manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Pierre-Jean Fichet"></meta><meta name="date" content="2020-06-09T13:14:30"></meta><meta name="keywords" content="utroff tchars troff nroff"></meta><meta name="subject" content="Utroff tchars manual"></meta><link rel="stylesheet" href="/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="/index.html">Utroff.org</a></h1><a href="/tmac.html">tmac</a><a href="/bin.html">bin</a><a href="/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+
+
+
+
+
+
+<h2>TCHARS 1</h2>
+<h3>NAME</h3>
+<p><span class="B">Tchars</span> − Translate characters for Troff.</p>
+<h3>SYNOPSIS</h3>
+<p><span class="B">@BINDIR@/tchars</span> [<span class="B">−e</span>] <span class="I">file</span></p>
+<h3>DESCRIPTION</h3>
+<p><span class="I">Tchars</span> is a troff pre-processor which translate
+some ascii code to complex utf-8 characters. Actually, it
+can only translate a subset of betacode to polytonic greek.</p>
+<h3>OPTIONS</h3>
+<ul><li><span class="B">−e</span>: Escape characters: print troff utf-8 escape
+sequence in the form of <span class="B">\U’xxxx’</span> instead of
+printing the utf-8 character itself.</li></ul>
+<h4>MACROS</h4>
+<p>In the troff document, characters that has to be translated
+must be indicated by one of the following macros:</p>
+<ul><li><span class="B">CW</span> <span class="I">code after before</span>: Transalte
+<span class="I">code</span>, and append <span class="I">before</span> and
+<span class="I">after</span> just before and after the translation.</li>
+<li><span class="B">CL</span> <span class="I">code</span>
+<span class="B">[</span><span class="I">code...</span><span class="B">]</span>: Translate the
+whole line following <span class="B">CL</span>.</li>
+<li><span class="B">CS</span>: Begin a block that has to be translated. Must
+be followed by <span class="B">CE</span>.</li>
+<li><span class="B">CE</span>: Close a block that has to be translated.</li></ul>
+<p>For <span class="I">tchars</span> to work, you must define these macro
+to call a font which contain polytonic greek characters, as
+follow, for example:</p>
+<pre><span class="codeK">.</span><span class="codeK">fp</span> 0 G GFSPyrsos otf <span class="codeC">\" Pyrsos from Greek Font Society</span>
+<span class="codeK">.</span><span class="codeK">de</span> <span class="codeK">CW</span>
+<span class="codeC">\</span><span class="codeV">\$3</span><span class="codeV">\fG</span><span class="codeC">\</span><span class="codeV">\$1</span><span class="codeV">\fR</span><span class="codeC">\</span><span class="codeV">\$2</span>
+<span class="codeK">.</span><span class="codeK">.</span>
+<span class="codeK">.</span><span class="codeK">de</span> <span class="codeK">CL</span>
+<span class="codeV">\fG</span><span class="codeC">\</span><span class="codeV">\$*</span><span class="codeV">\fR</span>
+<span class="codeK">.</span><span class="codeK">.</span>
+<span class="codeK">.</span><span class="codeK">de</span> <span class="codeK">CS</span>
+<span class="codeK">.</span>    <span class="codeK">ft</span> G
+<span class="codeK">.</span><span class="codeK">.</span>
+<span class="codeK">.</span><span class="codeK">de</span> <span class="codeK">CE</span>
+<span class="codeK">.</span>    <span class="codeK">ft</span> R
+<span class="codeK">.</span><span class="codeK">.</span></pre>
+<h4>CODE</h4>
+<p>A rune is composed of an ascii letter, followed by a
+representation of an accent.  <span class="I">Tchars</span> actually
+understand the following accents:</p>
+<ul><li>+ dialytika ̈:</li>
+<li>&amp; macron ̄:</li>
+<li>´ vrachy ̆:</li>
+<li>) psili ̓:</li>
+<li>( dasia ̔:</li>
+<li>\ varia ̀:</li>
+<li>/ oxia ́:</li>
+<li>= perispomeni ͂:</li>
+<li>| ypogegrammeni ͅ:</li></ul>
+<p>The order is significant, it must be:
+<span class="B">+&amp;’)(\/=|</span></p>
+<p><span class="I">Tchars</span> actually understand the following letters:</p>
+<ul><li>A Α ALPHA, a α alpha:</li>
+<li>B Β BETA, b β beta:</li>
+<li>C Ξ XI, c ξ xi:</li>
+<li>D Δ DELTA, d δ delta:</li>
+<li>E Ἑ EPSILON, e ε epsilon:</li>
+<li>F Φ PHI, f φ phi:</li>
+<li>G Γ GAMMA, g γ gamma:</li>
+<li>H Η ETA, h η eta:</li>
+<li>I Ι IOTA, i ι iota:</li>
+<li>K Κ KAPPA, k κ kappa:</li>
+<li>L Λ LAMBDA, l λ lambda:</li>
+<li>M Μ MU, m μ mu:</li>
+<li>N Ν NU, n ν nu:</li>
+<li>O Ο OMICRON, o ο omicron:</li>
+<li>P Π PI, p π pi:</li>
+<li>R Ρ RHO, r ρ rhô:</li>
+<li>S Σ SIGMA, s σ sigma:</li>
+<li>T Τ TAU, t τ tau:</li>
+<li>U Υ UPSILON, u υ upsilon:</li>
+<li>W Ω OMEGA, w ω omega:</li>
+<li>X Χ CHI, x χ chi:</li>
+<li>Y Ψ PSI, y ψ psi:</li>
+<li>Z Ζ ZETA, z ζ zeta:</li></ul>
+<h3>EXAMPLE</h3>
+<pre>The word physis in polytonic greek is written:
+<span class="codeK">.</span><span class="codeK">CW</span> fu/sis .</pre>
+<h3>FILES</h3>
+<p><span class="I">@BINDIR@/tchars</span></p>
+<h3>SEE ALSO</h3>
+<p><a href="/man/utmac.html">utmac(7)</a>.</p>
+<h3>LICENSE</h3>
+<p><span class="I">Tchars</span> and this man page are distributed under
+the
+<a href="/man/isc.html">isc license</a>.</p>
+<h3>AUTHOR</h3>
+<p>
+Pierre-Jean <span class="C">Fichet</span>.</p>
+</article></body></html>

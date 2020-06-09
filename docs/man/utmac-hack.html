@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff utmac hacker manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Pierre-Jean Fichet"></meta><meta name="date" content="2020-06-09T13:14:30"></meta><meta name="keywords" content="utroff utmac u-ref troff"></meta><meta name="subject" content="Utroff utmac hacker manual"></meta><link rel="stylesheet" href="/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="/index.html">Utroff.org</a></h1><a href="/tmac.html">tmac</a><a href="/bin.html">bin</a><a href="/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+
+
+
+
+
+
+<h2>UTMAC-HACK 7</h2>
+<h3>FILES</h3>
+<p>The following files are installed on the directory @MACDIR@:
+<span class="B">@TMAC@</span>.</p>
+<ul><li><span class="I">uh, ul, us, ut, uw, ux</span>: Layout macros.</li>
+<li><span class="I">u-ref</span>: Format a refer bibliography. See
+<a href="/man/u-ref.html">u-ref(7)</a>.</li>
+<li><span class="I">u-grind</span>: Handle the <span class="I">ugrind</span> pre-
+processor.</li>
+<li><span class="I">u-idx</span>: Index macros.</li>
+<li><span class="I">u-links</span>: Macros for links.</li>
+<li><span class="I">u-pdf</span>: Handles pdf links and metadatas.</li>
+<li><span class="I">u-eps</span>: Include eps files in a document.</li>
+<li><span class="I">u-sum</span>: Creates summaries.</li>
+<li><span class="I">u-var</span>: Defines various macros shared by all utmac
+files.</li>
+<li><span class="I">u-en</span> <span class="I">u-fr</span>: Localization macros, for
+english and french. They should be loaded by the file
+defined by the <span class="B">UTMAC</span> environment variable. If the
+<span class="B">UTMAC</span> environment variable is not defined,
+english is loaded.</li>
+<li><span class="I">u-font</span>: Font macros shared by all font files.</li>
+<li><span class="I">u-apolline</span>, <span class="I">u-libertine</span>, <span class="I">u-
+biolinum</span>, <span class="I">u-biolib</span>: Mount the specified
+font. By default, <span class="I">u-libertine</span> is loaded.</li></ul>
+<h3>TESTS</h3>
+<p>Once loaded, each macro file sets the register
+<span class="B">tmac-</span><span class="I">name</span> (where <span class="I">name</span> is
+the file name) to ’1’. This register can be used within
+tests to adapt the content on the macro used to format the
+document:</p>
+<pre><span class="codeK">.</span><span class="codeK">ie</span> <span class="codeV">\\n[tmac−ux]</span> This is printed if formatted with -mux.
+<span class="codeK">.</span><span class="codeK">el</span> This is printed otherwise.</pre>
+<h3>NAMING CONVENTIONS</h3>
+<p><span class="I">Utmac</span> use some convention to name macro, strings,
+and number register. Internally, files are divided in
+modules, and the naming conventions are as follow:</p>
+<ul><li>The name of the macros are of the form
+<span class="B">module:name</span>.</li>
+<li>The name of the strings and number registers are of the form
+<span class="B">module-name</span>.</li></ul>
+<p>Externally, all macro contain two uppercase letters, while
+all fonts are strings containing one uppercase letter.</p>
+<p>So, <span class="I">utmac</span> reserve the following names:</p>
+<ul><li>Names containing the characters <span class="B">:</span> and
+<span class="B">-</span>.</li>
+<li>Names containing one or two uppercase letters.</li></ul>
+<h3>SEE ALSO</h3>
+<p><a href="/man/utmac.html">utmac(7)</a>,
+<a href="/man/u-ref.html">u-ref(7)</a>,
+<a href="/man/postxml.html">postxml(1)</a>,
+<a href="/man/idx.html">idx(1)</a>,
+<a href="/man/refer.html">refer(1)</a>.</p>
+<h3>LICENSE</h3>
+<p><span class="I">Utmac</span> macros and this manual page are distributed
+under an
+<a href="/man/isc.html">isc license</a></p>
+<h3>AUTHOR</h3>
+<p>
+Pierre-Jean <span class="C">Fichet</span>.</p>
+</article></body></html>

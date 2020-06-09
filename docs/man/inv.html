@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff inv manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="M. E. Lesk"></meta><meta name="date" content="2020-06-09T13:14:30"></meta><meta name="keywords" content="utroff inv refer troff"></meta><meta name="subject" content="Utroff inv manual"></meta><link rel="stylesheet" href="/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="/index.html">Utroff.org</a></h1><a href="/tmac.html">tmac</a><a href="/bin.html">bin</a><a href="/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+
+
+
+
+
+
+<h2>INV 1</h2>
+<h3>NAME</h3>
+<p><span class="I">Inv</span> — Make an inverted index from output of mkey.</p>
+<h3>SYNOPSIS</h3>
+<p><span class="I">inv</span> [<span class="B">−danpv</span>]
+[<span class="B">-h</span><span class="I">n</span>] [<span class="B">-i</span> [<span class="B">u</span>]
+<span class="I">name</span>] <span class="I">outfile</span>]</p>
+<h3>DESCRIPTION</h3>
+<p>The <span class="I">inv</span> program computes the hash codes and
+writes the inverted files. It reads the output of
+<span class="I">mkey</span> and writes the set of files described
+earlier in this section. It expects one argument, which is
+used as the base name for the three (or four) files to be
+written. Assuming an argument of <span class="I">Index</span> (the
+default) the entry file is named <span class="I">Index.ia</span>, the
+posting file <span class="I">Index.ib</span>, the tag file
+<span class="I">Index.ic</span>, and the key file (if present)
+<span class="I">index.id</span>.</p>
+<p>The inv programm recognize the following options:</p>
+<ul><li><span class="B">-a</span>: Append the new keys to a previous set of
+inverted files, making new files if there is no old set
+using the same base name.</li>
+<li><span class="B">-d</span>: Write the optional key file. This is needed
+when you can not check for false drops by looking for the
+keys in the original inputs, i.e. when the key derivation
+procedure is complicated and the output keys are not words
+from the input files.</li>
+<li><span class="B">-h</span><span class="I">n</span>: The hash table size is
+<span class="I">n</span> (default 997); <span class="I">n</span> should be prime.
+Making <span class="I">n</span> bigger saves search time and spends disk
+space.</li>
+<li><span class="B">-i</span> [<span class="B">u</span>] <span class="I">name</span>: Take input
+from file <span class="I">name</span>, instead of the standard input; if
+<span class="B">u</span> is present name is unlinked when the sort is
+started. Using this option permits the sort scratch space to
+overlap the disk space used for input keys.</li>
+<li><span class="B">-n</span>: Make a completely new set of inverted files,
+ignoring previous files.</li>
+<li><span class="B">-p</span>: Pipe into the sort program, rather than
+writing a temporary input file. This saves disk space and
+spends processor time.</li>
+<li><span class="B">-v</span>: Verbose mode; print a summary of the number
+of keys which finished indexing.</li></ul>
+<p>About half the time used in inv is in the contained sort.
+Assuming the sort is roughly linear, however, a guess at the
+total timing for inv is 250 keys per second. The space used
+is usually of more importance: the entry file uses four
+bytes per possible hash (note the <span class="B">-h</span> option), and
+the tag file around 15-20 bytes per item indexed. Roughly,
+the posting file contains one item for each key instance and
+one item for each possible hash code; the items are two
+bytes long if the tag file is less than 65336 bytes long,
+and the items are four bytes wide if the tag file is greater
+than 65536 bytes long. To minimize storage, the hash tables
+should be over-full; for most of the files indexed in this
+way, there is no other real choice, since the entry file
+must fit in memory.</p>
+<h3>FILES</h3>
+<p><span class="I">@BINDIR@/inv</span> Executable.
+Assuming an argument of <span class="I">Index</span> (the default):
+<span class="I">Index.ia</span> Entry file.
+<span class="I">Index.ib</span> Posting file.
+<span class="I">Index.ic</span> Tag file.
+<span class="I">Index.id</span> Key file.</p>
+<h3>LICENSE</h3>
+<p>The text of this manual page comes from <span class="I">Some
+application of Inverted Indexes in the UNIX System</span> by
+M. E. Lesk, which is distributed under the
+<a href="/man/bsd4.html">bsd4 license</a>.
+The <span class="I">inv</span> software is distributed under the
+<a href="/man/cddl.html">cddl license</a>.</p>
+<h3>SEE ALSO</h3>
+<p><a href="/man/refer.html">refer(1)</a>,
+<a href="/man/referformat.html">referformat(7)</a>,
+<a href="/man/mkey.html">mkey(1)</a>,
+<a href="/man/hunt.html">hunt(1)</a>,
+and <span class="I">Some application of Inverted Indexes in the UNIX
+System</span> by M. E. <span class="C">Lesk</span>.</p>
+<h3>AUTHORS</h3>
+<p>M. E. <span class="C">Lesk</span>. Modified by Pierre-Jean
+<span class="C">Fichet</span></p>
+</article></body></html>

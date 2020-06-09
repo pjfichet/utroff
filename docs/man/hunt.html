@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff hunt manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="M. E. Lesk"></meta><meta name="date" content="2020-06-09T13:14:29"></meta><meta name="keywords" content="utroff hunt refer troff"></meta><meta name="subject" content="Utroff hunt manual"></meta><link rel="stylesheet" href="/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="/index.html">Utroff.org</a></h1><a href="/tmac.html">tmac</a><a href="/bin.html">bin</a><a href="/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+
+
+
+
+
+
+<h2>HUNT 1</h2>
+<h3>NAME</h3>
+<p><span class="I">hunt</span> — Retrieve items from an <span class="I">mkey</span>
+index.</p>
+<h3>SYNOPSIS</h3>
+<p><span class="I">hunt</span> [<span class="B">-agp</span>]
+[<span class="B">-C</span><span class="I">n</span>] [<span class="B">-F</span>[<span class="I">ynd</span>]]
+[<span class="B">-i</span> <span class="I">string</span>] [<span class="B">-l</span>
+<span class="I">n</span>] [<span class="B">-o</span> <span class="I">string</span>]
+[<span class="B">-T</span>[<span class="I">ynd</span>]] [<span class="B">-t</span>
+<span class="I">string</span>] &lt; <span class="I">file</span></p>
+<h3>DESCRIPTION</h3>
+<p>The <span class="I">hunt</span> program retrieves items from an index.
+It combines, as mentioned above, the two parts of that
+process: search and delivery. The reason why it is efficient
+to combine delivery and search is partly to avoid starting
+unnecessary processes, and partly because the delivery
+operation must be a part of the search operation in any
+case. Because of the hashing, the search part takes place in
+two stages: first items are retrieved which have the right
+hash codes associated with them, and then the actual items
+are inspected to determine false drops, i.e. to determine if
+anything with the right hash codes doesn’t really have the
+right keys. Since the original item is retrieved to check on
+false drops, it is efficient to present it immediately,
+rather than only giving the tag as output and later
+retrieving the item again. If there were a separate key
+file, this argument would not apply, but separate key files
+are not common.</p>
+<p>Input to <span class="I">hunt</span> is taken from the standard input,
+one query per line. Each query should be in <span class="I">mkey</span>
+<span class="B">-s</span> output format; all lower case, no punctuation.
+The <span class="I">hunt</span> program takes one argument which
+specifies the base name of the index files to be searched.
+Only one set of index files can be searched at a time,
+although many text files may be indexed as a group, of
+course. If one of the text files has been changed since the
+index, that file is searched with fgrep; this may
+occasionally slow down the searching, and care should be
+taken to avoid having many out of date files.</p>
+<p>The following option arguments are recognized by
+<span class="I">hunt</span>:</p>
+<ul><li><span class="B">-a</span>: Give all output; ignore checking for false
+drops.</li>
+<li><span class="B">-C</span><span class="I">n</span>: Coordination level <span class="I">n</span>;
+retrieve items with not more than <span class="I">n</span> terms of the
+input missing; default <span class="B">-C</span><span class="I">0</span> , implying
+that each search term must be in the output items.</li>
+<li><span class="B">-F</span>[<span class="I">ynd</span>]: "<span class="B">-F</span><span class="I">y</span>"
+gives the text of all the items found;
+"<span class="B">-F</span><span class="I">n</span>" suppresses them.
+"<span class="B">-F</span><span class="I">d</span>" where <span class="I">d</span> is an integer
+gives the text of the first <span class="I">d</span> items.  The default
+is <span class="B">-F</span><span class="I">y</span>.</li>
+<li><span class="B">-g</span>: Do not use <span class="I">fgrep</span> to search files
+changed since the index was made; print an error comment
+instead.</li>
+<li><span class="B">-i</span> <span class="I">string</span>: Take <span class="I">string</span> as
+input, instead of reading the standard input.</li>
+<li><span class="B">-l</span> <span class="I">n</span>: The maximum length of internal
+lists of candidate items is <span class="I">n</span>; default is 1000.</li>
+<li><span class="B">-o</span> <span class="I">string</span>: Put text output
+("<span class="B">F</span><span class="I">y</span>") in <span class="I">string</span>; of use
+only when invoked from another program.</li>
+<li><span class="B">-p</span>: Print hash code frequencies; mostly for use
+in optimizing hash table sizes.</li>
+<li><span class="B">-T</span>[<span class="I">ynd</span>]: "<span class="B">-T</span><span class="I">y</span>"
+gives the tags of the items found;
+"<span class="B">-T</span><span class="I">n</span>" suppresses them.
+"<span class="B">-T</span><span class="I">d</span>" where <span class="I">d</span> is an integer
+gives the first <span class="I">d</span> tags.  The default is
+<span class="B">-T</span><span class="I">n</span>.</li>
+<li><span class="B">-t</span> <span class="I">string</span>: Put tag output
+("<span class="B">-T</span><span class="I">y</span>") in string; of use only when
+invoked from another program.</li></ul>
+<p>The timing of <span class="I">hunt</span> is complex. Normally the hash
+table is overfull, so that there will be many false drops on
+any single term; but a multi-term query will have few false
+drops on all terms. Thus if a query is underspecified (one
+search term) many potential items will be examined and
+discarded as false drops, wasting time. If the query is
+overspecified (a dozen search terms) many keys will be
+examined only to verify that the single item under
+consideration has that key posted.</p>
+<p>As would be expected, the optimal search is achieved when
+the query just specifies the answer; however,
+overspecification is quite cheap. In general,
+overspecification can be recommended; it protects the user
+against additions to the data base which turn previously
+uniquely-answered queries into ambiguous queries.</p>
+<h3>FILES</h3>
+<p><span class="I">@BINDIR@/hunt</span>        Executable.</p>
+<h3>LICENSE</h3>
+<p>The text of this manual page comes from <span class="I">Some
+application of Inverted Indexes in the UNIX System</span> by
+M. E. Lesk, which is distributed under the
+<a href="/man/bsd4.html">bsd4 license</a>.
+The software <span class="I">hunt</span> is distributed under the
+<a href="/man/cddl.html">cddl license</a>.</p>
+<h3>SEE ALSO</h3>
+<p><a href="/man/refer.html">refer(1)</a>,
+<a href="/man/referformat.html">referformat(7)</a>,
+<a href="/man/sortbib.html">sortbib(1)</a>,
+<a href="/man/hunt.html">hunt(1)</a>,
+<a href="/man/mkey.html">mkey(1)</a>,
+<a href="/man/inv.html">inv(1)</a>,
+and <span class="I">Some application of Inverted Indexes in the UNIX
+System</span> by M. E. Lesk.</p>
+<h3>AUTHORS</h3>
+<p>M. E. <span class="C">Lesk</span>, modified by Pierre-Jean
+<span class="C">Fichet</span>.</p>
+</article></body></html>

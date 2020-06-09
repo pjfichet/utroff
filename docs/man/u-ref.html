@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff u-ref manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Pierre-Jean Fichet"></meta><meta name="date" content="2020-06-09T13:14:30"></meta><meta name="keywords" content="utroff u-ref utmac refer iso-690 troff"></meta><meta name="subject" content="Utroff u-ref manual"></meta><link rel="stylesheet" href="/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="/index.html">Utroff.org</a></h1><a href="/tmac.html">tmac</a><a href="/bin.html">bin</a><a href="/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+
+
+
+
+
+
+<h2>U-REF 7</h2>
+<h3>NAME</h3>
+<p><span class="B">U-ref</span>: Format references for the U troff macros.</p>
+<h3>DESCRIPTION</h3>
+<p>The <span class="I">u-ref</span> macro manage references in
+<span class="I">refer</span> format for the <span class="I">U troff macros</span>
+set (<span class="I">utmac</span>).  <span class="I">u-ref</span> has high level
+built-in capabilities:</p>
+<ul><li>It formats the bibliography following the <span class="I">iso-690</span>
+bibliography standart which defines a lot of fields, and
+which fix the order on which they must appear.</li>
+<li>It formats differently footnotes references and bibliography
+list to increase readability.</li>
+<li>It replaces yet cited references by "<span class="I">Idem.</span>" or
+"<span class="I">op.  cit. hereinbefore</span>" or "<span class="I">op. cit.
+p xx.</span>", depending if the references has been cited
+just before, in the same page, or in the page <span class="I">xx</span>
+of the document. If only the heading (<span class="B">%h</span> field)
+or or the page (<span class="B">%p</span> field) of the reference
+differ, they are simply written after these replacement
+strings.</li>
+<li>It builds an index of references that can be printed with
+the <span class="B">.AR</span> macro.</li></ul>
+<p><span class="I">u-ref</span> uses a new version of <span class="I">refer</span>
+instead of the original <span class="I">heirloom refer</span> to handle
+correctly the <span class="B">Iso-690</span> bibliography standart.</p>
+<h3>USAGE</h3>
+<h4>Macros</h4>
+<p>The following macro can be used by the user:</p>
+<ul><li><span class="B">AB</span> <span class="I">file.ref</span>: Print a bibliography list
+of the file <span class="I">file.ref</span>.</li>
+<li><span class="B">AR</span>: Print an index of references.</li>
+<li><span class="B">RI</span>: Reverse usage of <span class="I">Idem</span> in
+reference. The first call of this macro will remove the
+usage of <span class="I">Idem</span>, so the reference will never be
+replaced by "<span class="I">idem</span>". Default is to replace all
+informations similar to the previous reference.</li>
+<li><span class="B">RO</span>: Reverse usage of <span class="I">op. cit.</span> in
+reference. The first call of this macro will remove the
+usage of <span class="I">op. cit.</span>, so the reference will never be
+replaced by "<span class="I">op. cit.</span>".  Default is to replace
+issuer, city and date by <span class="I">op. cit.  p. xx</span> if the
+same reference appears before in the text.</li>
+<li><span class="B">RN</span>: Reverse usage of notes in reference. The
+first call of this macro will remove the usage of the note
+to print references, but use the <span class="B">PQ</span> macro to
+print them in the text.  Default is to enclose all
+references with <span class="B">NS</span> and <span class="B">NE</span> to print
+them as a notes.</li></ul>
+<h4>Example</h4>
+<ul><li>Use the <span class="B">.[</span> and <span class="B">.]</span> <span class="I">refer</span>
+macro to insert the reference. The first line following the
+<span class="B">.[</span> macro must contain words to find the correct
+reference. Following lines can contain fields definition.</li>
+<li>Since <span class="I">u-ref</span> write the reference in a note by
+default, you must add the <span class="B">\**</span> string to insert,
+where appropriate, a note number in the text.</li>
+<li>Since the note number is inserted manually, you should use
+the bare mode of <span class="I">refer</span> (the <span class="B">-b</span>
+option), so that the <span class="I">refer</span> command line is on the
+form: <span class="B">refer -b -p file.ref</span>.</li></ul>
+<pre>He said: «a short citation<span class="codeV">\**</span>».
+<span class="codeK">.</span><span class="codeK">[</span>
+Keywords...
+%p 3
+<span class="codeK">.</span><span class="codeK">]</span></pre>
+<h3>FIELDS</h3>
+<p><span class="I">u-ref</span> use uppercase and lowercase fields. The
+conventional meaning of each field is as follows:</p>
+<ul><li><span class="B">A</span>: The name of an author. If the name contains a
+title such as <span class="I">Jr.</span> at the end, it should be
+separated from the last name by a comma. There can be
+multiple occurrences of the <span class="B">A</span> field. The order is
+significant. It is a good idea always to supply an
+<span class="B">A</span> field or a <span class="B">Q</span> field.</li>
+<li><span class="B">B</span>: For an article that is part of a book, the
+title of the book.</li>
+<li><span class="B">C</span>: The place (city) of publication.</li>
+<li><span class="B">D</span>: The date of publication. The year should be
+specified in full. If the month is specified, the name
+rather than the number of the month should be used. It is a
+good idea always to supply a <span class="B">D</span> field; if the date
+is unknown, a value such as <span class="I">in press</span> or
+<span class="I">unknown</span> can be used.</li>
+<li><span class="B">E</span>: For an article that is part of a book, the
+name of an editor of the book. For a serie of journals, the
+responsable of the serie. For a serie of books, the
+responsable of the serie.  Refer man page say that where the
+work has editors and no authors, the names of the editors
+should be given as <span class="B">A</span> fields and <span class="I">(ed)</span>
+or <span class="I">(eds)</span> should be appended to the last author.
+On the one hand this might be a good idea for sorting
+purpose and to be sure that the name of the editor appear
+before the title of the book, but on the other end, the
+standart says that <span class="I">ed</span> should be written without
+parenthesis, thing that might be confusing for
+<span class="I">refer</span>. You should try both solution and choose
+the best one in each situation.</li>
+<li><span class="B">F</span>: Internally used by <span class="I">refer</span>: the
+number of the reference.  It must should be defined by user.</li>
+<li><span class="B">G</span>: For a book, the ISBN (International Standard
+Book Number).  For a Journal, the ISSN (International
+Standard Serial Number).</li>
+<li><span class="B">H</span>: Information about the publication: first
+edition, french edition, etc.</li>
+<li><span class="B">h</span>: Heading of the section of the book where the
+citation appears.</li>
+<li><span class="B">I</span>: The publisher (issuer).</li>
+<li><span class="B">J</span>: Defines a periodical publication: For an
+article in a journal, the name of the journal.  For a
+journal from a serie, the name of the journal.  For a serie
+of journals, the name of the serie.</li>
+<li><span class="B">K</span>: Keywords used for searching. This field is
+required by <span class="I">u-ref</span> to replace citations by
+<span class="I">Idem.</span> and co. It must be defined for <span class="I">u-
+ref</span> to work properly, and should contain only ascii
+characters.</li>
+<li><span class="B">L</span>: Label. Not used by <span class="I">u-ref</span>.</li>
+<li><span class="B">M</span>: The collection in which the reference is
+published.</li>
+<li><span class="B">N</span>: Journal issue number.</li>
+<li><span class="B">O</span>: Other information.  This is usually printed at
+the end of the reference, before the field G. It’s the place
+to mention the support of an electronic document (e-mail,
+pdf, html...)</li>
+<li><span class="B">P</span>: <span class="B">Total</span> number of page of the book.</li>
+<li><span class="B">p</span>: Exact page of the citation, or position of the
+article in a book. A range of pages can be specified as
+<span class="B">m−n</span>.</li>
+<li><span class="B">Q</span>: The name of the author, if the author is not a
+person. This will only be used if there are no <span class="B">A</span>
+fields. There can only be one <span class="B">Q</span> field.</li>
+<li><span class="B">R</span>: Technical or scientific report number.</li>
+<li><span class="B">S</span>: Series name.</li>
+<li><span class="B">T</span>: Title. For an article in a book or a journal,
+this should be the title of the article.</li>
+<li><span class="B">U</span>: Co-author (translator, illustrator...). Should
+be preceded by its function: <span class="I">tr.</span> for a
+translator, etc.</li>
+<li><span class="B">V</span>: For a book in a serie, the volume number of
+that book.  For a whole serie, the number of books in that
+serie.</li>
+<li><span class="B">w</span>: Type (<span class="B">w</span>hich) of an electronic
+document (online, CD-ROM...)</li>
+<li><span class="B">X</span>: Annotation.</li>
+<li><span class="B">x</span>: URL of an online document.  <span class="I">u-ref</span>
+doesn’t have macro to hyphenate correctly urls. In you
+bibliography database, you should use the special character
+<span class="B">\:</span> to tell troff where to hyphenate the url, for
+example like this:</li></ul>
+<pre>%x http:<span class="codeV">\:</span>//<span class="codeV">\:</span>example.<span class="codeV">\:</span>com/</pre>
+<ul><li><span class="B">y</span>: Update date of an electronic document.</li>
+<li><span class="B">z</span>: Date of last access to an electronic document.</li></ul>
+<p>For all fields except <span class="B">A</span> and <span class="B">E</span>, if
+there is more than one occurrence of a particular field in a
+record, only the last such field will be used.</p>
+<h3>FILES</h3>
+<p><span class="B">@MACDIR@/u-ref</span>, the macro file.</p>
+<h3>SEE ALSO</h3>
+<p>Iso-690 bibliography standart,
+<a href="/man/utmac.html">utmac(7)</a>,
+<a href="/man/refer.html">refer(1)</a>,
+<a href="/man/referformat.html">referformat(7)</a>.</p>
+<p>Rossitza Kyheng wrote an overview of the iso-690
+bibliography stanadart in an online french article:
+<a href="http//www.revue- texto.net/Reperes/Themes/Kyheng_References.html">La
+référence bibliographique, normes et praxis</a>.</p>
+<h3>LICENSE</h3>
+<p><span class="I">u-ref</span> macro and this manual page are distributed
+under an
+<a href="/man/isc.html">isc license</a>.</p>
+<h3>AUTHOR</h3>
+<p>
+Pierre-Jean Fichet.</p>
+</article></body></html>

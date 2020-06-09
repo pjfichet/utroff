@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff refer manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="M. E. Lesk"></meta><meta name="date" content="2020-06-09T13:14:30"></meta><meta name="keywords" content="utroff refer hunt inv mkey troff"></meta><meta name="subject" content="Utroff refer manual"></meta><link rel="stylesheet" href="/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="/index.html">Utroff.org</a></h1><a href="/tmac.html">tmac</a><a href="/bin.html">bin</a><a href="/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+
+
+
+
+
+
+<h2>REFER 1</h2>
+<h3>NAME</h3>
+<p><span class="B">refer</span> − (utroff) insert iso-690 compliant
+references in document</p>
+<h3>SYNOPSIS</h3>
+<p><span class="B">@BINDIR@/refer</span> [<span class="B">−abcdeinPS</span>]
+[<span class="B">−f</span><span class="I">n</span>] [<span class="B">−k</span><span class="I">x</span>]
+[<span class="B">−l</span><span class="I">m</span><span class="B">,</span><span class="I">n</span>]
+[<span class="B">−p</span> <span class="I">bib</span>]
+[<span class="B">−s</span><span class="I">keys</span>]
+[<span class="B">−B</span><span class="I">l</span><span class="B">.</span><span class="I">m</span>]
+[<span class="I">file</span> ...]</p>
+<h3>DESCRIPTION</h3>
+<p><span class="I">Refer</span> is an enhancement of the <span class="I">Heirloom
+refer</span> preprocessor for <span class="I">nroff</span> and
+<span class="I">troff</span> that finds and formats references for
+footnotes or endnotes. It is also the base for a series of
+programs designed to index, search, sort, and print stand-
+alone bibliographies, or other data entered in the
+appropriate form.</p>
+<p>This version adds to <span class="I">Heirloom refer</span> the ability
+to sort following the <span class="I">iso-690</span>(7) bibliography
+standart (<span class="B">-i</span> option), a better capitalize option
+(<span class="B">-d</span>), support editor names like authors names,
+and insertion of the universal "&amp;" instead of the
+english "and" to join names.</p>
+<p>Given an incomplete citation with sufficiently precise
+keywords, <span class="I">refer</span> will search a bibliographic
+database for references containing these keywords anywhere
+in the title, author, journal, etc. The input file (or
+standard input) is copied to standard output, except for
+lines between <span class="B">.[</span> and <span class="B">.]</span> delimiters,
+which are assumed to contain keywords, and are replaced by
+information from the bibliographic database. The user may
+also search different databases, override particular fields,
+or add new fields.  The reference data, from whatever
+source, are assigned to a set of <span class="I">troff</span> strings.
+Macro packages such as <span class="I">ms</span> print the finished
+reference text from these strings. By default references are
+flagged by footnote numbers.</p>
+<p>The following options are available:</p>
+<ul><li><span class="B">−a</span> <span class="I">n</span>: Reverse the first <span class="I">n</span>
+author or editor names (Jones, J.  A. instead of J. A.
+Jones). If <span class="I">n</span> is omitted all author and editor
+names are reversed.</li>
+<li><span class="B">−b</span>: Bare mode: do not put any flags in text
+(neither numbers nor labels).</li>
+<li><span class="B">−c</span> <span class="I">keys</span>: Capitalize (with <span class="C">Caps
+Small Caps</span>) the whole field whose key-letters are in
+the firstname part of fields whose key-letters are in
+<span class="I">keys</span>. The firstname part is the last word of the
+fields or the previous one if it ends with a comma (",").</li>
+<li><span class="B">−d</span> <span class="I">keys</span>: Insert strings around the
+lastname, firstname and junior part of fields whose key-
+letters are in <span class="I">keys</span>, for later formatting. The
+firstname part is the last word of the field or the previous
+one if it ends with a comma (",").  Strings are \*(+F and
+\*(-F around firstname, \*(+L and \*(-L around lastname,
+\*(+J and \*(-J around junior.</li>
+<li><span class="B">−e</span>: Instead of leaving the references where
+encountered, accumulate them until a sequence of the form</li></ul>
+<pre><span class="codeK">.</span><span class="codeK">[</span>
+$LIST$
+<span class="codeK">.</span><span class="codeK">]</span></pre>
+is encountered, and then write out all references collected
+so far. Collapse references to same source.
+<ul><li><span class="B">−f</span> <span class="I">n</span>: Set the footnote number to
+<span class="I">n</span> instead of the default of 1 (one). With labels
+rather than numbers, this flag is a no-op.</li>
+<li><span class="I">−i</span>: Sort following the iso-690 standart order of
+fields: If <span class="B">J</span> is defined, the order of fields is
+"<span class="B">QATESVBJ</span>"; Else, if <span class="B">B</span> is defined, the
+order of fields is "<span class="B">QATESVB</span>"; Else, the order of
+fields is "<span class="B">QAESVT</span>". The <span class="I">u-ref</span> macro
+need this option to work properly.</li>
+<li><span class="B">−k</span> <span class="I">x</span>: Instead of numbering references,
+use labels as specified in a reference data line beginning
+<span class="I">%x</span>; by default <span class="I">x</span> is <span class="B">L</span>.</li>
+<li><span class="B">−l</span> <span class="I">m , n</span>: Instead of numbering
+references, use labels made from the senior author’s last
+name and the year of publication. Only the first
+<span class="I">m</span> letters of the last name and the last
+<span class="I">n</span> digits of the date are used. If either
+<span class="I">m</span> or <span class="I">n</span> is omitted the entire name or
+date respectively is used.</li>
+<li><span class="B">−n</span>: Do not search the default file
+<span class="B">/$REFLIB$/papers/Ind</span>.  If there is a
+<span class="B">REFER</span> environment variable, the specified file
+will be searched instead of the default file; in this case
+the <span class="B">−n</span> flag has no effect.</li>
+<li><span class="B">−p</span> <span class="I">bib</span>: Take the next argument
+<span class="I">bib</span> as a file of references to be searched. The
+default file is searched last.</li>
+<li><span class="B">−s</span> <span class="I">keys</span>: Sort references by fields
+whose key-letters are in the <span class="I">keys</span> string; permute
+reference numbers in text accordingly. Implies
+<span class="B">−e</span>. The key-letters in <span class="I">keys</span> may be
+followed by a number to indicate how many such fields are
+used, with <span class="B">+</span> taken as a very large number. The
+default is <span class="B">AD</span> which sorts on the senior author
+and then date; to sort, for example, on all authors and then
+title, use <span class="B">-sA+T</span>.</li>
+<li><span class="B">−B</span> <span class="I">l.m</span>: Bibliography mode. Take a file
+composed of records separated by blank lines, and turn them
+into <span class="I">troff</span> input. Label <span class="I">l</span> will be
+turned into the macro <span class="I">.m</span> with <span class="I">l</span>
+defaulting to <span class="B">%X</span> and <span class="I">.m</span> defaulting to
+<span class="B">.AP</span> (annotation paragraph).</li>
+<li><span class="B">−P</span>: Place punctuation marks .,:;?! after the
+reference signal, rather than before. (Periods and commas
+used to be done with strings.)</li>
+<li><span class="B">−S</span>: Produce references in the Natural or Social
+Science format.</li></ul>
+<p>To use your own references, put them in the format described
+below. They can be searched more rapidly by running
+<span class="I">indxbib</span>(1B) on them before using
+<span class="I">refer</span>; failure to index results in a linear
+search. When <span class="I">refer</span> is used with the
+<span class="I">eqn</span>, <span class="I">neqn</span> or <span class="I">tbl</span>
+preprocessors <span class="I">refer</span> should be first, to minimize
+the volume of data passed through pipes.</p>
+<p>The <span class="I">refer</span> preprocessor and associated programs
+expect input from a file of references composed of records
+separated by blank lines. A record is a set of lines
+(fields), each containing one kind of information. Fields
+start on a line beginning with a ’<span class="B">%</span>’, followed by
+a key-letter, then a blank, and finally the contents of the
+field, and continue until the next line starting with
+’<span class="B">%</span>’. The output ordering and formatting of fields
+is controlled by the macros specified for
+<span class="I">nroff/troff</span> (for footnotes and endnotes) or
+<span class="I">roffbib</span> (for stand-alone bibliographies). For a
+list of the most common key-letters and their corresponding
+fields, see <span class="I">addbib</span>(1B). An example of a
+<span class="I">refer</span> entry is given below.</p>
+<h3>EXAMPLE</h3>
+<pre><span class="codeK">%A</span>   M.<span class="codeK"> </span>E.<span class="codeK"> </span>Lesk
+<span class="codeK">%T</span>   Some<span class="codeK"> </span>Applications<span class="codeK"> </span>of<span class="codeK"> </span>Inverted<span class="codeK"> </span>Indexes<span class="codeK"> </span>on<span class="codeK"> </span>the<span class="codeK"> </span>UNIX<span class="codeK"> </span>System
+<span class="codeK">%B</span>   UNIX<span class="codeK"> </span>Programmer’s<span class="codeK"> </span>Manual
+<span class="codeK">%V</span>   2b
+<span class="codeK">%I</span>   Bell<span class="codeK"> </span>Laboratories
+<span class="codeK">%C</span>   Murray<span class="codeK"> </span>Hill,<span class="codeK"> </span>NJ
+<span class="codeK">%D</span>   1978</pre>
+<h3>FILES</h3>
+<p>@REFDIR@/papers directory of default publication lists
+@REFDIR@ directory of companion programs</p>
+<h3>SEE ALSO</h3>
+<p><a href="/man/referformat.html">referformat(7)</a>,
+<a href="/man/sortbib.html">sortbib(1)</a>,
+<a href="/man/mkey.html">mkey(1)</a>,
+<a href="/man/inv.html">inv(1)</a>,
+<a href="/man/hunt.html">hunt(1)</a>,
+and <span class="I">Some application of Inverted Indexes in the UNIX
+System</span> by M. E. <span class="C">Lesk</span>.</p>
+<h3>NOTES</h3>
+<p>Blank spaces at the end of lines in bibliography fields will
+cause the records to sort and reverse incorrectly.  Sorting
+large numbers of references causes a core dump.</p>
+<h3>LICENSE</h3>
+<p><span class="I">Refer</span> is distributed under the
+<a href="/man/cddl.html">cddl license</a>.
+This manual page is distributed under the
+<a href="/man/bsd4.html">bsd4 license</a></p>
+<h3>AUTHORS</h3>
+<p>Written by Mike <span class="C">Lesk</span>, modified by Pierre-Jean
+<span class="C">Fichet</span>.</p>
+</article></body></html>

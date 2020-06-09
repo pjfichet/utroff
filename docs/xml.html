@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff troffxml</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Pierre-Jean Fichet"></meta><meta name="date" content="2020-06-09T13:14:31"></meta><meta name="keywords" content="utroff troffxml prexml postxml html fodt xsl troff
+xml"></meta><meta name="subject" content="Utroff troffxml"></meta><link rel="stylesheet" href="/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="/index.html">Utroff.org</a></h1><a href="/tmac.html">tmac</a><a href="/bin.html">bin</a><a href="/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+
+
+
+
+
+
+<h2>Xml</h2>
+<h3>Troff to xml tools</h3>
+<p>There’s a lot of ways to convert <span class="I">troff</span> document
+to <span class="I">xml</span>, but, unfortunately, no standart way to do
+it.  Thanks to the <span class="I">ux</span> macro, <span class="I">utmac</span>
+uses <span class="I">nroff</span> itself for that task.  That solution
+has the advantage to be easy to implement, and to be troff
+compliant, since one can use all the <span class="I">troff</span>
+commands he wants in his document. But to do that well, a
+pre-processor (<span class="I">prexml</span>) and a post-processor
+(<span class="I">postxml</span>) are needed, so that the command line is
+as follow:</p>
+<pre>prexml f.tr <span class="codeK">|</span> nroff −Tutf8 −mux <span class="codeK">|</span> postxml <span class="codeK">&gt;</span> f.xml</pre>
+<p>The <span class="I">xml</span> file produced this way follows a custom
+xml format, and some stylesheets convert this custom format
+to and from <span class="I">html</span> and <span class="I">fodt</span>.</p>
+<pre>xsltproc utohtml.xsl f.xml <span class="codeK">&gt;</span> f.html
+xsltproc utofodt.xsl f.xml <span class="codeK">&gt;</span> f.fodt</pre>
+<h3>stylesheets</h3>
+<ul><li><span class="I">utohtml.xsl</span>: From <span class="I">utmac</span> to
+<span class="I">html</span>.</li>
+<li><span class="I">utofodt.xsl</span>: From <span class="I">utmac</span> to <span class="I">flat
+open document text</span>, which is readable by
+<span class="I">libreoffice</span> and <span class="I">openoffice</span>.</li></ul>
+<h3>Documentation and download</h3>
+<p class="leftalign">See the following files:
+<a href="man/troffxml.html">troffxml</a>,
+<a href="man/ics.html">license</a>.</p>
+<p class="leftalign">Browse the
+<a href="https://github.com/pjfichet/troffxml">git
+repository</a>.</p>
+</article></body></html>

@@ -1,0 +1,155 @@
+/**********************************************************
+* RESET from Goldilocks V0.1
+* http://www.goldilocksapproach.com
+**********************************************************/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video,
+main, img {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size:100%;
+	font: inherit;
+	line-height: inherit;
+	vertical-align: baseline;
+	color: inherit;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+/**********************************************************
+* GRID
+**********************************************************/
+html, body, main {
+	width: 100%;
+}
+nav {
+	margin: 0;
+	top: 0;
+	width: 10rem;
+	height: 100%;
+	border: border-box;
+	position: fixed;
+}
+nav a{
+	padding-left: 1.5rem;
+	display: block;
+}
+
+article {
+	width: 35rem;
+	max-width: 90%;
+	padding-left: 10rem;
+	margin: 3rem auto;
+}
+
+footer {
+	text-align: center;
+	width: 25rem;
+	margin: 3rem auto;
+}
+
+/**********************************************************
+* TYPOGRAPHY adapted from Goldilocks and Typeplate
+* Typeplate 2.1.0 https://github.com/typeplate/starter-kit
+* Creative Common Attribution 3.0
+* https://github.com/typeplate/starter-kit/blob/master/license.txt
+*
+* Take care of vertical rythm:
+* http://alistapart.com/article/settingtypeontheweb
+*  - Define the default baseline.
+*  - Vertical margins are multiple of the baseline and expressed in rem.
+*  - Local line heights are multiples of the baseline and expressed in em.
+*  - Line height in em = x * baseline in px / font-size in px,
+*  - Font size in em = size in px / basefont in px.
+**********************************************************/
+html {
+	text-rendering: optimizeLegibility; /* ligature and kerning */
+	font-family: serif;
+	font-size: 120%; /* 16px */
+	line-height: 1.5em; /* 24px */
+}
+body {line-height: 1.5rem;}
+h1, h2, h3, h4 {
+	margin-top: 1.5rem; margin-bottom: 1.5rem;
+	font-weight: bold;
+}
+h4 {margin-bottom: 0;}
+h2 { font-size: 1.8rem; line-height: 3rem; margin-top: 3rem;}
+h3 {padding-left: .75rem;}
+footer p {font-size: .8rem;}
+pre, code {font-family: monospace;}
+
+/**********************************************************
+* Fonts and paragraphs
+**********************************************************/
+
+h2 { text-align:center;}
+h4 {font-weight: bold;}
+p { text-align: justify;}
+span.B{font-weight: bold;}
+span.I{font-style: italic;}
+span.C{font-variant: small-caps;}
+span.A{font-variant: small-caps;}
+span.U{position: relative; bottom: 0.5em; font-size: small;}
+span.L{position: relative; bottom: -0.2em; font-size: small;}
+span.F{}
+span.M{font-family: monospace}
+p.centered {text-align: center;}
+p.leftalign {text-align: left;}
+p.rightalign {text-align: right;}
+p.leftextended {text-indent: -3em; margin-left: 3em;}
+div.notes p {font-size: small;}
+pre {margin: .75rem; padding: .75rem;}
+ul, ol {margin-left: 1.5rem;}
+footer p {text-align: center;}
+
+/**********************************************************
+* COLORS handmade, WTFPL license.
+* BLACK: 272727
+* DARK: 484848
+* GREY1: 626262
+* GREY2: A1A1A1
+* CLEAR: DADADA
+* WHITE: EFEFEF
+**********************************************************/
+body {
+	background-color: #F3F3F3;
+	color: #484848;
+}
+h3 {background-color: #D3D3D3}
+nav a {
+ 	color: #626262; 
+	text-decoration: none;
+}
+a:hover {
+	color: #272727;
+	background-color: #D3D3D3;
+}
+nav {
+	background-color: #272727;
+	color: #D3D3D3;
+	border-right: .5rem solid #D3D3D3;
+}
+pre, code {
+	border: 1px solid #A1A1A1;
+}
+
+/* code fonts */
+span.codeK{font-weight: bold;}
+span.codeV{color: #626262;}
+span.codeC{color: #A1A1A1;}
+span.codeS{font-style: italic;}
