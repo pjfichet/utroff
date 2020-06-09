@@ -17,12 +17,12 @@ All the macro files follow the same language, giving the ability to
 produce different layouts on different type of support from the same
 troff source. Get an overview of the layouts downloading
 .LT layout-uh.pdf ,
-.LU http://download.tuxfamily.org/utroff/doc/layout-uh.pdf
+.LU @PUBURL@/layout-uh.pdf
 .LT layout-ul.pdf ,
-.LU http://download.tuxfamily.org/utroff/doc/layout-ul.pdf
+.LU @PUBURL@/layout-ul.pdf
 and
 .LT layout-us.pdf .
-.LU http://download.tuxfamily.org/utroff/doc/layout-us.pdf
+.LU @PUBURL@/layout-us.pdf
 .H4 Various output format
 .PP
 \*IUtmac\*I can produce \*Ipdf\*I files, plain text files,

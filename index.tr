@@ -30,12 +30,12 @@ and flat OpenDocument
 .PP
 You can get an overview of the layout by downloading
 .LT layout-uh.pdf ,
-.LU http://download.tuxfamily.org/utroff/doc/layout-uh.pdf
+.LU @PUBURL@/layout-uh.pdf
 .LT layout-ul.pdf ,
-.LU http://download.tuxfamily.org/utroff/doc/layout-ul.pdf
+.LU @PUBURL@/layout-ul.pdf
 and
 .LT layout-us.pdf .
-.LU http://download.tuxfamily.org/utroff/doc/layout-us.pdf
+.LU @PUBURL@/layout-us.pdf
 .H3 Troff implementations
 .PP
 Utroff does not provide the troff text processor itself. But it is
@@ -74,8 +74,10 @@ and
 .LT troffxml .
 .LU xml.html
 .NE
+.ig
 .NB
 Hosted by
 .LT tuxfamily .
 .LU http://tuxfamily.org
 .NE
+..
