@@ -276,7 +276,7 @@ xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 
 <body>
   <nav>
-    <h1><a href="@WEBURL@/index.html">Utroff.org</a></h1>
+    <h1><a href="@WEBURL@/index.html">Utroff</a></h1>
     <a href="@WEBURL@/tmac.html">tmac</a>
     <a href="@WEBURL@/bin.html">bin</a>
     <a href="@WEBURL@/xml.html">xml</a>
