@@ -28,8 +28,8 @@ tool one can find for this task.
 See the following files:
 .LT ugrind ,
 .LU man/ugrind.html
-.LT "ics license" ,
-.LU man/ics.html
+.LT "isc license" ,
+.LU man/isc.html
 .LT "bsd4 license" ,
 .LU man/bsd4.html
 .LT "cddl license" .

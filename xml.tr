@@ -40,5 +40,5 @@ See the following files:
 .LT troffxml ,
 .LU man/troffxml.html
 .LT license .
-.LU man/ics.html
+.LU man/isc.html
 .git troffxml
