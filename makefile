@@ -9,10 +9,13 @@ POSTXML=$(BINDIR)/postxml
 NROFF=groff -k -Tutf8 -M$(MACDIR)
 SOELIM=soelim
 XSLT=utroff.xsl
-MANDIR=man
-WEBDIR=web
-WEBURL=http://utroff.org
-PUBURL=http://download.tuxfamily.org/utroff
+WEBDIR=docs
+MANDIR=$(WEBDIR)/man
+PUBDIR=$(WEBDIR)/pub
+WEBURL=http://pjfichet.github.io/utroff
+PUBURL=$(WEBURL)/pub
+#WEBURL=http://utroff.org
+#PUBURL=http://download.tuxfamily.org/utroff
 
 MANFILES=idx hunt inv mkey referformat refer sortbib \
 tchars ugrind u-ref utmac-hack utmac troffxml \
@@ -20,18 +23,22 @@ bsd4 cddl isc tsql
 
 WEBFILES=bin index tmac xml
 
+PUBFILES=layout-ul.pdf layout-us.pdf layout-uh.pdf
+
 WEB= $(MANFILES:%=$(WEBDIR)/man/%.html) \
 	$(WEBFILES:%=$(WEBDIR)/%.html) \
+	$(PUBFILES:%=$(PUBDIR)/%) \
 	$(WEBDIR)/utroff.css
 
 help:
 	@echo web|unweb man clean
 
-web: $(WEBDIR)/man $(WEB)
+web: $(WEBDIR) $(MANDIR) $(PUBDIR) $(WEB)
 
 unweb:
 	rm -rf $(WEB)
-	rmdir $(WEBDIR)/man
+	rmdir $(MANDIR)
+	rmdir $(PUBDIR)
 	rmdir $(WEBDIR)
 
 %.xml: %.tr
@@ -41,10 +48,10 @@ unweb:
 	@xsltproc $(XSLT) $< \
 		| sed -e "s#@WEBURL@#$(WEBURL)#g; s#@PUBURL@#$(PUBURL)#g" > $@
 
-$(WEBDIR)/man:
+$(WEBDIR) $(MANDIR) $(PUBDIR):
 	@mkdir -p $@
 
-$(WEBDIR)/% $(WEBDIR)/man/%: %
+$(WEBDIR)/% $(MANDIR)/% $(PUBDIR)/%: %
 	install -c -m 644 $< $@
 
 man: $(MANFILES:%=%.man)
