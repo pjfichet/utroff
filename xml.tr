@@ -38,7 +38,7 @@ From \*Iutmac\*I to \*Iflat open document text\*I, which is readable by
 .PL
 See the following files:
 .LT troffxml ,
-.LU man/troffxml.html
+.LU @MANURL@/troffxml.html
 .LT license .
-.LU man/isc.html
+.LU @MANURL@/isc.html
 .git troffxml

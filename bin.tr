@@ -27,13 +27,13 @@ tool one can find for this task.
 .PL
 See the following files:
 .LT ugrind ,
-.LU man/ugrind.html
+.LU @MANURL@/ugrind.html
 .LT "isc license" ,
-.LU man/isc.html
+.LU @MANURL@/isc.html
 .LT "bsd4 license" ,
-.LU man/bsd4.html
+.LU @MANURL@/bsd4.html
 .LT "cddl license" .
-.LU man/cddl.html
+.LU @MANURL@/cddl.html
 .git ugrind
 .
 .
@@ -47,9 +47,9 @@ is a \*Ishell\*I and \*Iawk\*I script.
 .PL
 See the following files:
 .LT idx ,
-.LU http://utroff.org/man/idx.html
+.LU @MANURL@/idx.html
 .LT license ,
-.LU http://utroff.org/man/bsd2.html
+.LU @MANURL@/bsd2.html
 .git idx
 .
 .H3 Refer
@@ -67,21 +67,21 @@ option to sort the bibliography database in the order defined by the
 .PL
 See the following files:
 .LT hunt ,
-.LU man/hunt.html
+.LU @MANURL@/hunt.html
 .LT inv ,
-.LU man/inv.html
+.LU @MANURL@/inv.html
 .LT mkey ,
-.LU man/mkey.html
+.LU @MANURL@/mkey.html
 .LT referformat ,
-.LU man/referformat.html
+.LU @MANURL@/referformat.html
 .LT refer ,
-.LU man/refer.html
+.LU @MANURL@/refer.html
 .LT sortbib ,
-.LU man/sortbib.html
+.LU @MANURL@/sortbib.html
 .LT "license bsd4" ,
-.LU man/bsd4.html
+.LU @MANURL@/bsd4.html
 .LT "license cddl" ,
-.LU man/cddl.html
+.LU @MANURL@/cddl.html
 .git refer
 .
 .
@@ -94,9 +94,9 @@ beta-code to polytonic greek.
 .PL
 See the following files:
 .LT tchars ,
-.LU http://utroff.org/man/tchars.html
+.LU @MANURL@/tchars.html
 .LT license ,
-.LU http://utroff.org/man/bsd2.html
+.LU @MANURL@/bsd2.html
 .git tchars
 .
 .
@@ -110,7 +110,7 @@ page.
 .PL
 See the following files:
 .LT troffxml ,
-.LU http://utroff.org/man/troffxml.html
+.LU @MANURL@/troffxml.html
 .LT license ,
-.LU http://utroff.org/man/bsd2.html
+.LU @MANURL@/bsd2.html
 .git troffxml

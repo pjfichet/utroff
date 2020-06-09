@@ -55,11 +55,11 @@ langage to hack the sources, or to create his own macros.
 .PL
 See the following files:
 .LT utmac ,
-.LU man/utmac.html
+.LU @MANURL@/utmac.html
 .LT utmac-hack ,
-.LU man/utmac-hack.html
+.LU @MANURL@/utmac-hack.html
 .LT u-ref ,
-.LU man/u-ref.html
+.LU @MANURL@/u-ref.html
 .LT license .
-.LU man/isc.html
+.LU @MANURL@/isc.html
 .git utmac

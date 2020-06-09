@@ -13,6 +13,7 @@ WEBDIR=docs
 MANDIR=$(WEBDIR)/man
 PUBDIR=$(WEBDIR)/pub
 WEBURL=https://pjfichet.github.io/utroff
+MANURL=$(WEBURL)/man
 PUBURL=$(WEBURL)/pub
 #WEBURL=http://utroff.org
 #PUBURL=http://download.tuxfamily.org/utroff
@@ -46,7 +47,9 @@ unweb:
 
 %.html: %.xml $(XSLT)
 	@xsltproc $(XSLT) $< \
-		| sed -e "s#@WEBURL@#$(WEBURL)#g; s#@PUBURL@#$(PUBURL)#g" > $@
+		| sed -e "s#@WEBURL@#$(WEBURL)#g; \
+			s#@PUBURL@#$(PUBURL)#g; \
+			s#@MANURL@#$(MANURL)#g" > $@
 
 $(WEBDIR) $(MANDIR) $(PUBDIR):
 	@mkdir -p $@

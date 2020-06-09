@@ -7,14 +7,14 @@ Browse the
 .de man
 .	ie \\n[tmac-ux] \{\
 .		LT \\$1(\\$2) \\$3 \\$4
-.		LU /man/\\$1.html
+.		LU @MANURL@/\\$1.html
 .	\}
 .	el \\$4\\$1(\\$2)\\$3
 ..
 .de lic
 .	ie \\n[tmac-ux] \{\
 .		LT "\\$1 license" \\$2 \\$3
-.		LU /man/\\$1.html
+.		LU @MANURL@/\\$1.html
 .	\}
 .	el \\$3\\$1 license\\$2
 ..
