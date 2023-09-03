@@ -39,6 +39,7 @@ u-grind.tmac
 uh.tmac
 u-idx.tmac
 u-libertine.tmac
+u-libertinus.tmac
 u-links.tmac
 u-locale.tmac
 ul.tmac
@@ -79,9 +80,9 @@ variable. If the \*BUTMAC\*B environment variable is not
 defined, english is loaded.
 .PI \*Iu-font\*I
 Font macros shared by all font files.
-.PI \*Iu-apolline\*I, \*Iu-libertine\*I, \*Iu-biolinum\*I, \*Iu-biolib\*I
+.PI \*Iu-apolline\*I, \*Iu-libertine\*I, \*Iu-libertinus\*I, \*Iu-biolinum\*I, \*Iu-biolib\*I
 Mount the specified font. By default,
-\*Iu-libertine\*I is loaded.
+\*Iu-libertinus\*I is loaded.
 .
 .
 .

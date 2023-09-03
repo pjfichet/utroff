@@ -83,13 +83,15 @@ following macros:
 English localization (default).
 .PI \*Iu-fr\*I
 French localization.
+.PI \*U-libertinus\*I
+Use the libertinus font (default).
 .PI \*Iu-apolline\*I
 Use the Porchez Typofonderie Apolline font.
 .PI \*Iu-libertine\*I
 Use the linux libertine font.
 .PI \*Iu-biolinum\*I
 Use the linux biolinum font.
-.PI \*Iu-biollib\*I
+.PI \*Iu-biolib\*I
 Use a mix of Linux Libertine and Biolinum.
 .
 .
