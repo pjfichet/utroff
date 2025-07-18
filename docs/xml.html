@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff troffxml</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Pierre-Jean Fichet"></meta><meta name="date" content="2020-06-09T16:53:21"></meta><meta name="keywords" content="utroff troffxml prexml postxml html fodt xsl troff
-xml"></meta><meta name="subject" content="Utroff troffxml"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff.org</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="refresh" content="0; URL=https://pjfichet.codeberg.page/utroff"></meta><link rel="canonical" href="https://pjfichet.codeberg.page/utroff"></link><title>Utroff troffxml</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Pierre-Jean Fichet"></meta><meta name="date" content="2025-07-18T13:40:18"></meta><meta name="keywords" content="utroff troffxml prexml postxml html fodt xsl troff xml"></meta><meta name="subject" content="Utroff troffxml"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
 
 
 
@@ -9,33 +8,28 @@ xml"></meta><meta name="subject" content="Utroff troffxml"></meta><link rel="sty
 
 <h2>Xml</h2>
 <h3>Troff to xml tools</h3>
-<p>There’s a lot of ways to convert <span class="I">troff</span> document
-to <span class="I">xml</span>, but, unfortunately, no standart way to do
-it.  Thanks to the <span class="I">ux</span> macro, <span class="I">utmac</span>
-uses <span class="I">nroff</span> itself for that task.  That solution
-has the advantage to be easy to implement, and to be troff
-compliant, since one can use all the <span class="I">troff</span>
-commands he wants in his document. But to do that well, a
-pre-processor (<span class="I">prexml</span>) and a post-processor
-(<span class="I">postxml</span>) are needed, so that the command line is
-as follow:</p>
+<p>There’s a lot of ways to convert <span class="I">troff</span> document to <span class="I">xml</span>,
+but, unfortunately, no standart way to do it.  Thanks to the <span class="I">ux</span>
+macro, <span class="I">utmac</span> uses <span class="I">nroff</span> itself for that task.  That
+solution has the advantage to be easy to implement, and to be troff compliant,
+since one can use all the <span class="I">troff</span> commands he wants in his document.
+But to do that well, a pre-processor (<span class="I">prexml</span>) and a post-processor
+(<span class="I">postxml</span>) are needed, so that the command line is as follow:</p>
 <pre>prexml f.tr <span class="codeK">|</span> nroff −Tutf8 −mux <span class="codeK">|</span> postxml <span class="codeK">&gt;</span> f.xml</pre>
-<p>The <span class="I">xml</span> file produced this way follows a custom
-xml format, and some stylesheets convert this custom format
-to and from <span class="I">html</span> and <span class="I">fodt</span>.</p>
+<p>The <span class="I">xml</span> file produced this way follows a custom xml format, and some
+stylesheets convert this custom format to and from <span class="I">html</span> and
+<span class="I">fodt</span>.</p>
 <pre>xsltproc utohtml.xsl f.xml <span class="codeK">&gt;</span> f.html
 xsltproc utofodt.xsl f.xml <span class="codeK">&gt;</span> f.fodt</pre>
 <h3>stylesheets</h3>
-<ul><li><span class="I">utohtml.xsl</span>: From <span class="I">utmac</span> to
-<span class="I">html</span>.</li>
-<li><span class="I">utofodt.xsl</span>: From <span class="I">utmac</span> to <span class="I">flat
-open document text</span>, which is readable by
-<span class="I">libreoffice</span> and <span class="I">openoffice</span>.</li></ul>
+<ul><li><span class="I">utohtml.xsl</span>: From <span class="I">utmac</span> to <span class="I">html</span>.</li>
+<li><span class="I">utofodt.xsl</span>: From <span class="I">utmac</span> to <span class="I">flat open document
+text</span>, which is readable by <span class="I">libreoffice</span> and
+<span class="I">openoffice</span>.</li></ul>
 <h3>Documentation and download</h3>
 <p class="leftalign">See the following files:
 <a href="https://pjfichet.github.io/utroff/man/troffxml.html">troffxml</a>,
 <a href="https://pjfichet.github.io/utroff/man/isc.html">license</a>.</p>
 <p class="leftalign">Browse the
-<a href="https://github.com/pjfichet/troffxml">git
-repository</a>.</p>
+<a href="https://github.com/pjfichet/troffxml">git repository</a>.</p>
 </article></body></html>

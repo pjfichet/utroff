@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff bin</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Pierre-Jean Fichet"></meta><meta name="date" content="2020-06-09T16:53:21"></meta><meta name="keywords" content="utroff idx tchars ugrind refer troff neatroff"></meta><meta name="subject" content="Utroff bin"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff.org</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="refresh" content="0; URL=https://pjfichet.codeberg.page/utroff"></meta><link rel="canonical" href="https://pjfichet.codeberg.page/utroff"></link><title>Utroff bin</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Pierre-Jean Fichet"></meta><meta name="date" content="2025-07-18T13:40:18"></meta><meta name="keywords" content="utroff idx tchars ugrind refer troff neatroff"></meta><meta name="subject" content="Utroff bin"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
 
 
 
@@ -8,51 +8,43 @@
 
 <h2>Bin</h2>
 <h3>Troff Companions</h3>
-<p>Troff has been made to be used within tubes. It works with
-pre-processors, post-processors and filters. A lot of
-filters exist since the 70’s. Some of them needed some
-enhancement to be used with <span class="I">utmac</span>, some others
-needed to be created.</p>
+<p>Troff has been made to be used within tubes. It works with pre-processors, post-
+processors and filters. A lot of filters exist since the 70’s. Some of them
+needed some enhancement to be used with <span class="I">utmac</span>, some others needed to
+be created.</p>
 <h3>Ugrind</h3>
-<p><span class="I">Ugrind</span> is an awfull hack of <span class="I">vfontedpr</span>,
-the programm which makes the hard work of the mostly
-forgotten <span class="I">vgrind</span> preprocessor: it highlights code
-in troff sources. <span class="I">Vfontedpr</span> doesn’t handle
-variables, troff source nor color, <span class="I">Ugrind</span> does
-all that, and is easier to use. It is written in C, and is
-probably the lightest tool one can find for this task.</p>
+<p><span class="I">Ugrind</span> is an awfull hack of <span class="I">vfontedpr</span>, the programm which
+makes the hard work of the mostly forgotten <span class="I">vgrind</span> preprocessor: it
+highlights code in troff sources. <span class="I">Vfontedpr</span> doesn’t handle variables,
+troff source nor color, <span class="I">Ugrind</span> does all that, and is easier to use.
+It is written in C, and is probably the lightest tool one can find for this
+task.</p>
 <p class="leftalign">See the following files:
 <a href="https://pjfichet.github.io/utroff/man/ugrind.html">ugrind</a>,
 <a href="https://pjfichet.github.io/utroff/man/isc.html">isc license</a>,
 <a href="https://pjfichet.github.io/utroff/man/bsd4.html">bsd4 license</a>,
 <a href="https://pjfichet.github.io/utroff/man/cddl.html">cddl license</a>.</p>
 <p class="leftalign">Browse the
-<a href="https://github.com/pjfichet/ugrind">git
-repository</a>.</p>
+<a href="https://github.com/pjfichet/ugrind">git repository</a>.</p>
 <h3>Idx</h3>
-<span class="I">Idx</span> build, repair, format, and handle index
-files. It has been made to automatically index a troff
-document, but it also provides option to be used as an
-helper tool to manually index a book, and work with index
-files. <span class="I">idx</span> is a <span class="I">shell</span> and
-<span class="I">awk</span> script.
+<span class="I">Idx</span> build, repair, format, and handle index files. It has been made
+to automatically index a troff document, but it also provides option to be used
+as an helper tool to manually index a book, and work with index files.
+<span class="I">idx</span> is a <span class="I">shell</span> and <span class="I">awk</span> script.
 <p class="leftalign">See the following files:
 <a href="https://pjfichet.github.io/utroff/man/idx.html">idx</a>,
 <a href="https://pjfichet.github.io/utroff/man/bsd2.html">license</a>,</p>
 <p class="leftalign">Browse the
-<a href="https://github.com/pjfichet/idx">git
-repository</a>.</p>
+<a href="https://github.com/pjfichet/idx">git repository</a>.</p>
 <h3>Refer</h3>
-<p><span class="I">Refer</span> is a small hack of the venerable
-<span class="I">refer</span>, as found in the
-<a href="http://heirloom.sourceforge.net/doctools.html"><span class="I">heirloom-
-doctools</span></a>
-archive.  This modification of <span class="I">Refer</span> uses strings
-to define small capitals, makes a difference between
-lastname and firstname in author and editor fields, add
-support for multiple editors, and offers an option to sort
-the bibliography database in the order defined by the
-<span class="I">iso-690</span> bibliography standart.</p>
+<p><span class="I">Refer</span> is a small hack of the venerable <span class="I">refer</span>, as found in
+the
+<a href="http://heirloom.sourceforge.net/doctools.html"><span class="I">heirloom-doctools</span></a>
+archive.  This modification of <span class="I">Refer</span> uses strings to define small
+capitals, makes a difference between lastname and firstname in author and editor
+fields, add support for multiple editors, and offers an option to sort the
+bibliography database in the order defined by the <span class="I">iso-690</span>
+bibliography standart.</p>
 <p class="leftalign">See the following files:
 <a href="https://pjfichet.github.io/utroff/man/hunt.html">hunt</a>,
 <a href="https://pjfichet.github.io/utroff/man/inv.html">inv</a>,
@@ -63,27 +55,23 @@ the bibliography database in the order defined by the
 <a href="https://pjfichet.github.io/utroff/man/bsd4.html">license bsd4</a>,
 <a href="https://pjfichet.github.io/utroff/man/cddl.html">license cddl</a>,</p>
 <p class="leftalign">Browse the
-<a href="https://github.com/pjfichet/refer">git
-repository</a>.</p>
+<a href="https://github.com/pjfichet/refer">git repository</a>.</p>
 <h3>Tchars</h3>
-<p><span class="I">Tchars</span> translate an ascii coded text to complex
-utf-8 characters. Actually, it can only translate a simple
-sort of beta-code to polytonic greek.</p>
+<p><span class="I">Tchars</span> translate an ascii coded text to complex utf-8 characters.
+Actually, it can only translate a simple sort of beta-code to polytonic greek.</p>
 <p class="leftalign">See the following files:
 <a href="https://pjfichet.github.io/utroff/man/tchars.html">tchars</a>,
 <a href="https://pjfichet.github.io/utroff/man/bsd2.html">license</a>,</p>
 <p class="leftalign">Browse the
-<a href="https://github.com/pjfichet/tchars">git
-repository</a>.</p>
+<a href="https://github.com/pjfichet/tchars">git repository</a>.</p>
 <h3>Troffxml tools</h3>
-<p>The troffxml tools convert an <span class="I">utmac</span> file to xml.
-They are longer discussed in the
+<p>The troffxml tools convert an <span class="I">utmac</span> file to xml. They are longer
+discussed in the
 <a href="xml.html">xml</a>
 page.</p>
 <p class="leftalign">See the following files:
 <a href="https://pjfichet.github.io/utroff/man/troffxml.html">troffxml</a>,
 <a href="https://pjfichet.github.io/utroff/man/bsd2.html">license</a>,</p>
 <p class="leftalign">Browse the
-<a href="https://github.com/pjfichet/troffxml">git
-repository</a>.</p>
+<a href="https://github.com/pjfichet/troffxml">git repository</a>.</p>
 </article></body></html>

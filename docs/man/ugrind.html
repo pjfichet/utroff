@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff ugrind manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Written by Dave Presotto and William Joy, modified by Gunnar Ritter and Pierre-Jean Fichet"></meta><meta name="date" content="2020-06-09T13:23:03"></meta><meta name="keywords" content="utroff ugrind vgrind vfontedpr troff"></meta><meta name="subject" content="Utroff ugrind manual"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff.org</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="refresh" content="0; URL=https://pjfichet.codeberg.page/utroff"></meta><link rel="canonical" href="https://pjfichet.codeberg.page/utroff"></link><title>Utroff ugrind manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Written by Dave Presotto and William Joy, modified by Gunnar Ritter and Pierre-Jean Fichet"></meta><meta name="date" content="2025-07-18T13:40:18"></meta><meta name="keywords" content="utroff ugrind vgrind vfontedpr troff"></meta><meta name="subject" content="Utroff ugrind manual"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
 
 
 
@@ -8,86 +8,72 @@
 
 <h2>UGRIND 1</h2>
 <h3>NAME</h3>
-<p><span class="B">ugrind</span> − troff preprocessor which highlight
-source code</p>
+<p><span class="B">ugrind</span> − troff preprocessor which highlight source code</p>
 <h3>SYNOPSIS</h3>
 <p><span class="B">@BINDIR@/ugrind</span> [<span class="B">−d</span> <span class="I">file</span>]
-[<span class="B">−h</span> <span class="I">header</span>]
-[<span class="B">−l</span> <span class="I">language</span>]
+[<span class="B">−h</span> <span class="I">header</span>] [<span class="B">−l</span> <span class="I">language</span>]
 [<span class="B">−t</span> <span class="I">size</span>] <span class="I">name</span> ...</p>
 <h3>DESCRIPTION</h3>
-<p><span class="I">Ugrind</span> insert string definition in files to
-highlight the source code they contain. <span class="I">Ugrind</span>
-runs in two basic modes: regular mode or whole file mode.</p>
-<ul><li>In regular mode, <span class="I">ugrind</span> only highlight code which
-is between the <span class="B">vS</span> and <span class="B">vE</span> macros. The
-language is specified by the first argument of the
-<span class="B">vs</span> macro.</li>
-<li>In whole file mode, ugrind highlight the whole file. The
-language is specified by the <span class="B">−l</span> argument.</li></ul>
+<p><span class="I">Ugrind</span> insert string definition in files to highlight the source code
+they contain. <span class="I">Ugrind</span> runs in two basic modes: regular mode or whole
+file mode.</p>
+<ul><li>In regular mode, <span class="I">ugrind</span> only highlight code which is between the
+<span class="B">vS</span> and <span class="B">vE</span> macros. The language is specified by the first
+argument of the <span class="B">vs</span> macro.</li>
+<li>In whole file mode, ugrind highlight the whole file. The language is specified
+by the <span class="B">−l</span> argument.</li></ul>
 <p>The options are:</p>
-<ul><li><span class="B">−d</span>: Specifies an alternate language definitions
-file (default is @LIBDIR@/ugrindefs).</li>
-<li><span class="B">−h</span>: Specify a header string. The header will be
-printed as argument of the <span class="B">.vH</span> macro.</li>
-<li><span class="B">−l</span>: Enter whole file mode, and pecifies the
-language to use.</li>
+<ul><li><span class="B">−d</span>: Specifies an alternate language definitions file (default is
+@LIBDIR@/ugrindefs).</li>
+<li><span class="B">−h</span>: Specify a header string. The header will be printed as argument
+of the <span class="B">.vH</span> macro.</li>
+<li><span class="B">−l</span>: Enter whole file mode, and pecifies the language to use.</li>
 <li><span class="B">−t</span>: Specify a nondefault tab size (default is 4).</li></ul>
-<p>Currently, known languages are C (<span class="B">−lc</span>), C++
-(<span class="B">−lc++</span>), CSH (<span class="B">−lcsh</span>), FORTRAN
-(<span class="B">−lfortran</span>), ICON (<span class="B">−lI</span>,) ISP
-(<span class="B">−lisp</span>), LDL (<span class="B">−ldl</span>), LISP LIKE
-(<span class="B">−ml</span>), MODEL (<span class="B">−lm</span>), MODULA2
-(<span class="B">−lmod2</span>), PASCAL (<span class="B">−lp</span>), POSTXML
-(<span class="B">−lpostxml</span>), RATFOR (<span class="B">−lr</span>), RUSSEL
-(<span class="B">lrussell</span>), SHELL (<span class="B">−lsh</span>), TROFF
-(<span class="B">−ltr</span>), XML (<span class="B">−lxml</span>), and YACC
-(<span class="B">−lyacc</span>),</p>
+<p>Currently, known languages are C (<span class="B">−lc</span>), C++ (<span class="B">−lc++</span>), CSH
+(<span class="B">−lcsh</span>), FORTRAN (<span class="B">−lfortran</span>), ICON (<span class="B">−lI</span>,) ISP
+(<span class="B">−lisp</span>), LDL (<span class="B">−ldl</span>), LISP LIKE (<span class="B">−ml</span>), MODEL
+(<span class="B">−lm</span>), MODULA2 (<span class="B">−lmod2</span>), PASCAL (<span class="B">−lp</span>), POSTXML
+(<span class="B">−lpostxml</span>), RATFOR (<span class="B">−lr</span>), RUSSEL (<span class="B">lrussell</span>),
+SHELL (<span class="B">−lsh</span>), TROFF (<span class="B">−ltr</span>), XML (<span class="B">−lxml</span>), and
+YACC (<span class="B">−lyacc</span>),</p>
 <h3>PROGRAMMING STYLE</h3>
-<p><span class="I">Ugrind</span> assumes that a certain programming style
-is followed:</p>
+<p><span class="I">Ugrind</span> assumes that a certain programming style is followed:</p>
 <ul><li>C and C++:
-Functions names can be preceded on a line only by spaces,
-tabs, or an asterisk. The parenthesized arguments must also
-be on the same line.</li>
+Functions names can be preceded on a line only by spaces, tabs, or an asterisk.
+The parenthesized arguments must also be on the same line.</li>
 <li>PASCAL:
-Function names need to appear on the same line as the
-keywords <span class="I">fuctions</span> or <span class="I">procedure</span>.</li>
+Function names need to appear on the same line as the keywords
+<span class="I">fuctions</span> or <span class="I">procedure</span>.</li>
 <li>MODEL:
-Function names need to appear on the same line as the
-keywords <span class="I">is beginproc</span>.</li>
+Function names need to appear on the same line as the keywords <span class="I">is
+beginproc</span>.</li>
 <li>TROFF:
-Between <span class="B">.vS</span> and <span class="B">.vE</span> macros in regular
-mode, and in the whole file in whole file mode,
-<span class="I">ugrind</span> will take care to escape all the commands,
-macros, strings and number register that could be
-interpreted by troff. That means that to highlight troff
-source code, one juste has to write the code as is. That
-also means that it is not possible to insert formatting
+Between <span class="B">.vS</span> and <span class="B">.vE</span> macros in regular mode, and in the
+whole file in whole file mode, <span class="I">ugrind</span> will take care to escape all
+the commands, macros, strings and number register that could be interpreted by
+troff. That means that to highlight troff source code, one juste has to write
+the code as is. That also means that it is not possible to insert formatting
 commands inside the code that has to be highlighted.</li></ul>
-<p>More generally, arbitrary formatting styles for programs
-mostly look bad. The use of spaces to align source code
-fails miserably; if you plan to <span class="I">ugrind</span> your
-program you should use tabs. This is somewhat inevitable
+<p>More generally, arbitrary formatting styles for programs mostly look bad. The
+use of spaces to align source code fails miserably; if you plan to
+<span class="I">ugrind</span> your program you should use tabs. This is somewhat inevitable
 since the font used by <span class="I">ugrind</span> is variable width.</p>
 <h3>MACROS AND STRINGS</h3>
-<p>To highlight code, <span class="I">ugrind</span> insert strings in the
-file, and use some macros, so, to format the output of
-<span class="I">ugrind</span> with <span class="I">troff</span>, the following
-strings and macros must be defined by your macro file.</p>
+<p>To highlight code, <span class="I">ugrind</span> insert strings in the file, and use some
+macros, so, to format the output of <span class="I">ugrind</span> with <span class="I">troff</span>, the
+following strings and macros must be defined by your macro file.</p>
 <h4>Macros</h4>
-<ul><li>vS: In regular mode, start a code block to highlight. The
-first argument define the language. See the <span class="B">−l</span>
-option to get the list of supported languages.</li>
+<ul><li>vS: In regular mode, start a code block to highlight. The first argument define
+the language. See the <span class="B">−l</span> option to get the list of supported
+languages.</li>
 <li>vE: In regular mode, end a code block to highlight.</li>
-<li>vF: In whole file mode, start a new file. The first argument
-is the name of the file.</li>
-<li>vH: The header defined by the <span class="B">−h</span> option is
-defined as argument of this macro.</li>
-<li>vO: Indicate that a function begins on the next line. The
-first argument is the function name.</li>
-<li>vC: Indicate that a function gets closed on the previous
-line.</li></ul>
+<li>vF: In whole file mode, start a new file. The first argument is the name of the
+file.</li>
+<li>vH: The header defined by the <span class="B">−h</span> option is defined as argument of
+this macro.</li>
+<li>vO: Indicate that a function begins on the next line. The first argument is the
+function name.</li>
+<li>vC: Indicate that a function gets closed on the previous line.</li></ul>
 <h4>Strings</h4>
 <ul><li>+C: Begin a comment,</li>
 <li>-C: End a comment,</li>
@@ -101,34 +87,30 @@ line.</li></ul>
 <li>-: a tiret (−),</li>
 <li>_: a bottom tiret (_).</li></ul>
 <h3>HISTORY</h3>
-<p><span class="I">Ugrind</span> is a hack of <span class="I">vfontedpr</span> (that
-probably means <span class="I">visual-font-edit-print</span>), which is
-the preprocesor used by the mostly forgotten
-<span class="I">vgrind</span> script, which aims to visually "grind nice
-listing of programms" with troff. The code that vfontedpr
-use to read the language description file is "stolen almost
-totally from <span class="I">termcap</span>".  <span class="I">Vgrind</span> and
-<span class="I">vfontedpr</span> have been written by Dave Presotto and
-William Joy, for 4.3BSD-Tahoe. They have been modified by
-Gunnar Ritter as part of the <span class="I">Heirloom documentation
-tools</span>.</p>
+<p><span class="I">Ugrind</span> is a hack of <span class="I">vfontedpr</span> (that probably means
+<span class="I">visual-font-edit-print</span>), which is the preprocesor used by the mostly
+forgotten <span class="I">vgrind</span> script, which aims to visually "grind nice listing
+of programms" with troff. The code that vfontedpr use to read the language
+description file is "stolen almost totally from <span class="I">termcap</span>".
+<span class="I">Vgrind</span> and <span class="I">vfontedpr</span> have been written by Dave Presotto
+and William Joy, for 4.3BSD-Tahoe. They have been modified by Gunnar Ritter as
+part of the <span class="I">Heirloom documentation tools</span>.</p>
 <h3>LICENSE</h3>
 <p><span class="I">Ugrind</span> and its man page are distributed under the
-<a href="/man/bsd4.html">bsd4 license</a>.
-The code which highlight troff language, written from
-scratch, is distributed under a
-<a href="/man/bsd2.html">bsd2 license</a>.
-The language description file
-(<span class="I">@LIBDIR@/ugrindefs</span>) is distributed under the
-<a href="/man/cddl.html">cddl license</a>.</p>
+<a href="https://pjfichet.github.io/utroff/man/bsd4.html">bsd4 license</a>.
+The code which highlight troff language, written from scratch, is distributed
+under a
+<a href="https://pjfichet.github.io/utroff/man/bsd2.html">bsd2 license</a>.
+The language description file (<span class="I">@LIBDIR@/ugrindefs</span>) is distributed
+under the
+<a href="https://pjfichet.github.io/utroff/man/cddl.html">cddl license</a>.</p>
 <h3>FILES</h3>
 <p><span class="I">@BINDIR@/ugrind</span> preprocessor
 <span class="I">@LIBDIR@/ugrindefs</span> language descriptions</p>
 <h3>SEE ALSO</h3>
 <p>troff(1)</p>
 <h3>AUTHORS</h3>
-<p>Written by Dave <span class="C">Presotto</span> and William
-<span class="C">Joy</span>. Modified by Gunnar <span class="C">Ritter</span> for the
-<span class="I">Heirloom Project</span> and later Pierre-Jean
-<span class="C">Fichet</span> for <span class="I">Utroff</span>.</p>
+<p>Written by Dave <span class="C">Presotto</span> and William <span class="C">Joy</span>. Modified by
+Gunnar <span class="C">Ritter</span> for the <span class="I">Heirloom Project</span> and later Pierre-
+Jean <span class="C">Fichet</span> for <span class="I">Utroff</span>.</p>
 </article></body></html>

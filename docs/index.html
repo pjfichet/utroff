@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff — Use Troff !</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Pierre-Jean Fichet"></meta><meta name="date" content="2020-06-09T13:30:39"></meta><meta name="keywords" content="utroff troff neatroff groff"></meta><meta name="subject" content="Utroff presentation"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff.org</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="refresh" content="0; URL=https://pjfichet.codeberg.page/utroff"></meta><link rel="canonical" href="https://pjfichet.codeberg.page/utroff"></link><title>Utroff — Use Troff !</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Pierre-Jean Fichet"></meta><meta name="date" content="2025-07-18T13:40:18"></meta><meta name="keywords" content="utroff troff neatroff groff"></meta><meta name="subject" content="Utroff presentation"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
 
 
 
@@ -8,24 +8,22 @@
 
 <h2>Use Troff !</h2>
 <h3>What is Troff?</h3>
-<p>Troff is the historical text processor for Unix. It is
-mainly used today to format manual pages, but it is also
-able to produce postscript and pdf files. There are several
-implementation of troff, and amongst them, some provide high
-quality typographic features – such as a paragraph at once
-adjustment – which make them able to contest with TeX.</p>
+<p>Troff is the historical text processor for Unix. It is mainly used today to
+format manual pages, but it is also able to produce postscript and pdf files.
+There are several implementation of troff, and amongst them, some provide high
+quality typographic features – such as a paragraph at once adjustment – which
+make them able to contest with TeX.</p>
 <h3>The Utroff project</h3>
-<p>The <span class="I">Utroff</span> project aims to prove that Troff can
-still be used efficiently today. For that purpose, it
-provides a «piles included» set of macros
+<p>The <span class="I">Utroff</span> project aims to prove that Troff can still be used
+efficiently today. For that purpose, it provides a «piles included» set of
+macros
 (<a href="tmac.html">utmac</a>),
 and a set of
 <a href="bin.html">tools</a>
-to index documents (<span class="I">idx</span>), write polytonic greek
-(<span class="I">tchars</span>), manage bibliography references
-(<span class="I">refer</span>), highlight source code
-(<span class="I">ugrind</span>), and eventually, export troff documents
-to xml, html, and flat OpenDocument
+to index documents (<span class="I">idx</span>), write polytonic greek (<span class="I">tchars</span>),
+manage bibliography references (<span class="I">refer</span>), highlight source code
+(<span class="I">ugrind</span>), and eventually, export troff documents to xml, html, and
+flat OpenDocument
 (<a href="xml.html">troffxml</a>).</p>
 <p>You can get an overview of the layout by downloading
 <a href="https://pjfichet.github.io/utroff/pub/layout-uh.pdf">layout-uh.pdf</a>,
@@ -33,100 +31,85 @@ to xml, html, and flat OpenDocument
 and
 <a href="https://pjfichet.github.io/utroff/pub/layout-us.pdf">layout-us.pdf</a>.</p>
 <h3>Troff implementations</h3>
-<p>Utroff does not provide the troff text processor itself. But
-it is compatible with the two troff implementations
-providing paragraph at once adjustment:</p>
+<p>Utroff does not provide the troff text processor itself. But it is compatible
+with the two troff implementations providing paragraph at once adjustment:</p>
 <ul><li><span class="C">Gunnar Ritter</span> created the
-<a href="http://heirloom.sourceforge.net/doctools.html">Heirloom
-doctools</a>
-by adding algorythms to provide paragraph at once
-adjustment, micro-typography adjustment, hanging characters
-and the capacity to handle OpenType fonts to the legacy
-<span class="I">troff</span> text processor.  Heirloom troff has been
-maintained on
-<a href="http://n-t- roff.github.io/heirloom/doctools.html">Github</a>
-by Karsten Kunze for some time. <span class="I">Utroff</span> first used
-it, but there is now a better choice than <span class="I">Heirloom
-Troff</span>.</li>
+<a href="http://heirloom.sourceforge.net/doctools.html">Heirloom doctools</a>
+by adding algorythms to provide paragraph at once adjustment, micro-typography
+adjustment, hanging characters and the capacity to handle OpenType fonts to the
+legacy <span class="I">troff</span> text processor.  Heirloom troff has been maintained on
+<a href="http://n-t-roff.github.io/heirloom/doctools.html">Github</a>
+by Karsten Kunze for some time. <span class="I">Utroff</span> first used it, but there is
+now a better choice than <span class="I">Heirloom Troff</span>.</li>
 <li><span class="C">Ali Gholami Rudi</span> wrote
 <a href="http://litcave.rudi.ir">neatroff</a>
-from scratch, embedding paragraph at once adjustment and bi-
-directional text rendering. <span class="I">Neatroff</span> is a
-wonderful troff implementation: lightweight, clean, easy to
-use and install, and with a pretty output. <span class="C">Ali Gholami
-Rudi</span> is maintaining it with care and attention to its
-users. <span class="I">Utroff</span> is now using <span class="I">neatroff</span> as
-its default troff processor.</li></ul>
+from scratch, embedding paragraph at once adjustment and bi-directional text
+rendering. <span class="I">Neatroff</span> is a wonderful troff implementation: lightweight,
+clean, easy to use and install, and with a pretty output. <span class="C">Ali Gholami
+Rudi</span> is maintaining it with care and attention to its users.
+<span class="I">Utroff</span> is now using <span class="I">neatroff</span> as its default troff
+processor.</li></ul>
 <h3>ChangeLog</h3>
 <h4>2018-04-14 utmac</h4>
-<p>Utmac now uses <span class="I">Neatroff</span> as its default troff
-processor. Since <span class="I">Neatroff</span> does not provide
-<span class="I">nroff</span>, <span class="I">Groff</span> is used instead to
-produce plain text files and xml files.</p>
+<p>Utmac now uses <span class="I">Neatroff</span> as its default troff processor. Since
+<span class="I">Neatroff</span> does not provide <span class="I">nroff</span>, <span class="I">Groff</span> is used
+instead to produce plain text files and xml files.</p>
 <h4>2017-12-11 troffxml-0.6</h4>
-<p>Utmac now uses KA, KN, KT, KO, KW macros to index some
-keywords. These changes are reflected on utohtml.xsl.</p>
-<p>Bugfixes in postxml: any number of following <span class="B">#-</span>
-are deleted, and <span class="B">#-</span> are not ignored after
-repeated newlines.</p>
+<p>Utmac now uses KA, KN, KT, KO, KW macros to index some keywords. These changes
+are reflected on utohtml.xsl.</p>
+<p>Bugfixes in postxml: any number of following <span class="B">#-</span> are deleted, and
+<span class="B">#-</span> are not ignored after repeated newlines.</p>
 <h4>2017-12-11 utmac-0.6</h4>
-<p>The macro to define the substitution text for a link is now
-<span class="B">LT</span> instead of <span class="B">LP</span>.</p>
-<p>The user interface to index keywords is now completely
-separated from the one used to print links. The keywords to
-index are now defined by the <span class="B">K</span>[<span class="I">x</span>]
-macro. <span class="B">K</span>[<span class="I">x</span>] macros don’t print
-anything, and the (new) <span class="B">LT</span> macro is now reserved
-to links.</p>
-<p>Defined <span class="B">K</span>[<span class="I">x</span>] macros are <span class="B">KA</span>
-(acronyms), <span class="B">KN</span> (names), <span class="B">KO</span> (objects,
-things), <span class="B">KT</span> (titles, books), <span class="B">KW</span>
-(words).  It is easy to add new ones by using the internal
+<p>The macro to define the substitution text for a link is now <span class="B">LT</span>
+instead of <span class="B">LP</span>.</p>
+<p>The user interface to index keywords is now completely separated from the one
+used to print links. The keywords to index are now defined by the
+<span class="B">K</span>[<span class="I">x</span>] macro. <span class="B">K</span>[<span class="I">x</span>] macros don’t print
+anything, and the (new) <span class="B">LT</span> macro is now reserved to links.</p>
+<p>Defined <span class="B">K</span>[<span class="I">x</span>] macros are <span class="B">KA</span> (acronyms),
+<span class="B">KN</span> (names), <span class="B">KO</span> (objects, things), <span class="B">KT</span> (titles,
+books), <span class="B">KW</span> (words).  It is easy to add new ones by using the internal
 <span class="I">idx:make</span> macro.</p>
-<p>Following the development of Heirloom Troff on github,
-ux.tmac now uses <span class="I">\(dq</span> to escape double quotes and
-u-ref.tmac now uses \E as escape seqence instead of \\.</p>
+<p>Following the development of Heirloom Troff on github, ux.tmac now uses
+<span class="I">\(dq</span> to escape double quotes and u-ref.tmac now uses \E as escape
+seqence instead of \\.</p>
 <h4>2017/12/08 utmac-0.5</h4>
-<p>The macros for links are now in u-links.tmac.
-<span class="B">LL</span>, <span class="B">LM</span> and <span class="B">LU</span> now print the
-link even if LP is not used.  A glitch in summaries and
-table of contents has been fixed by correctly escaping
-<span class="I">\a</span> and <span class="I">\t</span>.</p>
+<p>The macros for links are now in u-links.tmac.  <span class="B">LL</span>, <span class="B">LM</span> and
+<span class="B">LU</span> now print the link even if LP is not used.  A glitch in summaries
+and table of contents has been fixed by correctly escaping <span class="I">\a</span> and
+<span class="I">\t</span>.</p>
 <h4>2017/12/08 troffxml-0.5</h4>
-<p><span class="I">Utofodt.xsl</span> attempts to render the code formatted
-by Ugrind correctly.  <span class="I">Utohtml.xsl</span> has a better
-support for index macros and links.  A bug affecting
-internal links to bottom notes is fixed in
+<p><span class="I">Utofodt.xsl</span> attempts to render the code formatted by Ugrind
+correctly.  <span class="I">Utohtml.xsl</span> has a better support for index macros and
+links.  A bug affecting internal links to bottom notes is fixed in
 <span class="I">utohtml.xsl</span>.</p>
 <h4>2017/12/06 ugrind-0.4</h4>
-<p>Separating ugrind from the Utroff archive.  The troff
-formatter now escape ’\’ in macro names.  Fix a bug in the
-troff formatter which was dropping newlines in some
-circumstances (bug report by Marcin Cieslak).  Removed
-unused variables, added parenthesis and braces to fix
-compiler warnings (bug report by Marcin Cieslak).</p>
+<p>Separating ugrind from the Utroff archive.  The troff formatter now escape ’\’
+in macro names.  Fix a bug in the troff formatter which was dropping newlines in
+some circumstances (bug report by Marcin Cieslak).  Removed unused variables,
+added parenthesis and braces to fix compiler warnings (bug report by Marcin
+Cieslak).</p>
 <h4>2017/12/05 refer-0.4</h4>
-<p>Separating refer from the Utroff archive.  Added parenthesis
-and braces to fix compiler warnings, and added missing
-fields in sortbib (bug report by Marcin Cieslak).</p>
+<p>Separating refer from the Utroff archive.  Added parenthesis and braces to fix
+compiler warnings, and added missing fields in sortbib (bug report by Marcin
+Cieslak).</p>
 <h4>2017/12/01 troffxml-0.4</h4>
-<p>Separating troffxml from the Utroff archive.  Fixed a bug in
-utohtml.xsl which was not linking notes correctly.</p>
+<p>Separating troffxml from the Utroff archive.  Fixed a bug in utohtml.xsl which
+was not linking notes correctly.</p>
 <h4>2017/11/30 tchars-0.4</h4>
-<p>Separating tchars from the Utroff archive.  Tchars now
-translates characters indicated by the macros <span class="B">CW, CL,
-CS, CE</span>.</p>
+<p>Separating tchars from the Utroff archive.  Tchars now translates characters
+indicated by the macros <span class="B">CW, CL, CS, CE</span>.</p>
 <h4>2017/11/25 utmac-0.4</h4>
-<p>Separatting Utmac from the Utroff archive.  Added macro
-<span class="I">ul</span> to write letters.</p>
+<p>Separatting Utmac from the Utroff archive.  Added macro <span class="I">ul</span> to write
+letters.</p>
 <h4>2014/03/17 utroff-0.3</h4>
-<p>U: Remove bashisms (bug report by fravashyo) and fix a bug
-in the directory list of fonts.</p>
+<p>U: Remove bashisms (bug report by fravashyo) and fix a bug in the directory list
+of fonts.</p>
 <h4>2014/03/13 utroff-0.2</h4>
-<p>tchars: RFC 3629 ends utf8 at U+10FFFF, so that utf8 is
-never encoded on more than 4 bits (bug report by seb).</p>
-<p>utmac: Load a font if the user locale macro does not do it
-(bug report by Fravashyo).</p>
+<p>tchars: RFC 3629 ends utf8 at U+10FFFF, so that utf8 is never encoded on more
+than 4 bits (bug report by seb).</p>
+<p>utmac: Load a font if the user locale macro does not do it (bug report by
+Fravashyo).</p>
 <h4>2013/11/05 utroff-0.1</h4>
 <p>Initial revision.</p>
 <footer><hr></hr><p>Produced by

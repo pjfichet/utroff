@@ -219,6 +219,9 @@ xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <xsl:template match="UTMAC">
 <html>
 <head>
+<meta http-equiv="refresh" content="0; URL=https://pjfichet.codeberg.page/utroff"/>
+  <link rel="canonical" href="https://pjfichet.codeberg.page/utroff"/>
+
   <xsl:choose>
     <xsl:when test="//DT">
       <title><xsl:value-of select="DT"/></title>

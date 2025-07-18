@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff tchars manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Pierre-Jean Fichet"></meta><meta name="date" content="2020-06-09T13:23:03"></meta><meta name="keywords" content="utroff tchars troff nroff"></meta><meta name="subject" content="Utroff tchars manual"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff.org</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="refresh" content="0; URL=https://pjfichet.codeberg.page/utroff"></meta><link rel="canonical" href="https://pjfichet.codeberg.page/utroff"></link><title>Utroff tchars manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Pierre-Jean Fichet"></meta><meta name="date" content="2025-07-18T13:40:18"></meta><meta name="keywords" content="utroff tchars troff nroff"></meta><meta name="subject" content="Utroff tchars manual"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
 
 
 
@@ -12,28 +12,25 @@
 <h3>SYNOPSIS</h3>
 <p><span class="B">@BINDIR@/tchars</span> [<span class="B">−e</span>] <span class="I">file</span></p>
 <h3>DESCRIPTION</h3>
-<p><span class="I">Tchars</span> is a troff pre-processor which translate
-some ascii code to complex utf-8 characters. Actually, it
-can only translate a subset of betacode to polytonic greek.</p>
+<p><span class="I">Tchars</span> is a troff pre-processor which translate some ascii code to
+complex utf-8 characters. Actually, it can only translate a subset of betacode
+to polytonic greek.</p>
 <h3>OPTIONS</h3>
-<ul><li><span class="B">−e</span>: Escape characters: print troff utf-8 escape
-sequence in the form of <span class="B">\U’xxxx’</span> instead of
-printing the utf-8 character itself.</li></ul>
+<ul><li><span class="B">−e</span>: Escape characters: print troff utf-8 escape sequence in the form
+of <span class="B">\U’xxxx’</span> instead of printing the utf-8 character itself.</li></ul>
 <h4>MACROS</h4>
-<p>In the troff document, characters that has to be translated
-must be indicated by one of the following macros:</p>
-<ul><li><span class="B">CW</span> <span class="I">code after before</span>: Transalte
-<span class="I">code</span>, and append <span class="I">before</span> and
-<span class="I">after</span> just before and after the translation.</li>
-<li><span class="B">CL</span> <span class="I">code</span>
-<span class="B">[</span><span class="I">code...</span><span class="B">]</span>: Translate the
-whole line following <span class="B">CL</span>.</li>
-<li><span class="B">CS</span>: Begin a block that has to be translated. Must
-be followed by <span class="B">CE</span>.</li>
+<p>In the troff document, characters that has to be translated must be indicated by
+one of the following macros:</p>
+<ul><li><span class="B">CW</span> <span class="I">code after before</span>: Transalte <span class="I">code</span>, and
+append <span class="I">before</span> and <span class="I">after</span> just before and after the
+translation.</li>
+<li><span class="B">CL</span> <span class="I">code</span> <span class="B">[</span><span class="I">code...</span><span class="B">]</span>:
+Translate the whole line following <span class="B">CL</span>.</li>
+<li><span class="B">CS</span>: Begin a block that has to be translated. Must be followed by
+<span class="B">CE</span>.</li>
 <li><span class="B">CE</span>: Close a block that has to be translated.</li></ul>
-<p>For <span class="I">tchars</span> to work, you must define these macro
-to call a font which contain polytonic greek characters, as
-follow, for example:</p>
+<p>For <span class="I">tchars</span> to work, you must define these macro to call a font which
+contain polytonic greek characters, as follow, for example:</p>
 <pre><span class="codeK">.</span><span class="codeK">fp</span> 0 G GFSPyrsos otf <span class="codeC">\" Pyrsos from Greek Font Society</span>
 <span class="codeK">.</span><span class="codeK">de</span> <span class="codeK">CW</span>
 <span class="codeC">\</span><span class="codeV">\$3</span><span class="codeV">\fG</span><span class="codeC">\</span><span class="codeV">\$1</span><span class="codeV">\fR</span><span class="codeC">\</span><span class="codeV">\$2</span>
@@ -48,9 +45,8 @@ follow, for example:</p>
 <span class="codeK">.</span>    <span class="codeK">ft</span> R
 <span class="codeK">.</span><span class="codeK">.</span></pre>
 <h4>CODE</h4>
-<p>A rune is composed of an ascii letter, followed by a
-representation of an accent.  <span class="I">Tchars</span> actually
-understand the following accents:</p>
+<p>A rune is composed of an ascii letter, followed by a representation of an
+accent.  <span class="I">Tchars</span> actually understand the following accents:</p>
 <ul><li>+ dialytika ̈:</li>
 <li>&amp; macron ̄:</li>
 <li>´ vrachy ̆:</li>
@@ -60,8 +56,7 @@ understand the following accents:</p>
 <li>/ oxia ́:</li>
 <li>= perispomeni ͂:</li>
 <li>| ypogegrammeni ͅ:</li></ul>
-<p>The order is significant, it must be:
-<span class="B">+&amp;’)(\/=|</span></p>
+<p>The order is significant, it must be: <span class="B">+&amp;’)(\/=|</span></p>
 <p><span class="I">Tchars</span> actually understand the following letters:</p>
 <ul><li>A Α ALPHA, a α alpha:</li>
 <li>B Β BETA, b β beta:</li>
@@ -92,11 +87,10 @@ understand the following accents:</p>
 <h3>FILES</h3>
 <p><span class="I">@BINDIR@/tchars</span></p>
 <h3>SEE ALSO</h3>
-<p><a href="/man/utmac.html">utmac(7)</a>.</p>
+<p><a href="https://pjfichet.github.io/utroff/man/utmac.html">utmac(7)</a>.</p>
 <h3>LICENSE</h3>
-<p><span class="I">Tchars</span> and this man page are distributed under
-the
-<a href="/man/isc.html">isc license</a>.</p>
+<p><span class="I">Tchars</span> and this man page are distributed under the
+<a href="https://pjfichet.github.io/utroff/man/isc.html">isc license</a>.</p>
 <h3>AUTHOR</h3>
 <p>
 Pierre-Jean <span class="C">Fichet</span>.</p>

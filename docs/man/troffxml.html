@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff prexml and postxml manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="date" content="2020-06-09T13:23:03"></meta><meta name="keywords" content="utroff prexml postxml troff xml"></meta><meta name="subject" content="Utroff prexml and postxml manual"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff.org</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="refresh" content="0; URL=https://pjfichet.codeberg.page/utroff"></meta><link rel="canonical" href="https://pjfichet.codeberg.page/utroff"></link><title>Utroff prexml and postxml manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="date" content="2025-07-18T13:40:18"></meta><meta name="keywords" content="utroff prexml postxml troff xml"></meta><meta name="subject" content="Utroff prexml and postxml manual"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
 
 
 
@@ -7,31 +7,25 @@
 
 <h2>PREXML &amp; POSTXML 1</h2>
 <h3>NAME</h3>
-<p><span class="B">prexml postxml</span> − <span class="I">nroff</span> processors to
-build xml files.</p>
+<p><span class="B">prexml postxml</span> − <span class="I">nroff</span> processors to build xml files.</p>
 <h3>SYNOPSIS</h3>
-<p><span class="B">prexml</span> &lt; <span class="I">file.tr</span> |
-<span class="B">nroff</span> <span class="B">-m</span><span class="I">ux</span> |
-<span class="B">postxml</span> &gt; <span class="I">file.xml</span></p>
+<p><span class="B">prexml</span> &lt; <span class="I">file.tr</span> | <span class="B">nroff</span>
+<span class="B">-m</span><span class="I">ux</span> | <span class="B">postxml</span> &gt; <span class="I">file.xml</span></p>
 <h3>DESCRIPTION</h3>
-<p><span class="I">Postxml</span> provides a solution to build an xml file
-from a troff document that relies on <span class="I">nroff</span>
-itself. Since <span class="I">nroff</span> builds a plain text file from
-a troff document, it can be used, with an appropriate macro,
-to produce an intermediate file that <span class="I">postxml</span> will
-translate to xml.</p>
-<p>That intermediate file contains tags that <span class="I">postxml</span>
-will transform to xml tags. If these tags are present in the
-source file, and need to be printed as is, <span class="I">prexml</span>
-simply escapes these tags so that <span class="I">postxml</span> won’t
-substitute them.</p>
+<p><span class="I">Postxml</span> provides a solution to build an xml file from a troff
+document that relies on <span class="I">nroff</span> itself. Since <span class="I">nroff</span> builds a
+plain text file from a troff document, it can be used, with an appropriate
+macro, to produce an intermediate file that <span class="I">postxml</span> will translate to
+xml.</p>
+<p>That intermediate file contains tags that <span class="I">postxml</span> will transform to
+xml tags. If these tags are present in the source file, and need to be printed
+as is, <span class="I">prexml</span> simply escapes these tags so that <span class="I">postxml</span>
+won’t substitute them.</p>
 <p>Since the final xml file might contain utf-8 characters, the
-<span class="B">-T</span><span class="I">locale</span> option of <span class="I">nroff</span>
-must be used.  <span class="I">Utmac</span> provides the <span class="I">ux</span>
-macro that aims to be used with prexml and postxml.
-<span class="I">Troffxml</span> comes with xsl stylesheets to create
-open document and html files.  So, the command line could
-be:</p>
+<span class="B">-T</span><span class="I">locale</span> option of <span class="I">nroff</span> must be used.
+<span class="I">Utmac</span> provides the <span class="I">ux</span> macro that aims to be used with
+prexml and postxml. <span class="I">Troffxml</span> comes with xsl stylesheets to create
+open document and html files.  So, the command line could be:</p>
 <pre>prexml <span class="codeK">&lt;</span> file.tr <span class="codeK">|</span> nroff −Tlocale \
 −mux <span class="codeK">|</span> postxml <span class="codeK">&gt;</span> file.xml
 xsltproc utohtml.xsl file.xml <span class="codeK">&gt;</span> file.html
@@ -39,46 +33,43 @@ xsltproc utofodt.xsl file.xml <span class="codeK">&gt;</span> file.fodt</pre>
 <h3>TAGS</h3>
 <h4>Postxml</h4>
 <p><span class="I">Postxml</span> will substitute the following tags.</p>
-<ul><li><span class="B">#[</span>: Replaced by <span class="B">&lt;</span>.</li>
-<li><span class="B">#]</span>: Replaced by <span class="B">&gt;</span>.</li>
-<li><span class="B">#(</span>: Replaced by <span class="B">&amp;</span>.</li>
-<li><span class="B">#)</span>: Replaced by <span class="B">;</span>.</li>
-<li><span class="B">#~</span>: Replaced by <span class="B">#</span>.</li>
-<li><span class="B">\n#-\n</span>: Removed from stream.</li></ul>
+<ul><li><span class="B">#˜[</span>: Replaced by <span class="B">&lt;</span>.</li>
+<li><span class="B">#˜]</span>: Replaced by <span class="B">&gt;</span>.</li>
+<li><span class="B">#˜(</span>: Replaced by <span class="B">&amp;</span>.</li>
+<li><span class="B">#˜)</span>: Replaced by <span class="B">;</span>.</li>
+<li><span class="B">#˜˜</span>: Replaced by <span class="B">#</span>.</li>
+<li><span class="B">\n#˜-\n</span>: Removed from stream.</li></ul>
 <p>So the following text:</p>
 <pre>Some text
 <span class="codeC">#−</span>
-<span class="codeK">#[</span>a<span class="codeK">#]</span>
+<span class="codeK">#˜[</span>a<span class="codeK">#˜]</span>
 <span class="codeC">#−</span>
 note text
-<span class="codeK">#[</span>/a<span class="codeK">#]</span>
-<span class="codeV">#(lt#)</span>.</pre>
+<span class="codeK">#˜[</span>/a<span class="codeK">#˜]</span>
+<span class="codeV">#˜(lt#˜)</span>.</pre>
 <p>Will be transform in:</p>
 <pre>Some text<span class="codeK">&lt;</span>a<span class="codeK">&gt;</span>note text<span class="codeK">&lt;/</span>a<span class="codeK">&gt;</span> <span class="codeV">&amp;lt;</span>.</pre>
 <h4>Prexml</h4>
-<p>All these tags will be escaped by <span class="I">prexml</span> if they
-are present in the original file, following these rules:</p>
-<ul><li><span class="B">#[</span>: Replaced by <span class="B">#~[</span>.</li>
-<li><span class="B">#]</span>: Replaced by <span class="B">#~]</span>.</li>
-<li><span class="B">#(</span>: Replaced by <span class="B">#~(</span>.</li>
-<li><span class="B">#)</span>: Replaced by <span class="B">#~)</span>.</li>
-<li><span class="B">#~</span>: Replaced by <span class="B">#~~</span>.</li>
-<li><span class="B">\n#-\n</span>: Replaced by <span class="B">#~-</span>.</li></ul>
+<p>All these tags will be escaped by <span class="I">prexml</span> if they are present in the
+original file, following these rules:</p>
+<ul><li><span class="B">#˜[</span>: Replaced by <span class="B">#˜˜[</span>.</li>
+<li><span class="B">#˜]</span>: Replaced by <span class="B">#˜˜]</span>.</li>
+<li><span class="B">#˜(</span>: Replaced by <span class="B">#˜˜(</span>.</li>
+<li><span class="B">#˜)</span>: Replaced by <span class="B">#˜˜)</span>.</li>
+<li><span class="B">#˜˜</span>: Replaced by <span class="B">#˜˜˜</span>.</li>
+<li><span class="B">\n#˜-\n</span>: Replaced by <span class="B">#˜˜-</span>.</li></ul>
 <h3>FILES</h3>
-<ul><li><span class="I">@BINDIR@/prexml</span> <span class="I">@BINDIR@/postxml</span>:
-Executables.</li>
-<li><span class="I">@XSLDIR@/utohtml.xsl</span>: XSL stylesheet to transform
-an utmac document to html.</li>
-<li><span class="I">@XSLDIR@/utofodt.xsl</span>: XSL stylesheet to transform
-an utmac document to flat odt.</li>
-<li><span class="I">@XSLDIR@/utmac.ott</span>: Open Document Text Template
-close to Utmac.</li></ul>
+<ul><li><span class="I">@BINDIR@/prexml</span> <span class="I">@BINDIR@/postxml</span>: Executables.</li>
+<li><span class="I">@XSLDIR@/utohtml.xsl</span>: XSL stylesheet to transform an utmac document
+to html.</li>
+<li><span class="I">@XSLDIR@/utofodt.xsl</span>: XSL stylesheet to transform an utmac document
+to flat odt.</li>
+<li><span class="I">@XSLDIR@/utmac.ott</span>: Open Document Text Template close to Utmac.</li></ul>
 <h3>SEE ALSO</h3>
 <p>nroff(1).</p>
 <h3>LICENSE</h3>
-<p><span class="I">Prexml</span>, <span class="I">postxml</span> and this man page are
-distributed under a
-<a href="/man/isc.html">isc license</a>.</p>
+<p><span class="I">Prexml</span>, <span class="I">postxml</span> and this man page are distributed under a
+<a href="https://pjfichet.github.io/utroff/man/isc.html">isc license</a>.</p>
 <h3>AUTHOR</h3>
 <p>
 Written by Pierre-Jean <span class="C">Fichet</span>.</p>

@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff idx manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Pierre-Jean Fichet"></meta><meta name="date" content="2020-06-09T13:23:02"></meta><meta name="keywords" content="utroff idx troff"></meta><meta name="subject" content="Utroff idx manual"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff.org</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="refresh" content="0; URL=https://pjfichet.codeberg.page/utroff"></meta><link rel="canonical" href="https://pjfichet.codeberg.page/utroff"></link><title>Utroff idx manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Pierre-Jean Fichet"></meta><meta name="date" content="2025-07-18T13:40:18"></meta><meta name="keywords" content="utroff idx troff"></meta><meta name="subject" content="Utroff idx manual"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
 
 
 
@@ -10,33 +10,27 @@
 <h3>NAME</h3>
 <p><span class="B">Idx</span> − make and manipulate index files.</p>
 <h3>SYNOPSIS</h3>
-<p><span class="B">@BINDIR@/idx</span> [<span class="B">−dhmprtw</span>]
-<span class="I">file</span></p>
+<p><span class="B">@BINDIR@/idx</span> [<span class="B">−dhmprtw</span>] <span class="I">file</span></p>
 <h3>DESCRIPTION</h3>
-<p><span class="I">Idx</span> is an helper tool to make and to manipulate
-index files. <span class="I">Idx</span> has been made to automatically
-index troff document, but it can also be used manually, to
-make an index of a book.</p>
+<p><span class="I">Idx</span> is an helper tool to make and to manipulate index files.
+<span class="I">Idx</span> has been made to automatically index troff document, but it can
+also be used manually, to make an index of a book.</p>
 <h3>OPTIONS</h3>
-<ul><li><span class="B">−d</span>: Take troff output in entry, and output an
-index in a troff format. Internally used by troff macros to
-build indexes. This is the default.</li>
+<ul><li><span class="B">−d</span>: Take troff output in entry, and output an index in a troff
+format. Internally used by troff macros to build indexes. This is the default.</li>
 <li><span class="B">−h</span>: Print a short help.</li>
 <li><span class="B">−m</span>: Mix all lines in a single line.</li>
-<li><span class="B">−p</span>: Take a list of words in entry, and output a
-list of pages.</li>
+<li><span class="B">−p</span>: Take a list of words in entry, and output a list of pages.</li>
 <li><span class="B">−r</span>: Reformat a list of words to fix errors.</li>
-<li><span class="B">−t</span>: Take a list of pages in entry, and output an
-index in a troff format.</li>
-<li><span class="B">−w</span>: Take a list of pages in entry, and output a
-list of words.</li></ul>
+<li><span class="B">−t</span>: Take a list of pages in entry, and output an index in a troff
+format.</li>
+<li><span class="B">−w</span>: Take a list of pages in entry, and output a list of words.</li></ul>
 <h3>FORMAT</h3>
-<p>There are four format of index file that <span class="I">Idx</span> can
-work with: a list of pages, a list of words, troff output
-and troff input.</p>
+<p>There are four format of index file that <span class="I">Idx</span> can work with: a list of
+pages, a list of words, troff output and troff input.</p>
 <h4>List of pages</h4>
-<p>A list of pages indicates which words appears on a page.
-Each line of a list of pages is formatted as follow:</p>
+<p>A list of pages indicates which words appears on a page.  Each line of a list of
+pages is formatted as follow:</p>
 <ul><li>page number,</li>
 <li>two semi-colons followed by one space (:: ),</li>
 <li>a list of words separated by a comma and a space (, ).</li></ul>
@@ -45,13 +39,12 @@ Each line of a list of pages is formatted as follow:</p>
 <span class="codeK">34::</span> troff, index, nroff
 <span class="codeK">35::</span> index, unix, refer</pre>
 <h4>List of words</h4>
-<p>A list of words indicates in which pages appears a word.
-Each line of a list of words is formatted as follow:</p>
+<p>A list of words indicates in which pages appears a word.  Each line of a list of
+words is formatted as follow:</p>
 <ul><li>the word,</li>
 <li>two semi-colons followed by one space (:: ),</li>
-<li>a list of page number or range of pages separated by a comma
-and a space (, ). A range of page is made by two page number
-separated by a tiret (-).</li></ul>
+<li>a list of page number or range of pages separated by a comma and a space (, ). A
+range of page is made by two page number separated by a tiret (-).</li></ul>
 <p>The previous example would be formatted as follow:</p>
 <pre><span class="codeK">index::</span> 33−35
 <span class="codeK">nroff::</span> 34
@@ -59,11 +52,10 @@ separated by a tiret (-).</li></ul>
 <span class="codeK">troff::</span> 33
 <span class="codeK">unix::</span> 35</pre>
 <h4>Troff output</h4>
-<p>When <span class="I">idx</span> is used to index a troff document, the
-output produced by troff and passed to idx should be as
-follow:</p>
-<ul><li>A single letter key which indicate what the index is about
-(W for index of words, T for index of titles...),</li>
+<p>When <span class="I">idx</span> is used to index a troff document, the output produced by
+troff and passed to idx should be as follow:</p>
+<ul><li>A single letter key which indicate what the index is about (W for index of
+words, T for index of titles...),</li>
 <li>A "&gt;" followed by a space (&gt; ),</li>
 <li>The indexed word,</li>
 <li>Two semicolons followed by a space (:: ),</li>
@@ -79,31 +71,27 @@ follow:</p>
 <span class="codeK">W&gt; unix::</span> 35
 <span class="codeK">W&gt; refer::</span> 35</pre>
 <h4>Troff input</h4>
-<p><span class="I">Idx</span> can format an index so that troff can print
-it correctly. The format of troff input is as follow:</p>
+<p><span class="I">Idx</span> can format an index so that troff can print it correctly. The
+format of troff input is as follow:</p>
 <pre><span class="codeK">.</span><span class="codeK">K&lt;</span>                  <span class="codeC">\" one letter keyword defining the index</span>
 <span class="codeK">.</span><span class="codeK">ds</span> <span class="codeV">&lt;P</span> <span class="codeS">x, m−n    \" list of pages</span>
 <span class="codeK">.</span><span class="codeK">K&gt;</span> word             <span class="codeC">\" the word which appears on these pages</span></pre>
-<p>So, a troff macro that use idx should define the following
-macros:</p>
-<ul><li><span class="B">K&lt;</span>: Start an index of type K. Usually, such
-a macro will print a title, such as "Index of words".</li>
-<li><span class="B">K&gt;</span>: Print the index entry defined as
-argument, followed by the list of pages previously defined
-by the <span class="B">&lt;P</span> string. You should add a dot at
-the end of the list of pages, since idx will not add it.</li></ul>
+<p>So, a troff macro that use idx should define the following macros:</p>
+<ul><li><span class="B">K&lt;</span>: Start an index of type K. Usually, such a macro will print a
+title, such as "Index of words".</li>
+<li><span class="B">K&gt;</span>: Print the index entry defined as argument, followed by the
+list of pages previously defined by the <span class="B">&lt;P</span> string. You should
+add a dot at the end of the list of pages, since idx will not add it.</li></ul>
 <h3>EXAMPLE</h3>
-<p>This example taken from real life will show how to print an
-index of a paper book.</p>
-<ul><li>Read the book, and, annotate it to underline the words
-you’ll have to index.</li>
-<li>On a file of your computer, write an index formatted as a
-list of pages: for each page of the book, write the words it
-contains.</li>
+<p>This example taken from real life will show how to print an index of a paper
+book.</p>
+<ul><li>Read the book, and, annotate it to underline the words you’ll have to index.</li>
+<li>On a file of your computer, write an index formatted as a list of pages: for
+each page of the book, write the words it contains.</li>
 <li>Use idx to translate this file to a sorted list of words:</li></ul>
 <pre>idx −w a.idx <span class="codeK">&gt;</span> b.idx</pre>
-<ul><li>You should read this list of words, since you’ll probably
-have to correct some mistakes, or rename some index entry.</li>
+<ul><li>You should read this list of words, since you’ll probably have to correct some
+mistakes, or rename some index entry.</li>
 <li>Once done, reformat it with idx:</li></ul>
 <pre>idx −r b.idx <span class="codeK">&gt;</span> c.idx</pre>
 <ul><li>Use idx to pass this formatted index to troff:</li></ul>
@@ -111,10 +99,10 @@ have to correct some mistakes, or rename some index entry.</li>
 <h3>FILES</h3>
 <p><span class="I">@BINDIR@/idx</span></p>
 <h3>SEE ALSO</h3>
-<p><a href="/man/utmac.html">utmac(7)</a></p>
+<p><a href="https://pjfichet.github.io/utroff/man/utmac.html">utmac(7)</a></p>
 <h3>LICENSE</h3>
 <p><span class="I">Idx</span> and this man page are distributed under the
-<a href="/man/isc.html">isc license</a></p>
+<a href="https://pjfichet.github.io/utroff/man/isc.html">isc license</a></p>
 <h3>AUTHOR</h3>
 <p>
 Written by Pierre-Jean <span class="C">Fichet</span>.</p>

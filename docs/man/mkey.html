@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff mkey manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="M. E. Lesk"></meta><meta name="date" content="2020-06-09T13:23:03"></meta><meta name="keywords" content="utroff mkey refer troff"></meta><meta name="subject" content="Utroff mkey manual"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff.org</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="refresh" content="0; URL=https://pjfichet.codeberg.page/utroff"></meta><link rel="canonical" href="https://pjfichet.codeberg.page/utroff"></link><title>Utroff mkey manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="M. E. Lesk"></meta><meta name="date" content="2025-07-18T13:40:18"></meta><meta name="keywords" content="utroff mkey refer troff"></meta><meta name="subject" content="Utroff mkey manual"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
 
 
 
@@ -10,68 +10,56 @@
 <h3>NAME</h3>
 <p><span class="B">Mkey</span> — Build an index of keys from files</p>
 <h3>SYNOPSIS</h3>
-<p><span class="B">mkey</span> [<span class="B">-sw</span>] [<span class="B">-c</span>
-<span class="I">name</span>] [<span class="B">-f</span> <span class="I">name</span>]
-[<span class="B">-i</span> <span class="I">chars</span>] [<span class="B">-k</span><span class="I">n</span>]
-[<span class="B">-l</span><span class="I">n</span>] [<span class="B">-n</span><span class="I">m</span>]
-<span class="I">file</span> [<span class="I">file...</span>]</p>
+<p><span class="B">mkey</span> [<span class="B">-sw</span>] [<span class="B">-c</span> <span class="I">name</span>] [<span class="B">-f</span>
+<span class="I">name</span>] [<span class="B">-i</span> <span class="I">chars</span>] [<span class="B">-k</span><span class="I">n</span>]
+[<span class="B">-l</span><span class="I">n</span>] [<span class="B">-n</span><span class="I">m</span>] <span class="I">file</span>
+[<span class="I">file...</span>]</p>
 <h3>DESCRIPTION</h3>
-<p><span class="B">Mkey</span> reads its input from the file names given as
-arguments, and, if there is no arguments, it reads from the
-standart input. It assumes that blank lines in the input
-delimit separate items for each of which a different line of
-<span class="B">keys</span> should be generated. The lines of keys are
-written on the standard output. <span class="B">Keys</span> are any
-alphanumeric string in the input not among the most frequent
-words in English and not entirely numeric (except that all-
-numeric strings are acceptable if they are between 1900 and
-1999). In the output, keys are translated to lower case, and
-truncated to six characters in length; any associated
-punctuation is removed.</p>
-<p>The following flags arguments are recognized by
-<span class="B">mkey</span>.</p>
-<ul><li><span class="B">-c</span> <span class="I">name</span>: Name of file of common words.
-Default is <span class="I">@LIBDIR@/eign</span>.</li>
-<li><span class="B">-f</span> <span class="I">name</span>: Read a list of files from
-<span class="I">name</span> and take each as an input argument.</li>
-<li><span class="B">-i</span> <span class="I">chars</span>: Ignore each line wich begin
-with ’<span class="B">%</span>’ followed by any character in
-<span class="I">chars</span>.</li>
-<li><span class="B">-k</span><span class="I">n</span>: Use at most <span class="I">n</span> keys per
-input item. Unless this option is used, the output of
-<span class="B">mkey</span> is comparable in size to its input.</li>
-<li><span class="B">-l</span><span class="I">n</span>: Ignore items shorter than
-<span class="I">n</span> letter longs. Default is 3.</li>
-<li><span class="B">-n</span><span class="I">m</span>: Ignore as a key any word in the
-first <span class="I">m</span> words of the list of common English
-words. The default is 100.</li>
-<li><span class="B">-s</span>: Remove the labels
-(<span class="I">file:start,length</span>) from the output; just give
-the keys. Used when searching rather than indexing.</li>
-<li><span class="B">-w</span>: Each whole file is a separate item; blank
-lines are irrelevant.</li></ul>
+<p><span class="B">Mkey</span> reads its input from the file names given as arguments, and, if
+there is no arguments, it reads from the standart input. It assumes that blank
+lines in the input delimit separate items for each of which a different line of
+<span class="B">keys</span> should be generated. The lines of keys are written on the
+standard output. <span class="B">Keys</span> are any alphanumeric string in the input not
+among the most frequent words in English and not entirely numeric (except that
+all-numeric strings are acceptable if they are between 1900 and 1999). In the
+output, keys are translated to lower case, and truncated to six characters in
+length; any associated punctuation is removed.</p>
+<p>The following flags arguments are recognized by <span class="B">mkey</span>.</p>
+<ul><li><span class="B">-c</span> <span class="I">name</span>: Name of file of common words. Default is
+<span class="I">@LIBDIR@/eign</span>.</li>
+<li><span class="B">-f</span> <span class="I">name</span>: Read a list of files from <span class="I">name</span> and
+take each as an input argument.</li>
+<li><span class="B">-i</span> <span class="I">chars</span>: Ignore each line wich begin with ’<span class="B">%</span>’
+followed by any character in <span class="I">chars</span>.</li>
+<li><span class="B">-k</span><span class="I">n</span>: Use at most <span class="I">n</span> keys per input item. Unless
+this option is used, the output of <span class="B">mkey</span> is comparable in size to its
+input.</li>
+<li><span class="B">-l</span><span class="I">n</span>: Ignore items shorter than <span class="I">n</span> letter longs.
+Default is 3.</li>
+<li><span class="B">-n</span><span class="I">m</span>: Ignore as a key any word in the first <span class="I">m</span>
+words of the list of common English words. The default is 100.</li>
+<li><span class="B">-s</span>: Remove the labels (<span class="I">file:start,length</span>) from the output;
+just give the keys. Used when searching rather than indexing.</li>
+<li><span class="B">-w</span>: Each whole file is a separate item; blank lines are irrelevant.</li></ul>
 <h3>FILES</h3>
 <p><span class="I">@BINDIR@/mkey</span>        Executable.
-<span class="I">@LIBDIR@/eign</span>        List of frequent english
-words.</p>
+<span class="I">@LIBDIR@/eign</span>        List of frequent english words.</p>
 <h3>LICENSE</h3>
-<p>The text of this manual page comes from <span class="I">Some
-application of Inverted Indexes in the UNIX System</span> by
-M. E. Lesk, which is distributed under the
-<a href="/man/bsd4.html">bsd4 license</a>
+<p>The text of this manual page comes from <span class="I">Some application of Inverted
+Indexes in the UNIX System</span> by M. E. Lesk, which is distributed under the
+<a href="https://pjfichet.github.io/utroff/man/bsd4.html">bsd4 license</a>
 The software <span class="I">mkey</span> is distributed under the
-<a href="/man/cddl.html">cddl license</a>.</p>
+<a href="https://pjfichet.github.io/utroff/man/cddl.html">cddl license</a>.</p>
 <h3>SEE ALSO</h3>
-<p><a href="/man/refer.html">refer(1)</a>,
-<a href="/man/referformat.html">referformat(7)</a>,
-<a href="/man/sortbib.html">sortbib(1)</a>,
-<a href="/man/inv.html">inv(1)</a>,
-<a href="/man/hunt.html">hunt(1)</a>,
-and <span class="I">Some application of Inverted Indexes in the UNIX
-System</span> by M. E. <span class="C">Lesk</span>.</p>
+<p><a href="https://pjfichet.github.io/utroff/man/refer.html">refer(1)</a>,
+<a href="https://pjfichet.github.io/utroff/man/referformat.html">referformat(7)</a>,
+<a href="https://pjfichet.github.io/utroff/man/sortbib.html">sortbib(1)</a>,
+<a href="https://pjfichet.github.io/utroff/man/inv.html">inv(1)</a>,
+<a href="https://pjfichet.github.io/utroff/man/hunt.html">hunt(1)</a>,
+and <span class="I">Some application of Inverted Indexes in the UNIX System</span> by M. E.
+<span class="C">Lesk</span>.</p>
 <h3>AUTHORS</h3>
-<p>This manual page is made from the document <span class="I">Some
-application of Inverted Indexes in the UNIX System</span> by
-M.  E. <span class="C">Lesk</span>. Modified by Pierre-Jean
-<span class="C">Fichet</span></p>
+<p>This manual page is made from the document <span class="I">Some application of Inverted
+Indexes in the UNIX System</span> by M.  E. <span class="C">Lesk</span>. Modified by Pierre-
+Jean <span class="C">Fichet</span></p>
 </article></body></html>

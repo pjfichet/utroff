@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Utroff tsql manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Pierre-Jean Fichet"></meta><meta name="date" content="2020-06-09T13:23:03"></meta><meta name="keywords" content="utroff tsql troff nroff sqlite"></meta><meta name="subject" content="Utroff tsql manual"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff.org</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="refresh" content="0; URL=https://pjfichet.codeberg.page/utroff"></meta><link rel="canonical" href="https://pjfichet.codeberg.page/utroff"></link><title>Utroff tsql manual</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="generator" content="nroff -mux"></meta><meta name="author" content="Pierre-Jean Fichet"></meta><meta name="date" content="2025-07-18T13:40:18"></meta><meta name="keywords" content="utroff tsql troff nroff sqlite"></meta><meta name="subject" content="Utroff tsql manual"></meta><link rel="stylesheet" href="https://pjfichet.github.io/utroff/utroff.css" type="text/css" media="screen"></link></head><body><nav><h1><a href="https://pjfichet.github.io/utroff/index.html">Utroff</a></h1><a href="https://pjfichet.github.io/utroff/tmac.html">tmac</a><a href="https://pjfichet.github.io/utroff/bin.html">bin</a><a href="https://pjfichet.github.io/utroff/xml.html">xml</a><a href="https://github.com/pjfichet">git</a></nav><article>
 
 
 
@@ -8,56 +8,49 @@
 
 <h2>TSQL 1</h2>
 <h3>NAME</h3>
-<p><span class="B">Tsql</span> − Executes sqlite statements from a troff
-document.</p>
+<p><span class="B">Tsql</span> − Executes sqlite statements from a troff document.</p>
 <h3>SYNOPSIS</h3>
 <p><span class="B">@BINDIR@/tsql</span> [<span class="B">−c</span>
-&lt;<span class="I">control_character</span>&gt;] &lt;
-<span class="I">file</span> | tbl | troff | pdf &gt; file.pdf</p>
+&lt;<span class="I">control_character</span>&gt;] &lt; <span class="I">file</span> | tbl | troff |
+pdf &gt; file.pdf</p>
 <h3>DESCRIPTION</h3>
-<p><span class="I">Tsql</span> executes the sqlite statements found in the
-input file and format their result for troff.</p>
+<p><span class="I">Tsql</span> executes the sqlite statements found in the input file and
+format their result for troff.</p>
 <h3>OPTIONS</h3>
-<ul><li><span class="B">−c</span> <span class="I">control_character</span>: Define the
-control character. Default is ’<span class="I">.</span>’.</li></ul>
+<ul><li><span class="B">−c</span> <span class="I">control_character</span>: Define the control character.
+Default is ’<span class="I">.</span>’.</li></ul>
 <h3>MACROS</h3>
-<p>In the troff document, macros are used to configure
-<span class="B">tsql</span> and wrap the sqlite statements.</p>
-<ul><li><span class="B">sqldb</span> &lt;<span class="I">database</span>&gt;: Opens the
-database <span class="I">database</span> and executes statements on it.
-If <span class="I">database</span> does not exist, it will be created.
-Several <span class="B">sqldb</span> can be indicated: <span class="B">tsql</span>
-will then close the current database and open the new one
-instead. The keyword <span class="I">:memory:</span> can be used to
-define an in memory database.</li>
-<li><span class="B">sqlbeg</span>: Sqlite statements begin on the next line,
-until <span class="B">sqlend</span>.  <span class="B">sqlbeg</span> Formats the
-result of the query using <span class="B">tblrow</span> and
-<span class="B">tblcol</span> that neatroff macro <span class="I">tbl.tmac</span>
+<p>In the troff document, macros are used to configure <span class="B">tsql</span> and wrap the
+sqlite statements.</p>
+<ul><li><span class="B">sqldb</span> &lt;<span class="I">database</span>&gt;: Opens the database
+<span class="I">database</span> and executes statements on it.  If <span class="I">database</span> does
+not exist, it will be created.  Several <span class="B">sqldb</span> can be indicated:
+<span class="B">tsql</span> will then close the current database and open the new one
+instead. The keyword <span class="I">:memory:</span> can be used to define an in memory
+database.</li>
+<li><span class="B">sqlbeg</span>: Sqlite statements begin on the next line, until
+<span class="B">sqlend</span>.  <span class="B">sqlbeg</span> Formats the result of the query using
+<span class="B">tblrow</span> and <span class="B">tblcol</span> that neatroff macro <span class="I">tbl.tmac</span>
 understands.</li>
-<li><span class="B">sqltbl</span> [&lt;<span class="I">tab</span>&gt;]: Sqlite
-statements begins on the next line, until <span class="B">sqlend</span>.
-<span class="B">sqltbl</span> formats the result of the query for the
-pre-processor <span class="B">tbl</span>.  The optional
-&lt;<span class="I">tab</span>&gt; arguments defines the character
-used as separator (it should conform with the tab(x) global
-option of <span class="B">tbl</span>).</li>
-<li><span class="B">sqlds</span> &lt;<span class="I">string_name</span>&gt;: An
-sqlite query begins on the next line, until
-<span class="B">sqlend</span>.  <span class="B">sqlds</span> will format the result
+<li><span class="B">sqltbl</span> [&lt;<span class="I">tab</span>&gt;]: Sqlite statements begins on the
+next line, until <span class="B">sqlend</span>.  <span class="B">sqltbl</span> formats the result of the
+query for the pre-processor <span class="B">tbl</span>.  The optional
+&lt;<span class="I">tab</span>&gt; arguments defines the character used as separator (it
+should conform with the tab(x) global option of <span class="B">tbl</span>).</li>
+<li><span class="B">sqlds</span> &lt;<span class="I">string_name</span>&gt;: An sqlite query begins on
+the next line, until <span class="B">sqlend</span>.  <span class="B">sqlds</span> will format the result
 as a troff string definition:</li></ul>
 <pre><span class="codeK">.</span><span class="codeK">ds</span> <span class="codeV">string_name</span> <span class="codeS">query result</span></pre>
-<ul><li><span class="B">sqlnr</span> &lt;<span class="I">register_name</span>&gt;: An
-sqlite query begins on the next line, until
-<span class="B">sqlend</span>.  <span class="B">sqlnr</span> will format the result
+<ul><li><span class="B">sqlnr</span> &lt;<span class="I">register_name</span>&gt;: An sqlite query begins on
+the next line, until <span class="B">sqlend</span>.  <span class="B">sqlnr</span> will format the result
 as a troff number register definition:</li></ul>
 <pre><span class="codeK">.</span><span class="codeK">nr</span> <span class="codeV">register_name</span> <span class="codeS">query_result</span></pre>
 <h3>EXTENSIONS</h3>
 <p>The following functions are added to the sqlite language:</p>
-<ul><li><span class="B">sqrt(</span><span class="I">i</span><span class="B">)</span>: Computes the
-square root of <span class="I">i</span>.</li>
-<li><span class="B">power(</span><span class="I">i, j</span><span class="B">)</span>: Computes
-<span class="I">i</span> power <span class="I">j</span>.</li></ul>
+<ul><li><span class="B">sqrt(</span><span class="I">i</span><span class="B">)</span>: Computes the square root of
+<span class="I">i</span>.</li>
+<li><span class="B">power(</span><span class="I">i, j</span><span class="B">)</span>: Computes <span class="I">i</span> power
+<span class="I">j</span>.</li></ul>
 <h3>EXAMPLE</h3>
 <pre><span class="codeK">.</span><span class="codeK">sqldb</span> :memory:
 <span class="codeK">.</span><span class="codeK">TS</span>
@@ -73,7 +66,7 @@ select * from T;
 <p><span class="I">@BINDIR@/tsql</span></p>
 <h3>LICENSE</h3>
 <p><span class="I">Tsql</span> and this man page are distributed under the
-<a href="/man/isc.html">isc license</a>.</p>
+<a href="https://pjfichet.github.io/utroff/man/isc.html">isc license</a>.</p>
 <h3>AUTHOR</h3>
 <p>
 Pierre-Jean <span class="C">Fichet</span>.</p>
